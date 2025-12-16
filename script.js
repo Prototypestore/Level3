@@ -1,28 +1,41 @@
-// Carousel
-const track = document.querySelector(".carousel-track");
+const track = document.querySelector('.slides');
 const slides = Array.from(track.children);
-const nextBtn = document.getElementById("next");
-const prevBtn = document.getElementById("prev");
-const slideWidth = slides[0].getBoundingClientRect().width + 24; // margin
-
+const slideWidth = 560;
 let index = 0;
 
-function updateCarousel() {
-  track.style.transform = `translateX(-${index * slideWidth}px)`;
+// Clone first slide for seamless loop
+const firstClone = slides[0].cloneNode(true);
+track.appendChild(firstClone);
+
+function showSlide(i) {
+  track.style.transition = "transform 0.5s ease";
+  track.style.transform = `translateX(-${i * slideWidth}px)`;
 }
 
-nextBtn.addEventListener("click", () => {
-  index = (index + 1) % slides.length;
-  updateCarousel();
+// Next
+document.querySelector('.slide-btn.next').addEventListener('click', () => {
+  index++;
+  showSlide(index);
 });
 
-prevBtn.addEventListener("click", () => {
+// Prev
+document.querySelector('.slide-btn.prev').addEventListener('click', () => {
   index = (index - 1 + slides.length) % slides.length;
-  updateCarousel();
+  showSlide(index);
 });
 
 // Auto-slide
 setInterval(() => {
-  index = (index + 1) % slides.length;
-  updateCarousel();
+  index++;
+  showSlide(index);
 }, 4000);
+
+// Loop reset
+track.addEventListener('transitionend', () => {
+  if (index === slides.length) {
+    track.style.transition = "none";
+    index = 0;
+    track.style.transform = `translateX(0px)`;
+    setTimeout(() => { track.style.transition = "transform 0.5s ease"; }, 50);
+  }
+});
