@@ -3,107 +3,38 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Aleo Code</title>
+  <title>Aleo Code Store</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
   <header>
     <div class="container">
-      <a href="#cart" aria-label="View cart">
-        <svg id="svg3" width="64" height="64" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg" fill="none" stroke="#98975c" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-          <path d="M10 14h8"/>
-          <path d="M18 14l4 0 4 22h22l4-16H24"/>
-          <path d="M24 20h28"/>
-          <path d="M26 36h22"/>
-          <circle cx="28" cy="44" r="3"/>
-          <circle cx="46" cy="44" r="3"/>
-        </svg>
-      </a>
+      <a href="#cart">🛒 Cart (<span id="cart-count">0</span>)</a>
     </div>
-    <nav aria-label="Main navigation">
-      <form class="search-form" action="server-endpoint" method="get">
-        <label for="search-input" class="visually-hidden">Search products</label>
-        <input id="search-input" type="text" name="query" placeholder="Search..." aria-label="Search products">
-        <button type="submit" aria-label="Search">
-          <svg class="svg" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="black" stroke-width="1" stroke-linecap="round" stroke-linejoin="round">
-            <circle cx="11" cy="11" r="8"/>
-            <line x1="21" y1="21" x2="16.65" y2="16.65"/>
-          </svg>
-        </button>
-      </form>
-    </nav>
   </header>
-  <main>
-    <section class="hero" role="banner">
-      <h1>AleoCode</h1>
-      <p>Built for comfort. Designed for life.</p>
-    </section>
-    <section class="story">
-      <h2>Behind the Fabric</h2>
-      <p>Every thread tells a story.</p>
-      <p>From the careful selection of materials to the craftsmanship in every seam, our pieces are more than clothing—they're experiences. We believe in creating designs that speak to both comfort and style, carrying the story of each thread into the lives of those who wear them.</p>
-    </section>
-    <section class="shop" aria-labelledby="shop-heading">
-      <h2 id="shop-heading">Shop</h2>
-      <div class="grid">
-        <!-- Example Product Card -->
-        <article class="product">
-          <a href="p1.html">
-            <img src="https://www.bossjackets.com/wp-content/uploads/2023/09/Spider-Web-Fleece-Hoodie-3.jpg" alt="Female web-style hooded sweatshirt">
-            <h3>Web-style hooded sweatshirt</h3>
-            <p>£35</p>
-          </a>
-        </article>
-        <article class="product">
-          <a href="p2.html">
-            <img src="https://tse3.mm.bing.net/th/id/OIP.gGJPehhQ3_3iAKW934eJmQHaHa?cb=ucfimg2&ucfimg=1&rs=1&pid=ImgDetMain&o=7&rm=3" alt="Male plain black T-shirt">
-            <h3>Plain black T-shirt</h3>
-            <p>£25</p>
-          </a>
-        </article>
-
-        <!-- Repeat article.product for other items -->
-      </div>
-    </section>
-    <section class="deals" aria-label="Current deals">
-      <div class="slides">
-        <article class="deal">
-          <img src="pic-1.svg" alt="Green dress with a 55% discount, 15% discount for students and free delivery on orders over £120">
-        </article>
-        <article class="deal">
-          <img src="pic-2.svg" alt="White skirt with a 55% discount, 15% discount for students and free delivery on orders over £120">
-        </article>
-        <article class="deal">
-          <img src="pic-3.svg" alt="Beige pants with a 55% discount, 15% discount for students and free delivery on orders over £120">
-        </article>
-      </div>
-      <div class="slide-controls">
-        <button type="button" class="slide-button" aria-label="Previous slide">&lt;</button>
-        <button type="button" class="slide-button" aria-label="Next slide">&gt;</button>
-      </div>
-    </section>
-    <section class="reviews" aria-label="Customer reviews">
-      <figure>
-        <img src="review1.png" alt="Olivia's review">
-      </figure>
-      <figure>
-        <img src="review2.png" alt="Kimberly's review">
-      </figure>
-      <figure>
-        <img src="review3.png" alt="Morgan's review">
-      </figure>
-    </section>
-    <section class="trending" aria-labelledby="trending-heading">
-      <h2 id="trending-heading">Trending Styles</h2>
-      <div class="grid">
-        <!-- Repeat the same product article structure -->
-      </div>
-    </section>
-  </main>
+  <!-- Search -->
+  <form class="form">
+    <input type="text" id="search" placeholder="Search products..."/>
+  </form>
+  <!-- Hero Section -->
+  <section class="hero">
+    <h1>AleoCode</h1>
+    <p>Built for comfort. Designed for life.</p>
+  </section>
+  <!-- Products Grid -->
+  <section class="grid" id="product-grid"></section>
+  <!-- Cart Section -->
+  <section id="cart" style="display:none;">
+    <h2>Your Cart</h2>
+    <div id="cart-items"></div>
+    <h3>Total: £<span id="total">0</span></h3>
+    <button id="checkout-btn">Checkout</button>
+    <button id="close-cart">Close Cart</button>
+  </section>
   <footer>
-    <p><a href="contact.html">Contact Us</a></p>
+    <p><a href="#contact">Contact Us</a></p>
     <p>© 2025 Aleo Code. All Rights Reserved.</p>
   </footer>
-  <script src="style.js"></script>
+  <script src="script.js"></script>
 </body>
 </html>
