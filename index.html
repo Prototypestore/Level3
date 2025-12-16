@@ -3,42 +3,153 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Aleo Code | Luxury Streetwear</title>
+  <title>Aleo Code | Premium Streetwear</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <header>
-    <h1>Aleo<strong>Code</strong></h1>
-    <nav>
-      <ul>
-        <li><a href="#">Home</a></li>
-        <li><a href="#products">Shop</a></li>
-      </ul>
-    </nav>
+  <!-- Header / Navigation -->
+  <header class="header">
+    <div class="container header-container">
+      <a href="#" class="logo">Aleo<strong>Code</strong></a>
+      <nav class="nav">
+        <ul>
+          <li><a href="#shop">Shop</a></li>
+          <li><a href="#story">Our Story</a></li>
+          <li><a href="#trending">Trending</a></li>
+        </ul>
+      </nav>
+      <a href="#cart" class="cart-icon" aria-label="View Cart">
+        <svg id="svg3" width="40" height="40" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg" fill="none" stroke="#98975c" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M10 14h8" />
+          <path d="M18 14l4 0 4 22h22l4-16H24" />
+          <path d="M24 20h28" />
+          <path d="M26 36h22" />
+          <circle cx="28" cy="44" r="3" />
+          <circle cx="46" cy="44" r="3" />
+        </svg>
+      </a>
+    </div>
   </header>
-  <main>
-    <section class="hero">
-      <h2>Luxury Streetwear, Redefined</h2>
-      <p>Discover premium hoodies and sweatshirts crafted with care, comfort, and timeless style.</p>
-      <a href="#products">Shop Now</a>
-    </section>
-    <section id="products" class="carousel-container">
-      <div class="carousel-track">
-        <div class="carousel-slide"><a href="p1.html"><img src="https://www.bossjackets.com/wp-content/uploads/2023/09/Spider-Web-Fleece-Hoodie-3.jpg" alt="Hoodie 1"></a></div>
-        <div class="carousel-slide"><a href="#"><img src="https://via.placeholder.com/350x450?text=Hoodie+2" alt="Hoodie 2"></a></div>
-        <div class="carousel-slide"><a href="#"><img src="https://via.placeholder.com/350x450?text=Hoodie+3" alt="Hoodie 3"></a></div>
-        <div class="carousel-slide"><a href="#"><img src="https://via.placeholder.com/350x450?text=Hoodie+4" alt="Hoodie 4"></a></div>
+
+  <!-- Search -->
+  <section class="search-section">
+    <form class="search-form" action="server-endpoint" method="GET" role="search">
+      <input type="search" name="query" placeholder="Search our collection..." aria-label="Search products">
+      <button type="submit" class="search-btn" aria-label="Search">
+        <svg class="svg" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="black" stroke-width="1" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="11" cy="11" r="8"/>
+          <line x1="21" y1="21" x2="16.65" y2="16.65"/>
+        </svg>
+      </button>
+    </form>
+  </section>
+
+  <!-- Hero -->
+  <section class="hero">
+    <div class="hero-content">
+      <h1>AleoCode</h1>
+      <p>Luxury streetwear designed for comfort, style, and everyday elegance.</p>
+      <a href="#shop" class="hero-btn">Shop Collection</a>
+    </div>
+  </section>
+
+  <!-- Story / About -->
+  <section class="story" id="story">
+    <div class="container">
+      <h2>Behind the Fabric</h2>
+      <p>Every thread tells a story. From careful material selection to expert craftsmanship, our pieces deliver comfort, elegance, and timeless style.</p>
+    </div>
+  </section>
+
+  <!-- Product Grid / Shop -->
+  <section class="shop" id="shop">
+    <div class="container">
+      <h2>Shop Our Collection</h2>
+      <div class="grid">
+        <article class="product-card">
+          <a href="p1.html">
+            <img src="https://www.bossjackets.com/wp-content/uploads/2023/09/Spider-Web-Fleece-Hoodie-3.jpg" alt="Web-style hooded sweatshirt"/>
+            <h3>Web-style Hoodie</h3>
+            <p class="price">£35</p>
+          </a>
+        </article>
+        <article class="product-card">
+          <a href="p2.html">
+            <img src="https://tse3.mm.bing.net/th/id/OIP.gGJPehhQ3_3iAKW934eJmQHaHa?cb=ucfimg2&ucfimg=1&rs=1&pid=ImgDetMain&o=7&rm=3" alt="Plain black T-shirt"/>
+            <h3>Black T-shirt</h3>
+            <p class="price">£25</p>
+          </a>
+        </article>
+        <!-- Add more products here following the same structure -->
       </div>
-      <div class="carousel-buttons">
-        <button id="prev">‹</button>
-        <button id="next">›</button>
+    </div>
+  </section>
+
+  <!-- Carousel / Deals -->
+  <section class="carousel">
+    <div class="slides-container">
+      <div class="slides">
+        <div class="slide"><img src="pic-1.svg" alt="Green dress with 55% discount"/></div>
+        <div class="slide"><img src="pic-2.svg" alt="White skirt with 55% discount"/></div>
+        <div class="slide"><img src="pic-3.svg" alt="Beige pants with 55% discount"/></div>
       </div>
-    </section>
-  </main>
+      <button class="slide-btn prev" aria-label="Previous Slide">&lt;</button>
+      <button class="slide-btn next" aria-label="Next Slide">&gt;</button>
+    </div>
+  </section>
+
+  <!-- Reviews -->
+  <section class="reviews">
+    <div class="container">
+      <h2>Customer Reviews</h2>
+      <div class="review-grid">
+        <figure>
+          <img src="review1.png" alt="Olivia's review"/>
+          <figcaption>Olivia - ⭐⭐⭐⭐⭐</figcaption>
+        </figure>
+        <figure>
+          <img src="review2.png" alt="Kimberly's review"/>
+          <figcaption>Kimberly - ⭐⭐⭐⭐⭐</figcaption>
+        </figure>
+        <figure>
+          <img src="review3.png" alt="Morgan's review"/>
+          <figcaption>Morgan - ⭐⭐⭐⭐⭐</figcaption>
+        </figure>
+      </div>
+    </div>
+  </section>
+
+  <!-- Trending -->
+  <section class="trending" id="trending">
+    <div class="container">
+      <h2>Trending Styles</h2>
+      <div class="grid">
+        <article class="product-card">
+          <a href="p1.html">
+            <img src="https://www.bossjackets.com/wp-content/uploads/2023/09/Spider-Web-Fleece-Hoodie-3.jpg" alt="Web-style hooded sweatshirt"/>
+            <h3>Web-style Hoodie</h3>
+            <p class="price">£35</p>
+          </a>
+        </article>
+        <article class="product-card">
+          <a href="p3.html">
+            <img src="https://i5.walmartimages.com/seo/Ma-Croix-Womens-Sweatpants-Skinny-Fit-Jogger-Pants-with-Pockets_439fd5ca-2316-4794-bf89-5b2678d9021a.54953153b803a16bcfe3264631b5151c.jpeg" alt="Grey joggers"/>
+            <h3>Grey Joggers</h3>
+            <p class="price">£30</p>
+          </a>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
   <footer>
-    <p><a href="contact.html">Contact Us</a></p>
-    <p>© 2025 Aleo Code. All Rights Reserved.</p>
+    <div class="container">
+      <p><a href="contact.html">Contact Us</a></p>
+      <p>© 2025 Aleo Code. All Rights Reserved.</p>
+    </div>
   </footer>
+
   <script src="script.js"></script>
 </body>
 </html>
