@@ -161,10 +161,14 @@ body {
   box-shadow: 0 8px 18px rgba(0,0,0,0.15);
 }
 
-.product-card img {
-  width: 100%;
-  height: 250px;
-  object-fit: cover;
+/* Product card and carousel images: fit container without cropping */
+.product-card img,
+.slide img {
+  width: 100%;          /* fill container width */
+  height: 100%;         /* fill container height */
+  object-fit: contain;  /* scale the image to fit without cropping */
+  display: block;
+  border-radius: 10px;  /* optional, keeps rounded corners */
 }
 
 .product-card h3 {
