@@ -1,0 +1,26 @@
+[
+  {
+    "id": "1",
+    "title": "Web Style Hooded Sweatshirt",
+    "price": "£35",
+    "image": "https://www.bossjackets.com/wp-content/uploads/2023/09/Spider-Web-Fleece-Hoodie-3.jpg",
+    "details": "Elevate your everyday look with the Aleo Code Beige Streetwear Hoodie, a perfect blend of comfort and urban edge. Crafted from soft, breathable fabric, this sweatshirt delivers a relaxed fit that moves effortlessly with you, while its neutral beige tone makes it a versatile staple for layering or standing out with minimalist style.",
+    "returns": "At Aleo Code, our customers consistently rate us 5 stars, and we’re proud to let those reviews speak for themselves. Every purchase comes with a 30-day store credit guarantee."
+  },
+  {
+    "id": "2",
+    "title": "Classic Leather Jacket",
+    "price": "£120",
+    "image": "https://example.com/leather-jacket.jpg",
+    "details": "Premium black leather jacket with a modern fit. Perfect for casual or semi-formal occasions.",
+    "returns": "30-day store credit available on all leather jackets."
+  },
+  {
+    "id": "3",
+    "title": "Vintage Denim Jeans",
+    "price": "£60",
+    "image": "https://example.com/vintage-jeans.jpg",
+    "details": "Comfortable vintage-style denim jeans with a slightly tapered leg. Ideal for casual wear or streetwear layering.",
+    "returns": "30-day store credit applies to all denim products."
+  }
+]
