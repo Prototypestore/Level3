@@ -145,6 +145,7 @@ body {
   grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
   gap: 2rem;
   margin-bottom: 4rem;
+  margin-top: 2rem;
 }
 
 .product-card {
@@ -169,6 +170,14 @@ body {
   object-fit: contain;   /* keeps aspect ratio */
   display: block;
   border-radius: 10px;
+  display: flex;
+  align-items: center;        /* horizontal center */
+  justify-content: center;    /* vertical center */
+}
+
+.product-card {
+  max-width: 280px;
+  margin: 0 auto; /* centers card in grid column */
 }
 
 .product-card h3 {
