@@ -134,7 +134,11 @@ input[type="radio"]:checked + .swatch {
 }
 
 .size-box {
-  padding: 10px 16px;
+  width: 48px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   border: 1.5px solid #ccc;
   border-radius: 6px;
   cursor: pointer;
@@ -143,9 +147,13 @@ input[type="radio"]:checked + .swatch {
 }
 
 .size input[type="radio"]:checked + .size-box {
-  background: #111827;
+  background: #000;
   color: #fff;
-  border-color: #111827;
+  border-color: #000;
+}
+
+.size-box:hover {
+  border-color: #000;
 }
 
 /* Quantity */
