@@ -164,11 +164,11 @@ body {
 /* Product card and carousel images: fit container without cropping */
 .product-card img,
 .slide img {
-  width: 100%;          /* fill container width */
-  height: 100%;         /* fill container height */
-  object-fit: contain;  /* scale the image to fit without cropping */
+  width: 250px;
+  height: 255px;
+  object-fit: contain;   /* keeps aspect ratio */
   display: block;
-  border-radius: 10px;  /* optional, keeps rounded corners */
+  border-radius: 10px;
 }
 
 .product-card h3 {
