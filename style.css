@@ -180,9 +180,14 @@ body {
   margin: 0 auto; /* centers card in grid column */
 }
 
+.product-card a {
+  text-decoration: none;
+}
+
 .product-card h3 {
   font-size: 1.1rem;
   margin: 0.8rem 0;
+  color: black;
 }
 
 .product-card .price {
