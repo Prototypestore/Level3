@@ -1,55 +1,164 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Aleo Code Store</title>
-  <link rel="stylesheet" href="style.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Product - Web Style Hooded Sweatshirt</title>
+<link rel="stylesheet" href="product.css">
 </head>
 <body>
-  <!-- HEADER / NAVIGATION -->
-  <header>
-    <nav aria-label="Main Navigation">
-      <div class="container">
-        <a href="#cart" id="cart-link">🛒 Cart (<span id="cart-count">0</span>)</a>
+<header class="head">
+  <a href="index.html" class="logo">Aleo<strong>Code</strong></a>
+  <nav class="nav">
+    <ul>
+      <li><a href="index.html">Home</a></li>
+      <li><a href="#deals">Deals</a></li>
+      <li><a href="#cart">Cart (<span id="cart-count">0</span>)</a></li>
+    </ul>
+  </nav>
+</header>
+<main>
+  <article class="parent">
+    <figure class="img">
+      <img src="https://www.bossjackets.com/wp-content/uploads/2023/09/Spider-Web-Fleece-Hoodie-3.jpg" alt="Black fleece hoodie with white spider-web design.">
+    </figure>
+    <section class="info">
+      <h1>Web Style Hooded Sweatshirt</h1>
+      <p class="price">£35</p>
+      <div class="star" aria-label="5-star rating">
+        <svg xmlns="http://www.w3.org/2000/svg" width="160" height="20" viewBox="0 0 320 40" role="img">
+          <title>5.0 rating from 2,034 reviews</title>
+          <symbol id="star" viewBox="0 0 24 24">
+            <path fill="orange" d="M12 17.27 18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/>
+          </symbol>
+          <g fill="#FFC107">
+            <use href="#star" x="0" y="8" width="24" height="24"/>
+            <use href="#star" x="30" y="8" width="24" height="24"/>
+            <use href="#star" x="60" y="8" width="24" height="24"/>
+            <use href="#star" x="90" y="8" width="24" height="24"/>
+            <use href="#star" x="120" y="8" width="24" height="24"/>
+          </g>
+          <text x="160" y="24" font-size="16" fill="#111827" font-weight="700">5.0</text>
+          <text x="190" y="24" font-size="16" fill="#6B7280">• 2034 reviews</text>
+        </svg>
       </div>
-    </nav>
-  </header>
-  <!-- MAIN CONTENT -->
-  <main>
-    <!-- SEARCH -->
-    <section class="search-section" aria-label="Product Search">
-      <form class="form" onsubmit="return false;">
-        <label for="search" class="visually-hidden">Search Products</label>
-        <input type="search" id="search" placeholder="Search products..." aria-label="Search Products">
+      <form class="fieldset2" id="product-form">
+        <fieldset class="f1">
+          <legend>Color:</legend>
+          <label><input type="radio" name="color" value="Beige" checked><span class="swatch beige"></span></label>
+          <label><input type="radio" name="color" value="White"><span class="swatch white"></span></label>
+          <label><input type="radio" name="color" value="Black"><span class="swatch black"></span></label>
+          <label><input type="radio" name="color" value="Brown"><span class="swatch brown"></span></label>
+        </fieldset>
+        <fieldset class="f2">
+          <legend>Size:</legend>
+          <div class="size">
+            <label><input type="radio" name="size" value="XS" checked><span class="size-box">XS</span></label>
+            <label><input type="radio" name="size" value="S"><span class="size-box">S</span></label>
+            <label><input type="radio" name="size" value="M"><span class="size-box">M</span></label>
+            <label><input type="radio" name="size" value="L"><span class="size-box">L</span></label>
+          </div>
+          <legend>Quantity:</legend>
+          <div class="quantity">
+            <button type="button" class="qty-btn" id="decrease">−</button>
+            <input type="number" id="qty-value" name="quantity" value="1" min="1" step="1">
+            <button type="button" class="qty-btn" id="increase">+</button>
+          </div>
+        </fieldset>
+        <button type="submit">Add to Cart</button>
       </form>
+      <p id="shipping">Free shipping (£25)</p>
+      <p id="delivery">Estimated delivery: Fri, Dec 8</p>
+      <section class="accordion">
+        <div class="accordion-item">
+          <h2>Product details</h2>
+          <button class="accordion-btn">∨</button>
+          <p class="accordion-content">
+            Elevate your everyday look with the Aleo Code Beige Streetwear Hoodie, a perfect blend of comfort and urban edge. Crafted from soft, breathable fabric, this sweatshirt delivers a relaxed fit that moves effortlessly with you, while its neutral beige tone makes it a versatile staple for layering or standing out with minimalist style. Designed with a spacious hood, kangaroo pocket, and ribbed cuffs for that classic streetwear silhouette, it’s built for both casual hangouts and statement-making outfits. Whether paired with joggers, denim, or layered under a jacket, Aleo Code’s hoodie embodies modern streetwear culture with understated confidence.
+          </p>
+        </div>
+        <div class="accordion-item">
+          <h2>30-day: store review credit</h2>
+          <button class="accordion-btn">∨</button>
+          <p class="accordion-content">
+            At Aleo Code, our customers consistently rate us 5 stars, and we’re proud to let those reviews speak for themselves. From the premium feel of our beige streetwear hoodie to the confidence of knowing every purchase comes with a 30‑day store credit, we’ve built trust by delivering both style and peace of mind. Our top reviews highlight the perfect blend of comfort, quality, and modern streetwear culture — proof that Aleo Code isn’t just a shop, it’s a community where satisfaction is guaranteed.
+          </p>
+        </div>
+      </section
+      <p id="styles">See 20+ similar styles.</p>
     </section>
-    <!-- HERO SECTION -->
-    <section class="hero" role="banner">
-      <h1>AleoCode</h1>
-      <p>Built for comfort. Designed for life.</p>
-    </section>
-    <!-- PRODUCTS GRID -->
-    <section id="product-grid-section" aria-label="Product Listing">
-      <h2>Shop Products</h2>
-      <div class="grid" id="product-grid"></div>
-    </section>
-    <!-- CART SECTION -->
-    <aside id="cart" class="cart-section" aria-label="Shopping Cart" hidden>
-      <h2>Your Cart</h2>
-      <ul id="cart-items"></ul>
-      <p>Total: £<span id="total">0</span></p>
-      <button type="button" id="checkout-btn">Checkout</button>
-      <button type="button" id="close-cart">Close Cart</button>
-    </aside>
-  </main>
-  <!-- FOOTER -->
-  <footer>
-    <address>
-      <p><a href="#contact">Contact Us</a></p>
-    </address>
-    <p>© 2025 Aleo Code. All Rights Reserved.</p>
-  </footer>
-  <script src="script.js"></script>
+  </article>
+</main>
+<footer>
+  <p><a href="contact.html">Contact Us</a></p>
+  <p>© 2025 Aleo Code. All Rights Reserved.</p>
+</footer>
+<script>
+  // -------------------- Quantity --------------------
+  const decreaseBtn = document.getElementById("decrease");
+  const increaseBtn = document.getElementById("increase");
+  const qtyInput    = document.getElementById("qty-value");
+
+  function updateButtons() {
+    decreaseBtn.disabled = parseInt(qtyInput.value) <= parseInt(qtyInput.min);
+  }
+
+  decreaseBtn.addEventListener("click", () => {
+    let current = parseInt(qtyInput.value);
+    let min = parseInt(qtyInput.min);
+    if(current > min) qtyInput.value = current - 1;
+    updateButtons();
+  });
+
+  increaseBtn.addEventListener("click", () => {
+    qtyInput.value = parseInt(qtyInput.value) + 1;
+    updateButtons();
+  });
+
+  qtyInput.addEventListener("input", updateButtons);
+  updateButtons();
+
+  // -------------------- Accordion --------------------
+  document.querySelectorAll(".accordion-item").forEach(item => {
+    const btn = item.querySelector(".accordion-btn");
+    const content = item.querySelector(".accordion-content");
+    btn.addEventListener("click", () => {
+      content.classList.toggle("show");
+      if(content.classList.contains("show")) content.scrollIntoView({behavior: "smooth", block: "start"});
+    });
+  });
+
+  // -------------------- Cart System --------------------
+  const cartCountEl = document.getElementById("cart-count");
+  const form = document.getElementById("product-form");
+
+  function getCart() {
+    return JSON.parse(localStorage.getItem("cart")) || [];
+  }
+
+  function saveCart(cart) {
+    localStorage.setItem("cart", JSON.stringify(cart));
+    cartCountEl.textContent = cart.reduce((acc, item) => acc + item.quantity, 0);
+  }
+
+  // Initialize cart count
+  saveCart(getCart());
+
+  form.addEventListener("submit", e => {
+    e.preventDefault();
+    const color = form.color.value;
+    const size = form.size.value;
+    const quantity = parseInt(qtyInput.value);
+    const cart = getCart();
+    const existing = cart.find(item => item.color === color && item.size === size);
+    if(existing) {
+      existing.quantity += quantity;
+    } else {
+      cart.push({product: "Web Style Hooded Sweatshirt", color, size, quantity, price: 35});
+    }
+    saveCart(cart);
+    alert(`Added ${quantity} × ${color} ${size} to cart`);
+  });
+</script>
 </body>
 </html>
