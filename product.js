@@ -3,7 +3,7 @@ const params = new URLSearchParams(window.location.search);
 const productId = params.get("id") || "1"; // default to 1 if no id
 
 // ====== FETCH PRODUCT DATA FROM JSON ====== //
-fetch("products.json")
+fetch("data/products.json")
   .then((res) => res.json())
   .then((products) => {
     const product = products.find((p) => p.id === productId);
