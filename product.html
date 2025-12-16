@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Web Style Hooded Sweatshirt | Aleo Code</title>
+  <link rel="stylesheet" href="product.css">
+</head>
+<body>
+
+  <!-- SITE HEADER -->
+  <header class="site-header">
+    <div class="logo">
+      <a href="index.html">Aleo<strong>Code</strong></a>
+    </div>
+    <nav class="site-nav">
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="#deals">Deals</a></li>
+        <li><a href="cart.html">Cart</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- MAIN PRODUCT SECTION -->
+  <main class="product-page">
+
+    <section class="product-detail container">
+      <figure class="product-image">
+        <img src="https://www.bossjackets.com/wp-content/uploads/2023/09/Spider-Web-Fleece-Hoodie-3.jpg" 
+             alt="Black fleece hoodie with white spider-web design">
+      </figure>
+
+      <div class="product-info">
+        <h1 class="product-title">Web Style Hooded Sweatshirt</h1>
+        <p class="product-price">£35</p>
+
+        <!-- Ratings -->
+        <div class="product-rating" aria-label="Rated 5 out of 5 stars from 2034 reviews">
+          <svg width="160" height="20" viewBox="0 0 320 40">
+            <symbol id="star" viewBox="0 0 24 24">
+              <path fill="orange" d="M12 17.27 18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/>
+            </symbol>
+            <g fill="#FFC107">
+              <use href="#star" x="0" y="8" width="24" height="24"/>
+              <use href="#star" x="30" y="8" width="24" height="24"/>
+              <use href="#star" x="60" y="8" width="24" height="24"/>
+              <use href="#star" x="90" y="8" width="24" height="24"/>
+              <use href="#star" x="120" y="8" width="24" height="24"/>
+            </g>
+            <text x="160" y="24" font-size="16" fill="#111827" font-weight="700">5.0</text>
+            <text x="190" y="24" font-size="16" fill="#6B7280">• 2034 reviews</text>
+          </svg>
+        </div>
+
+        <!-- Options -->
+        <form class="product-options">
+          <!-- Color -->
+          <fieldset class="color-fieldset">
+            <legend>Color</legend>
+            <label>
+              <input type="radio" name="color" value="Beige">
+              <span class="swatch beige"></span>
+            </label>
+            <label>
+              <input type="radio" name="color" value="White">
+              <span class="swatch white"></span>
+            </label>
+            <label>
+              <input type="radio" name="color" value="Black">
+              <span class="swatch black"></span>
+            </label>
+            <label>
+              <input type="radio" name="color" value="Brown">
+              <span class="swatch brown"></span>
+            </label>
+          </fieldset>
+
+          <!-- Size -->
+          <fieldset class="size-fieldset">
+            <legend>Size</legend>
+            <div class="sizes">
+              <label><input type="radio" name="size" value="XS"><span class="size-box">XS</span></label>
+              <label><input type="radio" name="size" value="S"><span class="size-box">S</span></label>
+              <label><input type="radio" name="size" value="M"><span class="size-box">M</span></label>
+              <label><input type="radio" name="size" value="L"><span class="size-box">L</span></label>
+            </div>
+          </fieldset>
+
+          <!-- Quantity -->
+          <fieldset class="quantity-fieldset">
+            <legend>Quantity</legend>
+            <div class="quantity">
+              <button type="button" id="decrease" class="qty-btn">−</button>
+              <input type="number" id="qty-value" name="quantity" value="1" min="1">
+              <button type="button" id="increase" class="qty-btn">+</button>
+            </div>
+          </fieldset>
+
+          <!-- Add to Cart -->
+          <button type="submit" class="btn-add-to-cart">Add to Cart</button>
+          <p class="shipping-info">Free shipping (£25)</p>
+          <p class="delivery-info">Estimated delivery: Fri, Dec 8</p>
+        </form>
+
+        <!-- Accordion Details -->
+        <section class="product-accordion">
+          <div class="accordion-item">
+            <h2>Product Details <button id="btn-pro">∨</button></h2>
+            <p id="product-details">
+              Elevate your everyday look with the Aleo Code Beige Streetwear Hoodie, a perfect blend of comfort and urban edge. Crafted from soft, breathable fabric, this sweatshirt delivers a relaxed fit that moves effortlessly with you, while its neutral beige tone makes it a versatile staple for layering or standing out with minimalist style.
+            </p>
+          </div>
+
+          <div class="accordion-item">
+            <h2>30-day Store Review Credit <button id="btn-re">∨</button></h2>
+            <p id="returns">
+              At Aleo Code, our customers consistently rate us 5 stars, and we’re proud to let those reviews speak for themselves. Every purchase comes with a 30-day store credit guarantee.
+            </p>
+          </div>
+        </section>
+
+        <p class="similar-styles">See 20+ similar styles.</p>
+      </div>
+    </section>
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="site-footer">
+    <p><a href="contact.html">Contact Us</a></p>
+    <p>© 2025 Aleo Code. All Rights Reserved.</p>
+  </footer>
+
+  <!-- JS -->
+  <script src="product.js"></script>
+</body>
+</html>
