@@ -2,25 +2,41 @@
   {
     "id": "1",
     "title": "Web Style Hooded Sweatshirt",
-    "price": "£35",
+    "price": 35,
+    "stock": 12,
     "image": "https://www.bossjackets.com/wp-content/uploads/2023/09/Spider-Web-Fleece-Hoodie-3.jpg",
-    "details": "Elevate your everyday look with the Aleo Code Beige Streetwear Hoodie, a perfect blend of comfort and urban edge. Crafted from soft, breathable fabric, this sweatshirt delivers a relaxed fit that moves effortlessly with you, while its neutral beige tone makes it a versatile staple for layering or standing out with minimalist style.",
-    "returns": "At Aleo Code, our customers consistently rate us 5 stars, and we’re proud to let those reviews speak for themselves. Every purchase comes with a 30-day store credit guarantee."
+    "details": "Elevate your everyday look with the Aleo Code Beige Streetwear Hoodie...",
+    "returns": "Every purchase comes with a 30-day store credit guarantee.",
+    "promotions": [
+      {
+        "type": "sale",
+        "discount": 0.1,
+        "start": "2025-12-01",
+        "end": "2025-12-31"
+      }
+    ],
+    "trending": true
   },
   {
     "id": "2",
     "title": "Black T-shirt",
-    "price": "£25",
+    "price": 25,
+    "stock": 0,
     "image": "https://tse3.mm.bing.net/th/id/OIP.gGJPehhQ3_3iAKW934eJmQHaHa?cb=ucfimg2&ucfimg=1&rs=1&pid=ImgDetMain&o=7&rm=3",
-    "details": "Premium black T-shirt with a modern fit. Perfect for casual or semi-formal occasions.",
-    "returns": "At Aleo Code, our customers consistently rate us 5 stars, and we’re proud to let those reviews speak for themselves. Every purchase comes with a 30-day store credit guarantee."
+    "details": "Premium black T-shirt with a modern fit...",
+    "returns": "Every purchase comes with a 30-day store credit guarantee.",
+    "promotions": [],
+    "trending": false
   },
   {
     "id": "3",
     "title": "Grey Joggers",
-    "price": "£30",
+    "price": 30,
+    "stock": 5,
     "image": "https://i5.walmartimages.com/seo/Ma-Croix-Womens-Sweatpants-Skinny-Fit-Jogger-Pants-with-Pockets_439fd5ca-2316-4794-bf89-5b2678d9021a.54953153b803a16bcfe3264631b5151c.jpeg",
-    "details": "Comfortable grey joggers. Ideal for casual wear or streetwear layering.",
-    "returns": "At Aleo Code, our customers consistently rate us 5 stars, and we’re proud to let those reviews speak for themselves. Every purchase comes with a 30-day store credit guarantee."
+    "details": "Comfortable grey joggers...",
+    "returns": "Every purchase comes with a 30-day store credit guarantee.",
+    "promotions": [],
+    "trending": true
   }
 ]
