@@ -1,10 +1,10 @@
-// ====== GET PRODUCT INFO FROM URL ====== //
+// ====== GET PRODUCT INFO FROM URL ======
 const params = new URLSearchParams(window.location.search);
 const productId = params.get("id") || "1";
 let selectedColor = params.get("color") || null;
 let selectedSize = params.get("size") || null;
 
-// ====== FETCH PRODUCT DATA ====== //
+// ====== FETCH PRODUCT DATA ======
 fetch("products.json")
   .then(res => res.json())
   .then(products => {
@@ -20,10 +20,8 @@ fetch("products.json")
       return;
     }
 
-    // ====== HELPER FUNCTIONS ====== //
-    const getVariant = (color, size) => {
-      return product.variants.find(v => v.color === color && v.size === size);
-    };
+    // ====== HELPER FUNCTIONS ======
+    const getVariant = (color, size) => product.variants.find(v => v.color === color && v.size === size);
 
     const updateURL = () => {
       const url = new URL(window.location);
@@ -45,7 +43,7 @@ fetch("products.json")
         return;
       }
 
-      // ====== PROMOTION CALCULATION ====== //
+      // ====== PROMOTION CALCULATION ======
       let displayPrice = variant.price;
       const today = new Date();
       if (product.promotions && product.promotions.length > 0) {
@@ -60,7 +58,7 @@ fetch("products.json")
 
       priceEl.textContent = `£${displayPrice}`;
 
-      // ====== STOCK LOGIC ====== //
+      // ====== STOCK LOGIC ======
       addToCartBtn.disabled = variant.stock === 0;
       addToCartBtn.textContent = variant.stock === 0 ? "Out of Stock" : "Add to Cart";
 
@@ -92,14 +90,14 @@ fetch("products.json")
       increaseBtn.disabled = !variant || qty >= variant.stock;
     };
 
-    // ====== UPDATE PRODUCT DOM ====== //
+    // ====== UPDATE PRODUCT DOM ======
     document.querySelector(".product-title").textContent = product.title;
     document.querySelector(".product-image img").src = product.image;
     document.querySelector(".product-image img").alt = product.title;
     document.getElementById("product-details").textContent = product.details;
     document.getElementById("returns").textContent = product.returns;
 
-    // ====== DYNAMIC VARIANTS ====== //
+    // ====== DYNAMIC VARIANTS ======
     if (product.variants) {
       const colors = [...new Set(product.variants.map(v => v.color))];
       const sizes = [...new Set(product.variants.map(v => v.size))];
@@ -122,19 +120,15 @@ fetch("products.json")
         sizeFieldset.appendChild(label);
       });
 
-      // ====== ALGORITHMIC VARIANT SELECTION ====== //
+      // ====== ALGORITHMIC VARIANT SELECTION ======
       if (!selectedColor || !selectedSize) {
-        // Step 1: Trending variant
-        let trendingVariants = product.variants.filter(v => v.stock > 0 && v.trending);
-        // Step 2: Fallback to highest stock
-        if (!trendingVariants.length) trendingVariants = product.variants.filter(v => v.stock > 0);
-        // Step 3: Pick the one with highest stock
-        const bestVariant = trendingVariants.sort((a, b) => b.stock - a.stock)[0];
+        const inStockVariants = product.variants.filter(v => v.stock > 0);
+        let bestVariant = inStockVariants.find(v => v.trending) || inStockVariants.sort((a, b) => b.stock - a.stock)[0];
         selectedColor = selectedColor || bestVariant.color;
         selectedSize = selectedSize || bestVariant.size;
       }
 
-      // ====== REFRESH OPTION AVAILABILITY ====== //
+      // ====== REFRESH OPTION AVAILABILITY ======
       const refreshOptionAvailability = () => {
         document.querySelectorAll('input[name="size"]').forEach(input => {
           const variant = getVariant(selectedColor, input.value);
@@ -151,11 +145,11 @@ fetch("products.json")
         });
       };
 
-      // ====== SELECT VARIANTS IN DOM ====== //
+      // ====== SELECT VARIANTS IN DOM ======
       document.querySelector(`input[name="color"][value="${selectedColor}"]`)?.click();
       document.querySelector(`input[name="size"][value="${selectedSize}"]`)?.click();
 
-      // ====== VARIANT EVENT LISTENERS ====== //
+      // ====== VARIANT EVENT LISTENERS ======
       document.querySelectorAll('input[name="color"]').forEach(input => {
         input.addEventListener("change", e => {
           selectedColor = e.target.value;
@@ -184,7 +178,7 @@ fetch("products.json")
       updatePriceStock();
     }
 
-    // ====== QUANTITY BUTTONS ====== //
+    // ====== QUANTITY BUTTONS ======
     const decreaseBtn = document.getElementById("decrease");
     const increaseBtn = document.getElementById("increase");
     const qtyInput = document.getElementById("qty-value");
@@ -209,7 +203,7 @@ fetch("products.json")
       updateQtyButtons();
     });
 
-    // ====== ACCORDION TOGGLE ====== //
+    // ====== ACCORDION TOGGLE ======
     document.getElementById("btn-pro").addEventListener("click", () => {
       document.getElementById("product-details").classList.toggle("show");
     });
