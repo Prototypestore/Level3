@@ -9,18 +9,18 @@
   },
   {
     "id": "2",
-    "title": "Classic Leather Jacket",
-    "price": "£120",
-    "image": "https://example.com/leather-jacket.jpg",
-    "details": "Premium black leather jacket with a modern fit. Perfect for casual or semi-formal occasions.",
+    "title": "Black T-shirt",
+    "price": "£25",
+    "image": "https://tse3.mm.bing.net/th/id/OIP.gGJPehhQ3_3iAKW934eJmQHaHa?cb=ucfimg2&ucfimg=1&rs=1&pid=ImgDetMain&o=7&rm=3",
+    "details": "Premium black T-shirt with a modern fit. Perfect for casual or semi-formal occasions.",
     "returns": At Aleo Code, our customers consistently rate us 5 stars, and we’re proud to let those reviews speak for themselves. Every purchase comes with a 30-day store credit guarantee."
   },
   {
     "id": "3",
-    "title": "Vintage Denim Jeans",
-    "price": "£60",
-    "image": "https://example.com/vintage-jeans.jpg",
-    "details": "Comfortable vintage-style denim jeans with a slightly tapered leg. Ideal for casual wear or streetwear layering.",
+    "title": "Grey Joggers",
+    "price": "£30",
+    "image": "https://i5.walmartimages.com/seo/Ma-Croix-Womens-Sweatpants-Skinny-Fit-Jogger-Pants-with-Pockets_439fd5ca-2316-4794-bf89-5b2678d9021a.54953153b803a16bcfe3264631b5151c.jpeg",
+    "details": "Comfortable grey joggers. Ideal for casual wear or streetwear layering.",
     "returns": At Aleo Code, our customers consistently rate us 5 stars, and we’re proud to let those reviews speak for themselves. Every purchase comes with a 30-day store credit guarantee."
   }
 ]
