@@ -122,27 +122,25 @@ fetch("products.json")
         sizeFieldset.appendChild(label);
       });
 
-      // ====== AUTO-SELECT DEFAULT OR TRENDING/HIGHEST STOCK VARIANT ====== //
+      // ====== ALGORITHMIC VARIANT SELECTION ====== //
       if (!selectedColor || !selectedSize) {
-        const availableVariants = product.variants.filter(v => v.stock > 0);
-        const defaultVariant = availableVariants.sort((a, b) => b.stock - a.stock)[0];
-        selectedColor = selectedColor || defaultVariant.color;
-        selectedSize = selectedSize || defaultVariant.size;
+        // Step 1: Trending variant
+        let trendingVariants = product.variants.filter(v => v.stock > 0 && v.trending);
+        // Step 2: Fallback to highest stock
+        if (!trendingVariants.length) trendingVariants = product.variants.filter(v => v.stock > 0);
+        // Step 3: Pick the one with highest stock
+        const bestVariant = trendingVariants.sort((a, b) => b.stock - a.stock)[0];
+        selectedColor = selectedColor || bestVariant.color;
+        selectedSize = selectedSize || bestVariant.size;
       }
 
-      // Click to select
-      document.querySelector(`input[name="color"][value="${selectedColor}"]`)?.click();
-      document.querySelector(`input[name="size"][value="${selectedSize}"]`)?.click();
-
-      // ====== DYNAMIC DISABLE OUT OF STOCK OPTIONS ====== //
+      // ====== REFRESH OPTION AVAILABILITY ====== //
       const refreshOptionAvailability = () => {
-        // Disable sizes not available for selected color
         document.querySelectorAll('input[name="size"]').forEach(input => {
           const variant = getVariant(selectedColor, input.value);
           input.disabled = !variant || variant.stock === 0;
           input.nextElementSibling.style.opacity = input.disabled ? 0.5 : 1;
         });
-        // Disable colors with no stock
         document.querySelectorAll('input[name="color"]').forEach(input => {
           const hasStock = sizes.some(s => {
             const variant = getVariant(input.value, s);
@@ -153,11 +151,14 @@ fetch("products.json")
         });
       };
 
-      // ====== VARIANT SELECTION HANDLERS ====== //
+      // ====== SELECT VARIANTS IN DOM ====== //
+      document.querySelector(`input[name="color"][value="${selectedColor}"]`)?.click();
+      document.querySelector(`input[name="size"][value="${selectedSize}"]`)?.click();
+
+      // ====== VARIANT EVENT LISTENERS ====== //
       document.querySelectorAll('input[name="color"]').forEach(input => {
         input.addEventListener("change", e => {
           selectedColor = e.target.value;
-          // Auto-select first available size for this color
           const firstAvailableSize = sizes.find(s => {
             const variant = getVariant(selectedColor, s);
             return variant && variant.stock > 0;
