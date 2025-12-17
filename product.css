@@ -12,6 +12,26 @@ body {
   background: #fff;
 }
 
+.low-stock {
+  background: #facc15;
+  color: #111827;
+  font-weight: 600;
+  padding: 4px 10px;
+  border-radius: 999px;
+  font-size: 0.85rem;
+  display: inline-block;
+  margin-bottom: 0.5rem;
+}
+
+/* Styles for showing the original price when a product is on sale */
+.product-price .sale {
+  color: #ef4444; /* red */
+  font-weight: 700;
+  margin-left: 0.5rem;
+  font-size: 1.25rem;
+  text-decoration: line-through;
+}
+
 /* Header */
 .site-header {
   display: flex;
