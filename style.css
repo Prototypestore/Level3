@@ -84,24 +84,29 @@ body {
   cursor: pointer;
 }
 
-/* Low Stock Badge */
-.low-stock {
-  display: inline-block;
-  background: linear-gradient(135deg, #fbbf24, #f59e0b); /* soft golden gradient */
+/* Low Stock Corner Badge */
+.product-card {
+  position: relative; /* needed for absolute positioning of badge */
+}
+
+.product-card .low-stock {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: linear-gradient(135deg, #fbbf24, #f59e0b); /* soft gold gradient */
   color: #fff;
-  font-size: 0.8rem;
+  font-size: 0.75rem;
   font-weight: 600;
-  padding: 2px 6px;
+  padding: 4px 8px;
   border-radius: 12px;
   text-transform: uppercase;
   letter-spacing: 0.5px;
-  margin-left: 5px;
-  vertical-align: middle;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+  box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+  z-index: 10;
   transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
-.low-stock:hover {
+.product-card .low-stock:hover {
   transform: translateY(-2px);
   box-shadow: 0 4px 12px rgba(0,0,0,0.25);
 }
