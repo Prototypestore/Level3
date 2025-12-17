@@ -7,41 +7,38 @@ async function loadProducts() {
   const trendingGrid = document.getElementById('trending-grid');
 
   products.forEach(product => {
-    if (product.stock <= 0) return; // Skip out-of-stock for normal shop grid
+    // ====== SKIP OUT-OF-STOCK PRODUCTS FOR SHOP GRID ======
+    const inStockVariants = product.variants.filter(v => v.stock > 0);
+    if (!inStockVariants.length) return;
 
-    // ====== CALCULATE BEST VARIANT ====== //
-    let bestColor = product.variants?.colors[0] || '';
-    let bestSize = product.variants?.sizes[0] || '';
+    // ====== CALCULATE BEST VARIANT ======
+    // Step 1: Trending variant
+    let bestVariant = inStockVariants.find(v => v.trending) || inStockVariants[0];
 
-    if (product.variants) {
-      // Choose variant with stock > 0 (if tracking stock per variant)
-      // Currently using overall product stock; for future per-variant stock, extend here
-      bestColor = product.variants.colors[0];
-      bestSize = product.variants.sizes[0];
-    }
-
-    // ====== CALCULATE PROMOTION PRICE ====== //
-    let displayPrice = product.price;
+    // ====== CALCULATE PROMOTION PRICE ======
+    let displayPrice = bestVariant.price;
     const now = new Date();
     if (product.promotions && product.promotions.length > 0) {
       product.promotions.forEach(promo => {
         const start = new Date(promo.start);
         const end = new Date(promo.end);
         if (promo.type === "sale" && now >= start && now <= end) {
-          displayPrice = (product.price * (1 - promo.discount)).toFixed(2);
+          displayPrice = (bestVariant.price * (1 - promo.discount)).toFixed(2);
         }
       });
     }
 
-    const lowStockBadge = product.stock <= 5 
-      ? '<div class="low-stock">Low Stock!</div>' 
-      : '';
+    // ====== LOW STOCK BADGE ======
+    const lowStockBadge = bestVariant.stock <= 5 ? '<div class="low-stock">Low Stock!</div>' : '';
 
-    // ====== PRODUCT CARD HTML WITH SMART LINK ====== //
+    // ====== SMART LINK TO PRODUCT PAGE WITH VARIANT ======
+    const productURL = `product.html?id=${product.id}&color=${encodeURIComponent(bestVariant.color)}&size=${encodeURIComponent(bestVariant.size)}`;
+
+    // ====== PRODUCT CARD HTML ======
     const cardHTML = `
       <article class="product-card">
         ${lowStockBadge}
-        <a href="product.html?id=${product.id}&color=${bestColor}&size=${bestSize}">
+        <a href="${productURL}">
           <img src="${product.image}" alt="${product.title}">
           <h3>${product.title}</h3>
           <p class="price">£${displayPrice}</p>
@@ -49,10 +46,10 @@ async function loadProducts() {
       </article>
     `;
 
-    // Insert into shop
+    // Insert into shop grid
     shopGrid.insertAdjacentHTML('beforeend', cardHTML);
 
-    // Insert into trending if flagged
+    // Insert into trending grid if flagged
     if (product.trending) {
       trendingGrid.insertAdjacentHTML('beforeend', cardHTML);
     }
