@@ -7,9 +7,20 @@ async function loadProducts() {
   const trendingGrid = document.getElementById('trending-grid');
 
   products.forEach(product => {
-    if (product.stock <= 0) return; // Skip out-of-stock
+    if (product.stock <= 0) return; // Skip out-of-stock for normal shop grid
 
-    // Calculate promotion price if applicable
+    // ====== CALCULATE BEST VARIANT ====== //
+    let bestColor = product.variants?.colors[0] || '';
+    let bestSize = product.variants?.sizes[0] || '';
+
+    if (product.variants) {
+      // Choose variant with stock > 0 (if tracking stock per variant)
+      // Currently using overall product stock; for future per-variant stock, extend here
+      bestColor = product.variants.colors[0];
+      bestSize = product.variants.sizes[0];
+    }
+
+    // ====== CALCULATE PROMOTION PRICE ====== //
     let displayPrice = product.price;
     const now = new Date();
     if (product.promotions && product.promotions.length > 0) {
@@ -22,21 +33,21 @@ async function loadProducts() {
       });
     }
 
-   const lowStockBadge = product.stock <= 5 
-  ? '<div class="low-stock">Low Stock!</div>' 
-  : '';
-  
-// Product Card HTML
-const cardHTML = `
-  <article class="product-card">
-    ${lowStockBadge}
-    <a href="product.html?id=${product.id}">
-      <img src="${product.image}" alt="${product.title}">
-      <h3>${product.title}</h3>
-      <p class="price">£${displayPrice}</p>
-    </a>
-  </article>
-`;
+    const lowStockBadge = product.stock <= 5 
+      ? '<div class="low-stock">Low Stock!</div>' 
+      : '';
+
+    // ====== PRODUCT CARD HTML WITH SMART LINK ====== //
+    const cardHTML = `
+      <article class="product-card">
+        ${lowStockBadge}
+        <a href="product.html?id=${product.id}&color=${bestColor}&size=${bestSize}">
+          <img src="${product.image}" alt="${product.title}">
+          <h3>${product.title}</h3>
+          <p class="price">£${displayPrice}</p>
+        </a>
+      </article>
+    `;
 
     // Insert into shop
     shopGrid.insertAdjacentHTML('beforeend', cardHTML);
