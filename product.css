@@ -148,7 +148,7 @@ input[type="radio"]:checked + .swatch {
   transition: all 0.2s ease;
 }
 
-.size input[type="radio"]:checked + .size-box {
+.sizes input[type="radio"]:checked + .size-box {
   background-color: #111827;
   color: #fff;
   border-color: #111827;
