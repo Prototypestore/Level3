@@ -22,18 +22,21 @@ async function loadProducts() {
       });
     }
 
-    const lowStockBadge = product.stock <= 5 ? '<span class="low-stock">Low Stock!</span>' : '';
-
-    // Product Card HTML
-    const cardHTML = `
-      <article class="product-card">
-        <a href="product.html?id=${product.id}">
-          <img src="${product.image}" alt="${product.title}">
-          <h3>${product.title}</h3>
-          <p class="price">£${displayPrice} ${lowStockBadge}</p>
-        </a>
-      </article>
-    `;
+   const lowStockBadge = product.stock <= 5 
+  ? '<div class="low-stock">Low Stock!</div>' 
+  : '';
+  
+// Product Card HTML
+const cardHTML = `
+  <article class="product-card">
+    ${lowStockBadge}
+    <a href="product.html?id=${product.id}">
+      <img src="${product.image}" alt="${product.title}">
+      <h3>${product.title}</h3>
+      <p class="price">£${displayPrice}</p>
+    </a>
+  </article>
+`;
 
     // Insert into shop
     shopGrid.insertAdjacentHTML('beforeend', cardHTML);
