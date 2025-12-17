@@ -25,6 +25,14 @@ fetch("products.json")
       return product.variants.find(v => v.color === color && v.size === size);
     };
 
+    const updateURL = () => {
+      const url = new URL(window.location);
+      url.searchParams.set("id", productId);
+      url.searchParams.set("color", selectedColor);
+      url.searchParams.set("size", selectedSize);
+      window.history.replaceState({}, "", url);
+    };
+
     const updatePriceStock = () => {
       const variant = getVariant(selectedColor, selectedSize);
       const priceEl = document.querySelector(".product-price");
@@ -56,7 +64,6 @@ fetch("products.json")
       addToCartBtn.disabled = variant.stock === 0;
       addToCartBtn.textContent = variant.stock === 0 ? "Out of Stock" : "Add to Cart";
 
-      // Low stock badge
       document.querySelectorAll(".low-stock").forEach(el => el.remove());
       if (variant.stock > 0 && variant.stock <= 5) {
         const lowStockBadge = document.createElement("div");
@@ -69,7 +76,9 @@ fetch("products.json")
       const qtyInput = document.getElementById("qty-value");
       qtyInput.value = 1;
       qtyInput.max = variant.stock;
+
       updateQtyButtons();
+      updateURL();
     };
 
     const updateQtyButtons = () => {
@@ -113,17 +122,51 @@ fetch("products.json")
         sizeFieldset.appendChild(label);
       });
 
-      // Auto-select default or URL variant
-      if (!selectedColor) selectedColor = colors[0];
-      if (!selectedSize) selectedSize = sizes[0];
+      // ====== AUTO-SELECT DEFAULT OR TRENDING/HIGHEST STOCK VARIANT ====== //
+      if (!selectedColor || !selectedSize) {
+        const availableVariants = product.variants.filter(v => v.stock > 0);
+        const defaultVariant = availableVariants.sort((a, b) => b.stock - a.stock)[0];
+        selectedColor = selectedColor || defaultVariant.color;
+        selectedSize = selectedSize || defaultVariant.size;
+      }
 
+      // Click to select
       document.querySelector(`input[name="color"][value="${selectedColor}"]`)?.click();
       document.querySelector(`input[name="size"][value="${selectedSize}"]`)?.click();
+
+      // ====== DYNAMIC DISABLE OUT OF STOCK OPTIONS ====== //
+      const refreshOptionAvailability = () => {
+        // Disable sizes not available for selected color
+        document.querySelectorAll('input[name="size"]').forEach(input => {
+          const variant = getVariant(selectedColor, input.value);
+          input.disabled = !variant || variant.stock === 0;
+          input.nextElementSibling.style.opacity = input.disabled ? 0.5 : 1;
+        });
+        // Disable colors with no stock
+        document.querySelectorAll('input[name="color"]').forEach(input => {
+          const hasStock = sizes.some(s => {
+            const variant = getVariant(input.value, s);
+            return variant && variant.stock > 0;
+          });
+          input.disabled = !hasStock;
+          input.nextElementSibling.style.opacity = input.disabled ? 0.5 : 1;
+        });
+      };
 
       // ====== VARIANT SELECTION HANDLERS ====== //
       document.querySelectorAll('input[name="color"]').forEach(input => {
         input.addEventListener("change", e => {
           selectedColor = e.target.value;
+          // Auto-select first available size for this color
+          const firstAvailableSize = sizes.find(s => {
+            const variant = getVariant(selectedColor, s);
+            return variant && variant.stock > 0;
+          });
+          if (firstAvailableSize) {
+            selectedSize = firstAvailableSize;
+            document.querySelector(`input[name="size"][value="${selectedSize}"]`)?.click();
+          }
+          refreshOptionAvailability();
           updatePriceStock();
         });
       });
@@ -131,10 +174,12 @@ fetch("products.json")
       document.querySelectorAll('input[name="size"]').forEach(input => {
         input.addEventListener("change", e => {
           selectedSize = e.target.value;
+          refreshOptionAvailability();
           updatePriceStock();
         });
       });
 
+      refreshOptionAvailability();
       updatePriceStock();
     }
 
@@ -171,5 +216,6 @@ fetch("products.json")
     document.getElementById("btn-re").addEventListener("click", () => {
       document.getElementById("returns").classList.toggle("show");
     });
+
   })
   .catch(err => console.error("Failed to load products.json", err));
