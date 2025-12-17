@@ -129,13 +129,21 @@ input[type="radio"]:checked + .swatch {
 /* Sizes */
 .sizes {
   display: flex;
+  flex-wrap: wrap;
   gap: 12px;
   margin-top: 16px;
 }
 
+.f2 legend {
+  font-weight: 600;
+  color: #374151;
+  margin-bottom: 0.5rem;
+}
+
 .size-box {
-  width: 48px;
+  min-width: 48px;
   height: 40px;
+  padding: 0 12px;
   display: flex;
   align-items: center;
   justify-content: center;
