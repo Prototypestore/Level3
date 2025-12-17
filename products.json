@@ -2,52 +2,65 @@
   {
     "id": "1",
     "title": "Web Style Hooded Sweatshirt",
-    "price": 35,
-    "stock": 12,
+    "basePrice": 35,
     "image": "https://www.bossjackets.com/wp-content/uploads/2023/09/Spider-Web-Fleece-Hoodie-3.jpg",
     "details": "Elevate your everyday look with the Aleo Code Beige Streetwear Hoodie, a perfect blend of comfort and urban edge. Crafted from soft, breathable fabric, this sweatshirt delivers a relaxed fit that moves effortlessly with you, while its neutral beige tone makes it a versatile staple for layering or standing out with minimalist style.",
     "returns": "Every purchase comes with a 30-day store credit guarantee.",
-    "variants": {
-      "colors": ["Beige","White","Black","Brown"],
-      "sizes": ["XS","S","M","L"]
-    },
+    "variants": [
+      { "color": "Beige", "size": "XS", "stock": 3, "price": 35 },
+      { "color": "Beige", "size": "S",  "stock": 5, "price": 35 },
+      { "color": "Beige", "size": "M",  "stock": 4, "price": 35 },
+      { "color": "Beige", "size": "L",  "stock": 0, "price": 35 },
+      { "color": "White", "size": "XS", "stock": 2, "price": 35 },
+      { "color": "White", "size": "S",  "stock": 6, "price": 35 },
+      { "color": "White", "size": "M",  "stock": 4, "price": 35 },
+      { "color": "White", "size": "L",  "stock": 1, "price": 35 },
+      { "color": "Black", "size": "XS", "stock": 2, "price": 35 },
+      { "color": "Black", "size": "S",  "stock": 0, "price": 35 },
+      { "color": "Black", "size": "M",  "stock": 3, "price": 35 },
+      { "color": "Black", "size": "L",  "stock": 5, "price": 35 },
+      { "color": "Brown", "size": "XS", "stock": 1, "price": 35 },
+      { "color": "Brown", "size": "S",  "stock": 2, "price": 35 },
+      { "color": "Brown", "size": "M",  "stock": 0, "price": 35 },
+      { "color": "Brown", "size": "L",  "stock": 2, "price": 35 }
+    ],
     "promotions": [
-      {
-        "type": "sale",
-        "discount": 0.1,
-        "start": "2025-12-01",
-        "end": "2025-12-31"
-      }
+      { "type": "sale", "discount": 0.1, "start": "2025-12-01", "end": "2025-12-31" }
     ],
     "trending": true
   },
   {
     "id": "2",
     "title": "Black T-shirt",
-    "price": 25,
-    "stock": 0,
+    "basePrice": 25,
     "image": "https://tse3.mm.bing.net/th/id/OIP.gGJPehhQ3_3iAKW934eJmQHaHa?cb=ucfimg2&ucfimg=1&rs=1&pid=ImgDetMain&o=7&rm=3",
     "details": "Premium black T-shirt with a modern fit. Perfect for casual or semi-formal occasions.",
     "returns": "Every purchase comes with a 30-day store credit guarantee.",
-    "variants": {
-      "colors": ["Black"],
-      "sizes": ["S","M","L"]
-    },
+    "variants": [
+      { "color": "Black", "size": "S",  "stock": 0, "price": 25 },
+      { "color": "Black", "size": "M",  "stock": 0, "price": 25 },
+      { "color": "Black", "size": "L",  "stock": 0, "price": 25 }
+    ],
     "promotions": [],
     "trending": false
   },
   {
     "id": "3",
     "title": "Grey Joggers",
-    "price": 30,
-    "stock": 5,
+    "basePrice": 30,
     "image": "https://i5.walmartimages.com/seo/Ma-Croix-Womens-Sweatpants-Skinny-Fit-Jogger-Pants-with-Pockets_439fd5ca-2316-4794-bf89-5b2678d9021a.54953153b803a16bcfe3264631b5151c.jpeg",
     "details": "Comfortable grey joggers. Ideal for casual wear or streetwear layering.",
     "returns": "Every purchase comes with a 30-day store credit guarantee.",
-    "variants": {
-      "colors": ["Grey","Black"],
-      "sizes": ["S","M","L","XL"]
-    },
+    "variants": [
+      { "color": "Grey", "size": "S",  "stock": 2, "price": 30 },
+      { "color": "Grey", "size": "M",  "stock": 1, "price": 30 },
+      { "color": "Grey", "size": "L",  "stock": 2, "price": 30 },
+      { "color": "Grey", "size": "XL", "stock": 0, "price": 30 },
+      { "color": "Black", "size": "S",  "stock": 1, "price": 30 },
+      { "color": "Black", "size": "M",  "stock": 1, "price": 30 },
+      { "color": "Black", "size": "L",  "stock": 1, "price": 30 },
+      { "color": "Black", "size": "XL", "stock": 0, "price": 30 }
+    ],
     "promotions": [],
     "trending": true
   }
