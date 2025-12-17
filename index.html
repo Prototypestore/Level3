@@ -32,7 +32,7 @@
   </header>
   <!-- Search -->
   <section class="search-section">
-    <form class="search-form" action="server-endpoint" method="GET" role="search">
+    <form class="search-form" action="#" method="GET" role="search">
       <input type="search" name="query" placeholder="Search our collection..." aria-label="Search products">
       <button type="submit" class="search-btn" aria-label="Search">
         <svg class="svg" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="black" stroke-width="1" stroke-linecap="round" stroke-linejoin="round">
@@ -61,32 +61,25 @@
   <section class="shop" id="shop">
     <div class="container">
       <h2>Shop Our Collection</h2>
-      <div class="grid">
-        <article class="product-card">
-          <a href="product.html?id=1">
-            <img src="https://www.bossjackets.com/wp-content/uploads/2023/09/Spider-Web-Fleece-Hoodie-3.jpg" alt="Web-style hooded sweatshirt"/>
-            <h3>Web-style Hoodie</h3>
-            <p class="price">£35</p>
-          </a>
-        </article>
-        <article class="product-card">
-          <a href="product.html?id=2">
-            <img src="https://tse3.mm.bing.net/th/id/OIP.gGJPehhQ3_3iAKW934eJmQHaHa?cb=ucfimg2&ucfimg=1&rs=1&pid=ImgDetMain&o=7&rm=3" alt="Plain black T-shirt"/>
-            <h3>Black T-shirt</h3>
-            <p class="price">£25</p>
-          </a>
-        </article>
-        <!-- Add more products here following the same structure -->
+      <div class="grid" id="product-grid">
+        <!-- Products injected via JS -->
+      </div>
+    </div>
+  </section>
+  <!-- Trending -->
+  <section class="trending" id="trending">
+    <div class="container">
+      <h2>Trending Styles</h2>
+      <div class="grid" id="trending-grid">
+        <!-- Trending products injected via JS -->
       </div>
     </div>
   </section>
   <!-- Carousel / Deals -->
   <section class="carousel">
     <div class="slides-container">
-      <div class="slides">
-        <div class="slide"><img src="pic-1.svg" alt="Green dress with 55% discount"/></div>
-        <div class="slide"><img src="pic-2.svg" alt="White skirt with 55% discount"/></div>
-        <div class="slide"><img src="pic-3.svg" alt="Beige pants with 55% discount"/></div>
+      <div class="slides" id="carousel-slides">
+        <!-- Optional: dynamic slides from JSON -->
       </div>
       <button class="slide-btn prev" aria-label="Previous Slide">&lt;</button>
       <button class="slide-btn next" aria-label="Next Slide">&gt;</button>
@@ -109,28 +102,6 @@
           <img src="review3.png" alt="Morgan's review"/>
           <figcaption>Morgan - ⭐⭐⭐⭐⭐</figcaption>
         </figure>
-      </div>
-    </div>
-  </section>
-  <!-- Trending -->
-  <section class="trending" id="trending">
-    <div class="container">
-      <h2>Trending Styles</h2>
-      <div class="grid">
-        <article class="product-card">
-          <a href="product.html">
-            <img src="https://www.bossjackets.com/wp-content/uploads/2023/09/Spider-Web-Fleece-Hoodie-3.jpg" alt="Web-style hooded sweatshirt"/>
-            <h3>Web-style Hoodie</h3>
-            <p class="price">£35</p>
-          </a>
-        </article>
-        <article class="product-card">
-          <a href="product.html?id=3">
-            <img src="https://i5.walmartimages.com/seo/Ma-Croix-Womens-Sweatpants-Skinny-Fit-Jogger-Pants-with-Pockets_439fd5ca-2316-4794-bf89-5b2678d9021a.54953153b803a16bcfe3264631b5151c.jpeg" alt="Grey joggers"/>
-            <h3>Grey Joggers</h3>
-            <p class="price">£30</p>
-          </a>
-        </article>
       </div>
     </div>
   </section>
