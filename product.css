@@ -66,6 +66,15 @@ body {
   color: #111827;
 }
 
+.cart-icon svg {
+  transition: transform 0.2s ease, stroke 0.2s ease;
+}
+
+.cart-icon:hover svg {
+  transform: scale(1.08);
+  stroke: #111827;
+}
+
 /* Product Page Layout */
 .product-page .container {
   max-width: 1200px;
