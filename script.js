@@ -151,35 +151,37 @@ document.addEventListener("DOMContentLoaded", () => {
     shopGrid.innerHTML = "";
     const q = query.toLowerCase();
 
-    list.forEach(product => {
-      const inStockVariants = product.variants.filter(v => v.stock > 0);
-      if (!inStockVariants.length) return;
+    function renderProducts(list, query = "") {
+  shopGrid.innerHTML = "";
+  const q = query.toLowerCase();
 
-      const bestVariant = inStockVariants.find(v => v.trending) || inStockVariants[0];
-      const displayPrice = bestVariant.price.toFixed(2);
+  list.forEach(product => {
+    // Show all products, ignore stock for default rendering
+    const bestVariant = product.variants.find(v => v.trending) || product.variants[0];
+    const displayPrice = bestVariant.price.toFixed(2);
 
-      let titleHTML = product.title;
-      if (q && product.title.toLowerCase().includes(q)) {
-        const regex = new RegExp(`(${query})`, "gi");
-        titleHTML = product.title.replace(regex, '<mark>$1</mark>');
-      }
-
-      const cardHTML = `
-        <article class="product-card">
-          <a href="product.html?id=${product.id}&color=${encodeURIComponent(bestVariant.color)}&size=${encodeURIComponent(bestVariant.size)}">
-            <img src="${product.image}" alt="${product.title}">
-            <h3>${titleHTML}</h3>
-            <p class="price">£${displayPrice}</p>
-          </a>
-        </article>
-      `;
-      shopGrid.insertAdjacentHTML("beforeend", cardHTML);
-    });
-
-    if (list.length === 0) {
-      shopGrid.innerHTML = `<p class="no-results">No products match your search/filter.</p>`;
+    let titleHTML = product.title;
+    if (q && product.title.toLowerCase().includes(q)) {
+      const regex = new RegExp(`(${query})`, "gi");
+      titleHTML = product.title.replace(regex, '<mark>$1</mark>');
     }
+
+    const cardHTML = `
+      <article class="product-card">
+        <a href="product.html?id=${product.id}&color=${encodeURIComponent(bestVariant.color)}&size=${encodeURIComponent(bestVariant.size)}">
+          <img src="${product.image}" alt="${product.title}">
+          <h3>${titleHTML}</h3>
+          <p class="price">£${displayPrice}</p>
+        </a>
+      </article>
+    `;
+    shopGrid.insertAdjacentHTML("beforeend", cardHTML);
+  });
+
+  if (list.length === 0) {
+    shopGrid.innerHTML = `<p class="no-results">No products match your search/filter.</p>`;
   }
+}
 
   function applyFilters() {
     const query = searchInput.value.trim().toLowerCase();
