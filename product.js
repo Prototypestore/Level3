@@ -229,41 +229,48 @@ priceEl.textContent = `£${calculatePrice(variant.price, product.promotions)}`;
 // ====== ADD TO CART ======
 document.addEventListener('DOMContentLoaded', () => {
   const addToCartForm = document.querySelector('.product-options');
-  
+
+  if (!addToCartForm) return;
+
   addToCartForm.addEventListener('submit', e => {
-    e.preventDefault(); // Prevent form submission page reload
+    e.preventDefault();
 
-    // Grab product data from the page
-    const productId = product.id;
-    const productName = document.querySelector('.product-title').textContent.trim();
-    const productPrice = parseFloat(document.querySelector('.product-price').textContent.replace('£', ''));
-    const productImage = document.querySelector('.product-image img').src;
+    // ✅ Get product ID from URL (single source of truth)
+    const params = new URLSearchParams(window.location.search);
+    const productId = params.get('id');
 
-    // Get selected color and size
+    if (!productId) {
+      alert('Product ID missing.');
+      return;
+    }
+
+    const productName = document.querySelector('.product-title')?.textContent.trim();
+    const productPrice = parseFloat(
+      document.querySelector('.product-price')?.textContent.replace('£', '')
+    );
+    const productImage = document.querySelector('.product-image img')?.src;
+
     const selectedColor = document.querySelector('input[name="color"]:checked')?.value;
     const selectedSize = document.querySelector('input[name="size"]:checked')?.value;
-
-    // Get quantity value
-    const quantityInput = document.querySelector('#qty-value');
-    const quantity = quantityInput ? parseInt(quantityInput.value) : 1;
+    const quantity = parseInt(document.getElementById('qty-value')?.value) || 1;
 
     if (!selectedColor || !selectedSize) {
       alert('Please select a color and size before adding to cart.');
       return;
     }
 
-    // Retrieve existing cart or start empty
+    // ✅ Get cart
     let cart = JSON.parse(localStorage.getItem('cart')) || [];
 
-    // Check if product with same options already in cart
-    const existingIndex = cart.findIndex(item =>
+    // ✅ Check for same variant
+    const existingItem = cart.find(item =>
       item.id === productId &&
       item.color === selectedColor &&
       item.size === selectedSize
     );
 
-    if (existingIndex > -1) {
-      cart[existingIndex].quantity += quantity;
+    if (existingItem) {
+      existingItem.quantity += quantity;
     } else {
       cart.push({
         id: productId,
@@ -271,27 +278,15 @@ document.addEventListener('DOMContentLoaded', () => {
         price: productPrice,
         color: selectedColor,
         size: selectedSize,
-        quantity: quantity,
+        quantity,
         image: productImage
       });
     }
 
-    // Save cart
+    // ✅ Save cart
     localStorage.setItem('cart', JSON.stringify(cart));
 
-    alert(`${quantity} product(s) added to cart.`);
-  });
-
-  // Optional: Handle quantity increment/decrement buttons
-  document.getElementById('increase').addEventListener('click', () => {
-    const qtyInput = document.getElementById('qty-value');
-    qtyInput.value = parseInt(qtyInput.value) + 1;
-  });
-
-  document.getElementById('decrease').addEventListener('click', () => {
-    const qtyInput = document.getElementById('qty-value');
-    let currentVal = parseInt(qtyInput.value);
-    if (currentVal > 1) qtyInput.value = currentVal - 1;
+    // ✅ Redirect (NO HTML LINK NEEDED)
+    window.location.href = 'cart.html';
   });
 });
-
