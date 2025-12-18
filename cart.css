@@ -1,0 +1,231 @@
+/* Base & Reset */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Segoe UI', Roboto, sans-serif;
+  background: #f7f7f6; /* light neutral */
+  color: #111827;
+  line-height: 1.6;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 2rem auto 4rem;
+  padding: 0 1rem;
+}
+
+h1 {
+  font-weight: 700;
+  font-size: 2rem;
+  margin-bottom: 2rem;
+  color: #111827;
+}
+
+/* Cart Layout */
+.cart-content {
+  display: flex;
+  gap: 2.5rem;
+  flex-wrap: wrap;
+}
+
+/* Cart Items Table */
+.cart-items {
+  flex: 1 1 65%;
+  background: #fff;
+  border-radius: 12px;
+  padding: 1.5rem 2rem;
+  box-shadow: 0 3px 12px rgba(0,0,0,0.1);
+}
+
+.cart-items table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.cart-items thead th {
+  text-align: left;
+  font-weight: 600;
+  font-size: 0.9rem;
+  color: #98975c; /* brand soft gold */
+  padding-bottom: 1rem;
+  border-bottom: 1px solid #ddd;
+  letter-spacing: 0.05em;
+}
+
+.cart-items tbody td {
+  padding: 1rem 0;
+  vertical-align: middle;
+  border-bottom: 1px solid #eee;
+  font-size: 0.95rem;
+  color: #111827;
+}
+
+.product-info {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.product-info img {
+  width: 70px;
+  height: 70px;
+  object-fit: contain;
+  border-radius: 8px;
+  background: #f7f7f6;
+  border: 1px solid #ddd;
+}
+
+.product-info span {
+  font-weight: 600;
+  font-size: 1rem;
+  color: #111827;
+}
+
+/* Price & Subtotal */
+.cart-items td:nth-child(2),
+.cart-items td:nth-child(4) {
+  font-weight: 700;
+  color: #98975c;
+}
+
+/* Quantity input */
+.cart-items input[type="number"] {
+  width: 60px;
+  padding: 6px 8px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 1rem;
+  font-weight: 600;
+  color: #111827;
+  outline: none;
+  -moz-appearance: textfield; /* Firefox */
+}
+
+/* Remove number input arrows for Chrome */
+.cart-items input[type="number"]::-webkit-inner-spin-button,
+.cart-items input[type="number"]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Cart Action Buttons */
+.cart-actions {
+  margin-top: 1.5rem;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.cart-actions input[type="text"] {
+  padding: 0.6rem 1rem;
+  border-radius: 25px;
+  border: 1px solid #ccc;
+  width: 180px;
+  font-size: 1rem;
+  font-weight: 500;
+}
+
+.cart-actions button {
+  background: #98975c;
+  border: none;
+  color: white;
+  padding: 0.6rem 1.5rem;
+  border-radius: 999px;
+  font-weight: 600;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.cart-actions button:hover:not(:disabled) {
+  background: #7c7b4a;
+}
+
+.cart-actions button:disabled {
+  background: #ccc;
+  cursor: not-allowed;
+}
+
+/* Order Summary Sidebar */
+.order-summary {
+  flex: 1 1 30%;
+  background: #f9fafb;
+  border-radius: 12px;
+  padding: 2rem 2.5rem;
+  box-shadow: 0 3px 12px rgba(0,0,0,0.05);
+  height: fit-content;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.order-summary h2 {
+  font-weight: 700;
+  font-size: 1.4rem;
+  color: #111827;
+  margin-bottom: 1rem;
+}
+
+.summary-item {
+  display: flex;
+  justify-content: space-between;
+  font-weight: 600;
+  font-size: 1rem;
+  color: #98975c;
+  padding: 0.25rem 0;
+  border-bottom: 1px solid #ddd;
+}
+
+.summary-item.total {
+  font-size: 1.3rem;
+  color: #111827;
+  border-bottom: none;
+}
+
+.btn-checkout {
+  margin-top: auto;
+  background: #111827;
+  color: white;
+  border: none;
+  padding: 14px 0;
+  font-size: 1.1rem;
+  font-weight: 700;
+  border-radius: 999px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.btn-checkout:hover {
+  background: #333;
+}
+
+/* Footer Below Cart */
+.cart-footer {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 4rem;
+  background: #f9fafb;
+  border-radius: 12px;
+  padding: 2rem 3rem;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+  font-size: 0.85rem;
+  color: #555;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+}
+
+.footer-item {
+  flex: 1 1 20%;
+}
+
+.footer-item strong {
+  display: block;
+  font-weight: 700;
+  color: #111827;
+  margin-bottom: 0.3rem;
+}
