@@ -2,61 +2,216 @@
   {
     "id": "1",
     "title": "Web Style Hooded Sweatshirt",
+    "basePrice": 35,
+    "image": "https://www.bossjackets.com/wp-content/uploads/2023/09/Spider-Web-Fleece-Hoodie-3.jpg",
+    "details": "Elevate your everyday look with the Aleo Code Beige Streetwear Hoodie, a perfect blend of comfort and urban edge. Crafted from soft, breathable fabric, this sweatshirt delivers a relaxed fit that moves effortlessly with you, while its neutral beige tone makes it a versatile staple for layering or standing out with minimalist style.",
+    "returns": "Every purchase comes with a 30-day store credit guarantee.",
+    "variants": [
+      { "color": "Beige", "size": "XS", "stock": 3, "price": 35 },
+      { "color": "Beige", "size": "S",  "stock": 5, "price": 35 },
+      { "color": "Beige", "size": "M",  "stock": 4, "price": 35 },
+      { "color": "Beige", "size": "L",  "stock": 0, "price": 35 },
+      { "color": "White", "size": "XS", "stock": 2, "price": 35 },
+      { "color": "White", "size": "S",  "stock": 6, "price": 35 },
+      { "color": "White", "size": "M",  "stock": 4, "price": 35 },
+      { "color": "White", "size": "L",  "stock": 1, "price": 35 },
+      { "color": "Black", "size": "XS", "stock": 2, "price": 35 },
+      { "color": "Black", "size": "S",  "stock": 0, "price": 35 },
+      { "color": "Black", "size": "M",  "stock": 3, "price": 35 },
+      { "color": "Black", "size": "L",  "stock": 5, "price": 35 },
+      { "color": "Brown", "size": "XS", "stock": 1, "price": 35 },
+      { "color": "Brown", "size": "S",  "stock": 2, "price": 35 },
+      { "color": "Brown", "size": "M",  "stock": 0, "price": 35 },
+      { "color": "Brown", "size": "L",  "stock": 2, "price": 35 }
+    ],
+    "promotions": [
+      {
+        "type": "sale",
+        "label": "10% OFF",
+        "discount": 0.1,
+        "start": "2025-12-01",
+        "end": "2025-12-31"
+      }
+    ],
+    "trending": true,
     "categories": ["hoodies", "sweatshirts", "beige"]
   },
   {
     "id": "2",
     "title": "Black T-shirt",
+    "basePrice": 25,
+    "image": "https://tse3.mm.bing.net/th/id/OIP.gGJPehhQ3_3iAKW934eJmQHaHa?cb=ucfimg2&ucfimg=1&rs=1&pid=ImgDetMain&o=7&rm=3",
+    "details": "Premium black T-shirt with a modern fit. Perfect for casual or semi-formal occasions.",
+    "returns": "Every purchase comes with a 30-day store credit guarantee.",
+    "variants": [
+      { "color": "Black", "size": "S",  "stock": 0, "price": 25 },
+      { "color": "Black", "size": "M",  "stock": 0, "price": 25 },
+      { "color": "Black", "size": "L",  "stock": 0, "price": 25 }
+    ],
+    "promotions": [],
+    "trending": false,
     "categories": ["t-shirts", "black", "casual"]
   },
   {
     "id": "3",
     "title": "Grey Joggers",
+    "basePrice": 30,
+    "image": "https://i5.walmartimages.com/seo/Ma-Croix-Womens-Sweatpants-Skinny-Fit-Jogger-Pants-with-Pockets_439fd5ca-2316-4794-bf89-5b2678d9021a.54953153b803a16bcfe3264631b5151c.jpeg",
+    "details": "Comfortable grey joggers. Ideal for casual wear or streetwear layering.",
+    "returns": "Every purchase comes with a 30-day store credit guarantee.",
+    "variants": [
+      { "color": "Grey", "size": "S",  "stock": 2, "price": 30 },
+      { "color": "Grey", "size": "M",  "stock": 1, "price": 30 },
+      { "color": "Grey", "size": "L",  "stock": 2, "price": 30 },
+      { "color": "Grey", "size": "XL", "stock": 0, "price": 30 },
+      { "color": "Black", "size": "S",  "stock": 1, "price": 30 },
+      { "color": "Black", "size": "M",  "stock": 1, "price": 30 },
+      { "color": "Black", "size": "L",  "stock": 1, "price": 30 },
+      { "color": "Black", "size": "XL", "stock": 0, "price": 30 }
+    ],
+    "promotions": [],
+    "trending": true,
     "categories": ["joggers", "pants", "grey", "streetwear"]
   },
   {
     "id": "4",
     "title": "White Classic Shirt",
+    "basePrice": 40,
+    "image": "https://tse3.mm.bing.net/th/id/OIP.QqP6fNq0J4b_8mH1c0n6zQHaHa",
+    "details": "Crisp white button-up shirt made from breathable cotton. Ideal for formal and casual wear.",
+    "returns": "30-day store credit on unworn items.",
+    "variants": [
+      { "color": "White", "size": "S", "stock": 12, "price": 40 },
+      { "color": "White", "size": "M", "stock": 8, "price": 40 },
+      { "color": "White", "size": "L", "stock": 5, "price": 42 }
+    ],
+    "promotions": ["10% OFF"],
+    "trending": true,
     "categories": ["shirts", "white", "formal", "casual"]
   },
   {
     "id": "5",
     "title": "Blue Denim Jeans",
+    "basePrice": 55,
+    "image": "https://tse2.mm.bing.net/th/id/OIP.4d8bJk0cJt4p9y5g0sZqMQHaHa",
+    "details": "Slim-fit blue denim jeans with stretch comfort.",
+    "returns": "30-day store credit guarantee.",
+    "variants": [
+      { "color": "Blue", "size": "30", "stock": 10, "price": 55 },
+      { "color": "Blue", "size": "32", "stock": 7, "price": 55 },
+      { "color": "Blue", "size": "34", "stock": 4, "price": 58 }
+    ],
+    "promotions": [],
+    "trending": false,
     "categories": ["jeans", "pants", "blue", "casual"]
   },
   {
     "id": "6",
     "title": "Grey Hoodie",
+    "basePrice": 45,
+    "image": "https://tse1.mm.bing.net/th/id/OIP.VkJ8M1m7I6m0K2p9eQHaHa",
+    "details": "Soft fleece hoodie designed for warmth and everyday comfort.",
+    "returns": "Returns accepted within 30 days for store credit.",
+    "variants": [
+      { "color": "Grey", "size": "S", "stock": 6, "price": 45 },
+      { "color": "Grey", "size": "M", "stock": 9, "price": 45 },
+      { "color": "Grey", "size": "L", "stock": 3, "price": 48 }
+    ],
+    "promotions": ["Free Shipping"],
+    "trending": true,
     "categories": ["hoodies", "sweatshirts", "grey"]
   },
   {
     "id": "7",
     "title": "Black Leather Jacket",
+    "basePrice": 120,
+    "image": "https://tse3.mm.bing.net/th/id/OIP.dQ9eZz8ZJx7mR7mWcHaHa",
+    "details": "Premium faux-leather jacket with a tailored fit.",
+    "returns": "30-day store credit guarantee.",
+    "variants": [
+      { "color": "Black", "size": "M", "stock": 5, "price": 120 },
+      { "color": "Black", "size": "L", "stock": 2, "price": 125 }
+    ],
+    "promotions": [],
+    "trending": true,
     "categories": ["jackets", "leather", "black", "outerwear"]
   },
   {
     "id": "8",
     "title": "Red Summer Dress",
+    "basePrice": 60,
+    "image": "https://tse4.mm.bing.net/th/id/OIP.nF5uY2N8Z9FZ5dKHaHa",
+    "details": "Lightweight red dress perfect for warm weather outings.",
+    "returns": "30-day return for store credit.",
+    "variants": [
+      { "color": "Red", "size": "S", "stock": 7, "price": 60 },
+      { "color": "Red", "size": "M", "stock": 6, "price": 60 },
+      { "color": "Red", "size": "L", "stock": 4, "price": 65 }
+    ],
+    "promotions": ["15% OFF"],
+    "trending": false,
     "categories": ["dresses", "summer-dresses", "red"]
   },
   {
     "id": "9",
     "title": "Navy Blue Blazer",
+    "basePrice": 90,
+    "image": "https://tse1.mm.bing.net/th/id/OIP.K0qPp7X0Bz6eJZHaHa",
+    "details": "Tailored navy blazer suitable for office and formal events.",
+    "returns": "30-day store credit guarantee.",
+    "variants": [
+      { "color": "Navy", "size": "M", "stock": 6, "price": 90 },
+      { "color": "Navy", "size": "L", "stock": 4, "price": 95 }
+    ],
+    "promotions": [],
+    "trending": true,
     "categories": ["blazers", "formal", "navy"]
   },
   {
     "id": "10",
     "title": "Green Polo Shirt",
+    "basePrice": 35,
+    "image": "https://tse2.mm.bing.net/th/id/OIP.q8mFZkX0F0hKHaHa",
+    "details": "Casual green polo shirt made from breathable fabric.",
+    "returns": "30-day store credit policy.",
+    "variants": [
+      { "color": "Green", "size": "S", "stock": 10, "price": 35 },
+      { "color": "Green", "size": "M", "stock": 8, "price": 35 },
+      { "color": "Green", "size": "L", "stock": 6, "price": 38 }
+    ],
+    "promotions": [],
+    "trending": false,
     "categories": ["polo-shirts", "casual", "green"]
   },
   {
     "id": "11",
     "title": "Black Athletic Shorts",
+    "basePrice": 30,
+    "image": "https://tse1.mm.bing.net/th/id/OIP.aM2FJ9G7XHaHa",
+    "details": "Lightweight athletic shorts designed for workouts and sports.",
+    "returns": "30-day store credit available.",
+    "variants": [
+      { "color": "Black", "size": "S", "stock": 12, "price": 30 },
+      { "color": "Black", "size": "M", "stock": 10, "price": 30 },
+      { "color": "Black", "size": "L", "stock": 8, "price": 32 }
+    ],
+    "promotions": ["Buy 2 Get 1 Free"],
+    "trending": false,
     "categories": ["shorts", "athletic", "black", "sportswear"]
   },
   {
     "id": "12",
     "title": "Brown Wool Sweater",
+    "basePrice": 70,
+    "image": "https://tse3.mm.bing.net/th/id/OIP.Z2K9yJH8NHaHa",
+    "details": "Warm wool sweater designed for colder seasons.",
+    "returns": "30-day store credit guarantee.",
+    "variants": [
+      { "color": "Brown", "size": "M", "stock": 5, "price": 70 },
+      { "color": "Brown", "size": "L", "stock": 3, "price": 75 }
+    ],
+    "promotions": [],
+    "trending": true,
     "categories": ["sweaters", "wool", "brown", "winter"]
   }
 ]
