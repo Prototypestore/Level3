@@ -103,3 +103,50 @@ track.addEventListener('transitionend', () => {
     setTimeout(() => { track.style.transition = "transform 0.5s ease"; }, 50);
   }
 });
+
+// ====== LANDING PAGE CART COUNTER ======
+document.addEventListener('DOMContentLoaded', () => {
+  const cartIcon = document.querySelector('.cart-icon');
+  if (!cartIcon) return;
+
+  // Create badge if it doesn't exist
+  let cartCounter = document.getElementById('cart-counter');
+  if (!cartCounter) {
+    cartCounter = document.createElement('div');
+    cartCounter.id = 'cart-counter';
+    cartIcon.style.position = 'relative'; // ensure badge positions relative to icon
+    cartIcon.appendChild(cartCounter);
+
+    Object.assign(cartCounter.style, {
+      position: 'absolute',
+      top: '-0.5rem',
+      right: '-0.5rem',
+      background: '#ff0000',
+      color: '#fff',
+      padding: '0.2rem 0.5rem',
+      borderRadius: '50%',
+      fontWeight: 'bold',
+      fontSize: '0.75rem',
+      minWidth: '1.2rem',
+      height: '1.2rem',
+      display: 'flex',
+      alignItems: 'center',
+      justifyContent: 'center',
+      pointerEvents: 'none',
+    });
+  }
+
+  // Update badge
+  const updateCartCounter = () => {
+    const cart = JSON.parse(localStorage.getItem('cart') || '[]');
+    const totalProducts = cart.length; // number of unique products
+    cartCounter.textContent = totalProducts;
+    cartCounter.style.display = totalProducts > 0 ? 'flex' : 'none';
+  };
+
+  // Initial render
+  updateCartCounter();
+
+  // Optional: update counter if user adds/removes items from another tab
+  window.addEventListener('storage', updateCartCounter);
+});
