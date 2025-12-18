@@ -40,110 +40,109 @@ document.addEventListener("DOMContentLoaded", () => {
     counter.style.display = totalQty > 0 ? "flex" : "none";
   }
 
-  // ====== RENDER CART ======
-  function renderCart() {
-    cartBody.innerHTML = "";
-    let subtotal = 0;
+ // ====== RENDER CART ======
+function renderCart() {
+  cartBody.innerHTML = "";
+  let subtotal = 0;
 
-    if (cart.length === 0) {
-      cartBody.innerHTML = `
-        <tr>
-          <td colspan="4" style="text-align:center; padding:2rem;">
-            Your cart is empty.
-          </td>
-        </tr>
-      `;
-      subtotalEl.textContent = "£0.00";
-      totalEl.textContent = "£0.00";
-      updateCartCounter();
-      return;
-    }
-
-    cart.forEach((item, index) => {
-      const itemTotal = item.price * item.quantity;
-      subtotal += itemTotal;
-
-      const row = document.createElement("tr");
-      row.innerHTML = `
-        <td class="product-info">
-          <img src="${item.image}" alt="${item.name}">
-          <div>
-            <strong>${item.name}</strong><br>
-            <button class="remove-item" data-index="${index}" ${!editMode ? "disabled" : ""}>Remove</button>
-          </div>
+  if (cart.length === 0) {
+    cartBody.innerHTML = `
+      <tr>
+        <td colspan="4" style="text-align:center; padding:2rem;">
+          Your cart is empty.
         </td>
-        <td>£${item.price.toFixed(2)}</td>
-        <td>
-          <input
-            type="number"
-            min="1"
-            value="${item.quantity}"
-            data-index="${index}"
-            class="cart-qty"
-            ${!editMode ? "disabled" : ""}
-          >
-        </td>
-        <td>£${itemTotal.toFixed(2)}</td>
-      `;
-      cartBody.appendChild(row);
-    });
-
-    subtotalEl.textContent = `£${subtotal.toFixed(2)}`;
-    totalEl.textContent = `£${subtotal.toFixed(2)}`;
-
-    attachEvents();
+      </tr>
+    `;
+    subtotalEl.textContent = "£0.00";
+    totalEl.textContent = "£0.00";
     updateCartCounter();
+    return;
   }
 
-  // ====== EVENT HANDLERS ======
-  function attachEvents() {
-    // Remove item
-    document.querySelectorAll(".remove-item").forEach(btn => {
-      btn.addEventListener("click", () => {
-        const index = btn.dataset.index;
-        cart.splice(index, 1);
-        saveCart();
-        renderCart();
-      });
-    });
+  cart.forEach((item, index) => {
+    const itemTotal = item.price * item.quantity;
+    subtotal += itemTotal;
 
-    // Quantity input
-    document.querySelectorAll(".cart-qty").forEach(input => {
-      input.addEventListener("input", e => {
-        let val = parseInt(e.target.value);
-        if (isNaN(val) || val < 1) e.target.value = 1;
-      });
-    });
-  }
+    const row = document.createElement("tr");
+    row.innerHTML = `
+      <td class="product-info">
+        <img src="${item.image}" alt="${item.name}">
+        <div>
+          <strong>${item.name}</strong><br>
+          <button class="remove-item" data-index="${index}">Remove</button>
+        </div>
+      </td>
+      <td>£${item.price.toFixed(2)}</td>
+      <td>
+        <input
+          type="number"
+          min="1"
+          value="${item.quantity}"
+          data-index="${index}"
+          class="cart-qty"
+          ${!editMode ? "disabled" : ""}
+        >
+      </td>
+      <td>£${itemTotal.toFixed(2)}</td>
+    `;
+    cartBody.appendChild(row);
+  });
 
-  // ====== UPDATE / DONE BUTTON ======
-  if (updateBtn) {
-    updateBtn.addEventListener("click", () => {
-      if (!editMode) {
-        // Enter edit mode
-        editMode = true;
-        updateBtn.textContent = "Done";
-      } else {
-        // Save changes and exit edit mode
-        document.querySelectorAll(".cart-qty").forEach(input => {
-          const idx = input.dataset.index;
-          cart[idx].quantity = parseInt(input.value);
-        });
+  subtotalEl.textContent = `£${subtotal.toFixed(2)}`;
+  totalEl.textContent = `£${subtotal.toFixed(2)}`;
 
-        saveCart();
-        editMode = false;
-        updateBtn.textContent = "Update Cart";
-      }
+  attachEvents();
+  updateCartCounter();
+}
 
+// ====== EVENT HANDLERS ======
+function attachEvents() {
+  // Remove item - always active
+  document.querySelectorAll(".remove-item").forEach(btn => {
+    btn.addEventListener("click", () => {
+      const index = btn.dataset.index;
+      cart.splice(index, 1);
+      saveCart();
       renderCart();
     });
-  }
+  });
 
-  // ====== SAVE CART ======
-  function saveCart() {
-    localStorage.setItem("cart", JSON.stringify(cart));
-  }
+  // Quantity input - only editable in edit mode
+  document.querySelectorAll(".cart-qty").forEach(input => {
+    input.addEventListener("input", e => {
+      let val = parseInt(e.target.value);
+      if (isNaN(val) || val < 1) e.target.value = 1;
+    });
+  });
+}
 
-  // Initial render
-  renderCart();
-});
+// ====== UPDATE / DONE BUTTON ======
+if (updateBtn) {
+  updateBtn.addEventListener("click", () => {
+    if (!editMode) {
+      // Enter edit mode
+      editMode = true;
+      updateBtn.textContent = "Done";
+    } else {
+      // Save changes and exit edit mode
+      document.querySelectorAll(".cart-qty").forEach(input => {
+        const idx = input.dataset.index;
+        cart[idx].quantity = parseInt(input.value);
+      });
+
+      saveCart();
+      editMode = false;
+      updateBtn.textContent = "Update Cart";
+    }
+
+    renderCart();
+  });
+}
+
+// ====== SAVE CART ======
+function saveCart() {
+  localStorage.setItem("cart", JSON.stringify(cart));
+}
+
+// Initial render
+renderCart();
