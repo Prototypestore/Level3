@@ -225,3 +225,73 @@ priceEl.textContent = `£${calculatePrice(variant.price, product.promotions)}`;
 
   })
   .catch(err => console.error("Failed to load products.json", err));
+
+// ====== ADD TO CART ======
+document.addEventListener('DOMContentLoaded', () => {
+  const addToCartForm = document.querySelector('.product-options');
+  
+  addToCartForm.addEventListener('submit', e => {
+    e.preventDefault(); // Prevent form submission page reload
+
+    // Grab product data from the page
+    const productId = 'web-style-hoodie';  // Ideally a unique ID; set manually or from data attribute
+    const productName = document.querySelector('.product-title').textContent.trim();
+    const productPrice = parseFloat(document.querySelector('.product-price').textContent.replace('£', ''));
+    const productImage = document.querySelector('.product-image img').src;
+
+    // Get selected color and size
+    const selectedColor = document.querySelector('input[name="color"]:checked')?.value;
+    const selectedSize = document.querySelector('input[name="size"]:checked')?.value;
+
+    // Get quantity value
+    const quantityInput = document.querySelector('#qty-value');
+    const quantity = quantityInput ? parseInt(quantityInput.value) : 1;
+
+    if (!selectedColor || !selectedSize) {
+      alert('Please select a color and size before adding to cart.');
+      return;
+    }
+
+    // Retrieve existing cart or start empty
+    let cart = JSON.parse(localStorage.getItem('cart')) || [];
+
+    // Check if product with same options already in cart
+    const existingIndex = cart.findIndex(item =>
+      item.id === productId &&
+      item.color === selectedColor &&
+      item.size === selectedSize
+    );
+
+    if (existingIndex > -1) {
+      cart[existingIndex].quantity += quantity;
+    } else {
+      cart.push({
+        id: productId,
+        name: productName,
+        price: productPrice,
+        color: selectedColor,
+        size: selectedSize,
+        quantity: quantity,
+        image: productImage
+      });
+    }
+
+    // Save cart
+    localStorage.setItem('cart', JSON.stringify(cart));
+
+    alert(`${quantity} product(s) added to cart.`);
+  });
+
+  // Optional: Handle quantity increment/decrement buttons
+  document.getElementById('increase').addEventListener('click', () => {
+    const qtyInput = document.getElementById('qty-value');
+    qtyInput.value = parseInt(qtyInput.value) + 1;
+  });
+
+  document.getElementById('decrease').addEventListener('click', () => {
+    const qtyInput = document.getElementById('qty-value');
+    let currentVal = parseInt(qtyInput.value);
+    if (currentVal > 1) qtyInput.value = currentVal - 1;
+  });
+});
+
