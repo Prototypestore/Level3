@@ -229,40 +229,39 @@ priceEl.textContent = `£${calculatePrice(variant.price, product.promotions)}`;
 // ====== ADD TO CART ======
 document.addEventListener('DOMContentLoaded', () => {
   const addToCartForm = document.querySelector('.product-options');
-  if (!addToCartForm) return;
+  const cartIcon = document.querySelector('.cart-icon'); // assuming you have a cart icon element
+  if (!addToCartForm || !cartIcon) return;
 
-  // ====== CREATE FIXED CART COUNTER ======
-  let cartCounter = document.getElementById('cart-counter');
-  if (!cartCounter) {
-    cartCounter = document.createElement('div');
-    cartCounter.id = 'cart-counter';
-    document.body.appendChild(cartCounter);
+  // ====== CREATE CART COUNTER BADGE ======
+  let cartCounter = document.createElement('div');
+  cartCounter.id = 'cart-counter';
+  cartIcon.style.position = 'relative'; // ensure badge positions relative to icon
+  cartIcon.appendChild(cartCounter);
 
-    Object.assign(cartCounter.style, {
-      position: 'fixed',
-      top: '1rem',
-      right: '1rem',
-      background: '#ff0000',
-      color: '#fff',
-      padding: '0.25rem 0.5rem',
-      borderRadius: '50%',
-      fontWeight: 'bold',
-      fontSize: '0.9rem',
-      minWidth: '1.5rem',
-      height: '1.5rem',
-      display: 'flex',
-      alignItems: 'center',
-      justifyContent: 'center',
-      zIndex: 1000,
-    });
-  }
+  Object.assign(cartCounter.style, {
+    position: 'absolute',
+    top: '-0.5rem',
+    right: '-0.5rem',
+    background: '#ff0000',
+    color: '#fff',
+    padding: '0.2rem 0.5rem',
+    borderRadius: '50%',
+    fontWeight: 'bold',
+    fontSize: '0.75rem',
+    minWidth: '1.2rem',
+    height: '1.2rem',
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    pointerEvents: 'none', // so clicks go through to cart icon
+  });
 
-  // ====== UPDATE CART COUNTER ======
+  // ====== UPDATE CART COUNTER (PRODUCT COUNT) ======
   const updateCartCounter = () => {
     const cart = JSON.parse(localStorage.getItem('cart') || '[]');
-    const totalQty = cart.reduce((sum, item) => sum + item.quantity, 0);
-    cartCounter.textContent = totalQty;
-    cartCounter.style.display = totalQty > 0 ? 'flex' : 'none';
+    const totalProducts = cart.length; // count of distinct products
+    cartCounter.textContent = totalProducts;
+    cartCounter.style.display = totalProducts > 0 ? 'flex' : 'none';
   };
 
   updateCartCounter(); // initial render
@@ -281,38 +280,28 @@ document.addEventListener('DOMContentLoaded', () => {
     );
     const productImage = document.querySelector('.product-image img')?.src;
 
-    const selectedColor = document.querySelector('input[name="color"]:checked')?.value;
-    const selectedSize = document.querySelector('input[name="size"]:checked')?.value;
+    // Optional: remove color/size if not needed
+    // const selectedColor = document.querySelector('input[name="color"]:checked')?.value;
+    // const selectedSize = document.querySelector('input[name="size"]:checked')?.value;
     const quantity = parseInt(document.getElementById('qty-value')?.value) || 1;
-
-    if (!selectedColor || !selectedSize) return;
 
     let cart = JSON.parse(localStorage.getItem('cart')) || [];
 
-    // Check if product variant already exists
-    const existingItem = cart.find(item =>
-      item.id === productId &&
-      item.color === selectedColor &&
-      item.size === selectedSize
-    );
-
+    // Check if product already exists
+    const existingItem = cart.find(item => item.id === productId);
     if (existingItem) {
-      existingItem.quantity += quantity;
+      existingItem.quantity += quantity; // still add quantity
     } else {
       cart.push({
         id: productId,
         name: productName,
         price: productPrice,
-        color: selectedColor,
-        size: selectedSize,
         quantity,
         image: productImage
       });
     }
 
     localStorage.setItem('cart', JSON.stringify(cart));
-
-    // Update counter silently
     updateCartCounter();
   });
 });
