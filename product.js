@@ -232,22 +232,29 @@ document.addEventListener('DOMContentLoaded', () => {
 
   if (!addToCartForm) return;
 
+  // Optional: create a cart counter in your header
+  const cartCounter = document.createElement('div');
+  cartCounter.id = 'cart-counter';
+  cartCounter.style.position = 'fixed';
+  cartCounter.style.top = '1rem';
+  cartCounter.style.right = '1rem';
+  cartCounter.style.background = '#ff0000';
+  cartCounter.style.color = '#fff';
+  cartCounter.style.padding = '0.25rem 0.5rem';
+  cartCounter.style.borderRadius = '50%';
+  cartCounter.style.fontWeight = 'bold';
+  cartCounter.textContent = JSON.parse(localStorage.getItem('cart') || '[]').reduce((sum, item) => sum + item.quantity, 0);
+  document.body.appendChild(cartCounter);
+
   addToCartForm.addEventListener('submit', e => {
     e.preventDefault();
 
-    // ✅ Get product ID from URL (single source of truth)
     const params = new URLSearchParams(window.location.search);
     const productId = params.get('id');
-
-    if (!productId) {
-      alert('Product ID missing.');
-      return;
-    }
+    if (!productId) return alert('Product ID missing.');
 
     const productName = document.querySelector('.product-title')?.textContent.trim();
-    const productPrice = parseFloat(
-      document.querySelector('.product-price')?.textContent.replace('£', '')
-    );
+    const productPrice = parseFloat(document.querySelector('.product-price')?.textContent.replace('£', ''));
     const productImage = document.querySelector('.product-image img')?.src;
 
     const selectedColor = document.querySelector('input[name="color"]:checked')?.value;
@@ -259,10 +266,8 @@ document.addEventListener('DOMContentLoaded', () => {
       return;
     }
 
-    // ✅ Get cart
     let cart = JSON.parse(localStorage.getItem('cart')) || [];
 
-    // ✅ Check for same variant
     const existingItem = cart.find(item =>
       item.id === productId &&
       item.color === selectedColor &&
@@ -283,10 +288,12 @@ document.addEventListener('DOMContentLoaded', () => {
       });
     }
 
-    // ✅ Save cart
     localStorage.setItem('cart', JSON.stringify(cart));
 
-    // ✅ Redirect (NO HTML LINK NEEDED)
-    window.location.href = 'cart.html';
+    // ✅ Update cart counter
+    const totalQty = cart.reduce((sum, item) => sum + item.quantity, 0);
+    cartCounter.textContent = totalQty;
+
+    alert(`${quantity} product(s) added to cart.`);
   });
 });
