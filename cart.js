@@ -6,6 +6,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const updateBtn = document.querySelector(".btn-update-cart");
 
   let cart = JSON.parse(localStorage.getItem("cart")) || [];
+  let editMode = false; // track if user can edit
 
   // ====== CART COUNTER ======
   function updateCartCounter() {
@@ -71,7 +72,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
             <label>
               Color:
-              <select class="cart-color" data-index="${index}">
+              <select class="cart-color" data-index="${index}" ${!editMode ? "disabled" : ""}>
                 <option value="${item.color}" selected>${item.color}</option>
                 <option value="Red">Red</option>
                 <option value="Blue">Blue</option>
@@ -82,7 +83,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
             <label>
               Size:
-              <select class="cart-size" data-index="${index}">
+              <select class="cart-size" data-index="${index}" ${!editMode ? "disabled" : ""}>
                 <option value="${item.size}" selected>${item.size}</option>
                 <option value="S">S</option>
                 <option value="M">M</option>
@@ -92,7 +93,7 @@ document.addEventListener("DOMContentLoaded", () => {
             </label>
             <br>
 
-            <button class="remove-item" data-index="${index}">Remove</button>
+            <button class="remove-item" data-index="${index}" ${!editMode ? "disabled" : ""}>Remove</button>
           </div>
         </td>
         <td>£${item.price.toFixed(2)}</td>
@@ -103,6 +104,7 @@ document.addEventListener("DOMContentLoaded", () => {
             value="${item.quantity}"
             data-index="${index}"
             class="cart-qty"
+            ${!editMode ? "disabled" : ""}
           >
         </td>
         <td>£${itemTotal.toFixed(2)}</td>
@@ -138,25 +140,35 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  // ====== UPDATE CART BUTTON ======
+  // ====== UPDATE / DONE BUTTON ======
   if (updateBtn) {
     updateBtn.addEventListener("click", () => {
-      document.querySelectorAll(".cart-qty").forEach(input => {
-        const idx = input.dataset.index;
-        cart[idx].quantity = parseInt(input.value);
-      });
+      if (!editMode) {
+        // Enter edit mode
+        editMode = true;
+        updateBtn.textContent = "Done";
+      } else {
+        // Save changes and exit edit mode
+        document.querySelectorAll(".cart-qty").forEach(input => {
+          const idx = input.dataset.index;
+          cart[idx].quantity = parseInt(input.value);
+        });
 
-      document.querySelectorAll(".cart-color").forEach(select => {
-        const idx = select.dataset.index;
-        cart[idx].color = select.value;
-      });
+        document.querySelectorAll(".cart-color").forEach(select => {
+          const idx = select.dataset.index;
+          cart[idx].color = select.value;
+        });
 
-      document.querySelectorAll(".cart-size").forEach(select => {
-        const idx = select.dataset.index;
-        cart[idx].size = select.value;
-      });
+        document.querySelectorAll(".cart-size").forEach(select => {
+          const idx = select.dataset.index;
+          cart[idx].size = select.value;
+        });
 
-      saveCart();
+        saveCart();
+        editMode = false;
+        updateBtn.textContent = "Update Cart";
+      }
+
       renderCart();
     });
   }
