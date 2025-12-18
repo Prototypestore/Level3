@@ -25,7 +25,13 @@
       { "color": "Brown", "size": "L",  "stock": 2, "price": 35 }
     ],
     "promotions": [
-      { "type": "sale", "discount": 0.1, "start": "2025-12-01", "end": "2025-12-31" }
+      {
+        "type": "sale",
+        "label": "10% OFF",
+        "discount": 0.1,
+        "start": "2025-12-01",
+        "end": "2025-12-31"
+      }
     ],
     "trending": true
   },
