@@ -150,3 +150,73 @@ document.addEventListener('DOMContentLoaded', () => {
   // Optional: update counter if user adds/removes items from another tab
   window.addEventListener('storage', updateCartCounter);
 });
+
+// -------------------- Live Product Search --------------------
+document.addEventListener("DOMContentLoaded", () => {
+  const searchInput = document.querySelector('input[name="query"]');
+  const shopGrid = document.getElementById("product-grid");
+
+  let products = [];
+
+  // Load products once
+  async function loadProducts() {
+    const res = await fetch("products.json");
+    products = await res.json();
+    renderProducts(products); // initially render all
+  }
+
+  loadProducts();
+
+  // Render function with optional highlight
+  function renderProducts(list, query = "") {
+    shopGrid.innerHTML = "";
+    const q = query.toLowerCase();
+
+    list.forEach(product => {
+      const inStockVariants = product.variants.filter(v => v.stock > 0);
+      if (!inStockVariants.length) return;
+
+      const bestVariant = inStockVariants.find(v => v.trending) || inStockVariants[0];
+      const displayPrice = bestVariant.price.toFixed(2);
+
+      // Highlight query in title
+      let titleHTML = product.title;
+      if (q && product.title.toLowerCase().includes(q)) {
+        const regex = new RegExp(`(${query})`, "gi");
+        titleHTML = product.title.replace(regex, '<mark>$1</mark>');
+      }
+
+      const cardHTML = `
+        <article class="product-card">
+          <a href="product.html?id=${product.id}&color=${encodeURIComponent(bestVariant.color)}&size=${encodeURIComponent(bestVariant.size)}">
+            <img src="${product.image}" alt="${product.title}">
+            <h3>${titleHTML}</h3>
+            <p class="price">£${displayPrice}</p>
+          </a>
+        </article>
+      `;
+      shopGrid.insertAdjacentHTML("beforeend", cardHTML);
+    });
+
+    // Optional: show "no results"
+    if (list.length === 0) {
+      shopGrid.innerHTML = `<p class="no-results">No products match your search.</p>`;
+    }
+  }
+
+  // Live input search
+  searchInput.addEventListener("input", () => {
+    const query = searchInput.value.trim().toLowerCase();
+    if (!query) {
+      renderProducts(products);
+      return;
+    }
+
+    const filtered = products.filter(product => 
+      product.title.toLowerCase().includes(query) ||
+      (product.categories && product.categories.some(cat => cat.toLowerCase().includes(query)))
+    );
+
+    renderProducts(filtered, query);
+  });
+});
