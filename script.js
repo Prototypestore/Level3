@@ -7,9 +7,14 @@ async function loadProducts() {
   const trendingGrid = document.getElementById('trending-grid');
 
   products.forEach(product => {
-    // Show all products, ignore stock for default rendering
-    const bestVariant = product.variants.find(v => v.trending) || product.variants[0];
+    // ====== SKIP OUT-OF-STOCK PRODUCTS FOR SHOP GRID ======
+    const inStockVariants = product.variants.filter(v => v.stock > 0);
+    if (!inStockVariants.length) return;
 
+    // ====== CALCULATE BEST VARIANT ======
+    let bestVariant = inStockVariants.find(v => v.trending) || inStockVariants[0];
+
+    // ====== CALCULATE PROMOTION PRICE ======
     let displayPrice = bestVariant.price;
     const now = new Date();
     if (product.promotions && product.promotions.length > 0) {
@@ -22,10 +27,13 @@ async function loadProducts() {
       });
     }
 
+    // ====== LOW STOCK BADGE ======
     const lowStockBadge = bestVariant.stock <= 5 ? '<div class="low-stock">Low Stock!</div>' : '';
 
+    // ====== SMART LINK TO PRODUCT PAGE WITH VARIANT ======
     const productURL = `product.html?id=${product.id}&color=${encodeURIComponent(bestVariant.color)}&size=${encodeURIComponent(bestVariant.size)}`;
 
+    // ====== PRODUCT CARD HTML ======
     const cardHTML = `
       <article class="product-card">
         ${lowStockBadge}
@@ -37,16 +45,18 @@ async function loadProducts() {
       </article>
     `;
 
+    // Insert into shop grid
     shopGrid.insertAdjacentHTML('beforeend', cardHTML);
 
+    // Insert into trending grid if flagged
     if (product.trending) {
       trendingGrid.insertAdjacentHTML('beforeend', cardHTML);
     }
   });
 }
 
+// Load products on page load
 loadProducts();
-
 
 // -------------------- Carousel / Slides --------------------
 const track = document.getElementById('carousel-slides');
@@ -54,6 +64,7 @@ const slides = Array.from(track.children);
 const slideWidth = 560;
 let index = 0;
 
+// Clone first slide for seamless loop
 if (slides.length > 0) {
   const firstClone = slides[0].cloneNode(true);
   track.appendChild(firstClone);
@@ -64,21 +75,25 @@ function showSlide(i) {
   track.style.transform = `translateX(-${i * slideWidth}px)`;
 }
 
+// Next
 document.querySelector('.slide-btn.next').addEventListener('click', () => {
   index++;
   showSlide(index);
 });
 
+// Prev
 document.querySelector('.slide-btn.prev').addEventListener('click', () => {
   index = (index - 1 + slides.length) % slides.length;
   showSlide(index);
 });
 
+// Auto-slide
 setInterval(() => {
   index++;
   showSlide(index);
 }, 4000);
 
+// Loop reset
 track.addEventListener('transitionend', () => {
   if (index === slides.length) {
     track.style.transition = "none";
@@ -87,7 +102,6 @@ track.addEventListener('transitionend', () => {
     setTimeout(() => { track.style.transition = "transform 0.5s ease"; }, 50);
   }
 });
-
 
 // ====== LANDING PAGE CART COUNTER ======
 document.addEventListener('DOMContentLoaded', () => {
@@ -122,37 +136,41 @@ document.addEventListener('DOMContentLoaded', () => {
 
   const updateCartCounter = () => {
     const cart = JSON.parse(localStorage.getItem('cart') || '[]');
-    const totalProducts = cart.length;
+    const totalProducts = cart.length; // number of unique products
     cartCounter.textContent = totalProducts;
     cartCounter.style.display = totalProducts > 0 ? 'flex' : 'none';
   };
 
+  // Initial render
   updateCartCounter();
+
+  // Optional: update counter if user adds/removes items from another tab
   window.addEventListener('storage', updateCartCounter);
 });
 
-
-// -------------------- Live Product Search + Filter --------------------
+// -------------------- Live Product Search --------------------
 document.addEventListener("DOMContentLoaded", () => {
   const searchInput = document.querySelector('input[name="query"]');
   const shopGrid = document.getElementById("product-grid");
-  const filterSelect = document.getElementById("filter-select");
 
   let products = [];
 
+  // Load products once
   async function loadAllProducts() {
     const res = await fetch("products.json");
     products = await res.json();
-    renderProducts(products);
+    renderProducts(products); // initially render all
   }
 
   loadAllProducts();
 
+  // Render function with optional highlight
   function renderProducts(list, query = "") {
     shopGrid.innerHTML = "";
     const q = query.toLowerCase();
 
     list.forEach(product => {
+      // Show all products, ignore stock
       const bestVariant = product.variants.find(v => v.trending) || product.variants[0];
       const displayPrice = bestVariant.price.toFixed(2);
 
@@ -174,33 +192,25 @@ document.addEventListener("DOMContentLoaded", () => {
       shopGrid.insertAdjacentHTML("beforeend", cardHTML);
     });
 
+    // Optional: show "no results"
     if (list.length === 0) {
-      shopGrid.innerHTML = `<p class="no-results">No products match your search/filter.</p>`;
+      shopGrid.innerHTML = `<p class="no-results">No products match your search.</p>`;
     }
   }
 
-  function applyFilters() {
+  // Live input search
+  searchInput.addEventListener("input", () => {
     const query = searchInput.value.trim().toLowerCase();
-    const filter = filterSelect.value;
-
-    let filtered = [...products];
-
-    if (query) {
-      filtered = filtered.filter(product => 
-        product.title.toLowerCase().includes(query) ||
-        (product.categories && product.categories.some(cat => cat.toLowerCase().includes(query)))
-      );
+    if (!query) {
+      renderProducts(products);
+      return;
     }
 
-    if (filter === "trending") {
-      filtered = filtered.filter(product => product.trending);
-    } else if (filter !== "all") {
-      filtered = filtered.filter(product => product.categories && product.categories.includes(filter));
-    }
+    const filtered = products.filter(product =>
+      product.title.toLowerCase().includes(query) ||
+      (product.categories && product.categories.some(cat => cat.toLowerCase().includes(query)))
+    );
 
     renderProducts(filtered, query);
-  }
-
-  searchInput.addEventListener("input", applyFilters);
-  filterSelect.addEventListener("change", applyFilters);
+  });
 });
