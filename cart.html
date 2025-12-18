@@ -75,5 +75,73 @@
       </div>
     </footer>
   </div>
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+  const cartBody = document.getElementById("cart-items-body");
+  const subtotalEl = document.getElementById("summary-subtotal");
+  const totalEl = document.getElementById("summary-total");
+
+  let cart = JSON.parse(localStorage.getItem("cart")) || [];
+
+  function renderCart() {
+    cartBody.innerHTML = "";
+    let subtotal = 0;
+
+    if (cart.length === 0) {
+      cartBody.innerHTML = `<tr><td colspan="4">Your cart is empty.</td></tr>`;
+      subtotalEl.textContent = "£0.00";
+      totalEl.textContent = "£0.00";
+      return;
+    }
+
+    cart.forEach((item, index) => {
+      const row = document.createElement("tr");
+      const itemTotal = item.price * item.quantity;
+      subtotal += itemTotal;
+
+      row.innerHTML = `
+        <td class="product-info">
+          <img src="${item.image}" alt="${item.name}" width="50">
+          <span>${item.name} (${item.color}, ${item.size})</span>
+          <button class="remove-item" data-index="${index}">Remove</button>
+        </td>
+        <td>£${item.price.toFixed(2)}</td>
+        <td>
+          <input type="number" min="1" value="${item.quantity}" data-index="${index}">
+        </td>
+        <td>£${itemTotal.toFixed(2)}</td>
+      `;
+      cartBody.appendChild(row);
+    });
+
+    subtotalEl.textContent = `£${subtotal.toFixed(2)}`;
+    totalEl.textContent = `£${subtotal.toFixed(2)}`;
+
+    // Remove buttons
+    document.querySelectorAll(".remove-item").forEach(btn => {
+      btn.addEventListener("click", e => {
+        const idx = e.target.dataset.index;
+        cart.splice(idx, 1);
+        localStorage.setItem("cart", JSON.stringify(cart));
+        renderCart();
+      });
+    });
+
+    // Quantity inputs
+    document.querySelectorAll("input[type='number']").forEach(input => {
+      input.addEventListener("change", e => {
+        const idx = e.target.dataset.index;
+        let val = parseInt(e.target.value);
+        if (isNaN(val) || val < 1) val = 1;
+        cart[idx].quantity = val;
+        localStorage.setItem("cart", JSON.stringify(cart));
+        renderCart();
+      });
+    });
+  }
+
+  renderCart();
+});
+  </script>
 </body>
 </html>
