@@ -234,7 +234,7 @@ document.addEventListener('DOMContentLoaded', () => {
     e.preventDefault(); // Prevent form submission page reload
 
     // Grab product data from the page
-    const productId = 'web-style-hoodie';  // Ideally a unique ID; set manually or from data attribute
+    const productId = product.id;
     const productName = document.querySelector('.product-title').textContent.trim();
     const productPrice = parseFloat(document.querySelector('.product-price').textContent.replace('£', ''));
     const productImage = document.querySelector('.product-image img').src;
