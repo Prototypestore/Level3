@@ -69,30 +69,6 @@ document.addEventListener("DOMContentLoaded", () => {
           <img src="${item.image}" alt="${item.name}">
           <div>
             <strong>${item.name}</strong><br>
-
-            <label>
-              Color:
-              <select class="cart-color" data-index="${index}" ${!editMode ? "disabled" : ""}>
-                <option value="${item.color}" selected>${item.color}</option>
-                <option value="Red">Red</option>
-                <option value="Blue">Blue</option>
-                <option value="Green">Green</option>
-              </select>
-            </label>
-            <br>
-
-            <label>
-              Size:
-              <select class="cart-size" data-index="${index}" ${!editMode ? "disabled" : ""}>
-                <option value="${item.size}" selected>${item.size}</option>
-                <option value="S">S</option>
-                <option value="M">M</option>
-                <option value="L">L</option>
-                <option value="XL">XL</option>
-              </select>
-            </label>
-            <br>
-
             <button class="remove-item" data-index="${index}" ${!editMode ? "disabled" : ""}>Remove</button>
           </div>
         </td>
@@ -152,16 +128,6 @@ document.addEventListener("DOMContentLoaded", () => {
         document.querySelectorAll(".cart-qty").forEach(input => {
           const idx = input.dataset.index;
           cart[idx].quantity = parseInt(input.value);
-        });
-
-        document.querySelectorAll(".cart-color").forEach(select => {
-          const idx = select.dataset.index;
-          cart[idx].color = select.value;
-        });
-
-        document.querySelectorAll(".cart-size").forEach(select => {
-          const idx = select.dataset.index;
-          cart[idx].size = select.value;
         });
 
         saveCart();
