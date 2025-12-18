@@ -44,19 +44,30 @@ fetch("products.json")
       }
 
       // ====== PROMOTION CALCULATION ======
-      let displayPrice = variant.price;
-      const today = new Date();
-      if (product.promotions && product.promotions.length > 0) {
-        product.promotions.forEach(promo => {
-          const start = new Date(promo.start);
-          const end = new Date(promo.end);
-          if (today >= start && today <= end && promo.type === "sale" && promo.discount) {
-            displayPrice = (variant.price * (1 - promo.discount)).toFixed(2);
-          }
-        });
-      }
+      const calculatePrice = (variantPrice, promotions = []) => {
+  let finalPrice = variantPrice;
+  const today = new Date();
 
-      priceEl.textContent = `£${displayPrice}`;
+  promotions.forEach(promo => {
+    if (
+      promo?.type === "sale" &&
+      typeof promo.discount === "number" &&
+      promo.start &&
+      promo.end
+    ) {
+      const start = new Date(promo.start);
+      const end = new Date(promo.end);
+
+      if (today >= start && today <= end) {
+        finalPrice = variantPrice * (1 - promo.discount);
+      }
+    }
+  });
+
+  return finalPrice.toFixed(2);
+};
+
+priceEl.textContent = `£${calculatePrice(variant.price, product.promotions)}`;
 
       // ====== STOCK LOGIC ======
       addToCartBtn.disabled = variant.stock === 0;
