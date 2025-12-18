@@ -229,10 +229,9 @@ priceEl.textContent = `£${calculatePrice(variant.price, product.promotions)}`;
 // ====== ADD TO CART ======
 document.addEventListener('DOMContentLoaded', () => {
   const addToCartForm = document.querySelector('.product-options');
-
   if (!addToCartForm) return;
 
-  // ✅ Create a fixed cart counter element
+  // ====== CREATE FIXED CART COUNTER ======
   let cartCounter = document.getElementById('cart-counter');
   if (!cartCounter) {
     cartCounter = document.createElement('div');
@@ -258,7 +257,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // ✅ Initialize counter
+  // ====== UPDATE CART COUNTER ======
   const updateCartCounter = () => {
     const cart = JSON.parse(localStorage.getItem('cart') || '[]');
     const totalQty = cart.reduce((sum, item) => sum + item.quantity, 0);
@@ -268,6 +267,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   updateCartCounter(); // initial render
 
+  // ====== HANDLE ADD TO CART ======
   addToCartForm.addEventListener('submit', e => {
     e.preventDefault();
 
@@ -276,7 +276,9 @@ document.addEventListener('DOMContentLoaded', () => {
     if (!productId) return;
 
     const productName = document.querySelector('.product-title')?.textContent.trim();
-    const productPrice = parseFloat(document.querySelector('.product-price')?.textContent.replace('£', ''));
+    const productPrice = parseFloat(
+      document.querySelector('.product-price')?.textContent.replace('£', '')
+    );
     const productImage = document.querySelector('.product-image img')?.src;
 
     const selectedColor = document.querySelector('input[name="color"]:checked')?.value;
@@ -287,6 +289,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     let cart = JSON.parse(localStorage.getItem('cart')) || [];
 
+    // Check if product variant already exists
     const existingItem = cart.find(item =>
       item.id === productId &&
       item.color === selectedColor &&
@@ -309,7 +312,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     localStorage.setItem('cart', JSON.stringify(cart));
 
-    // ✅ Update counter silently
+    // Update counter silently
     updateCartCounter();
   });
 });
