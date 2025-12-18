@@ -1,1 +1,79 @@
-
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Shopping Cart</title>
+  <link rel="stylesheet" href="cart.css" />
+</head>
+<body>
+  <div class="container cart-page">
+    <h1>Shopping Cart</h1>
+    <div class="cart-content">
+      <div class="cart-items">
+        <table>
+          <thead>
+            <tr>
+              <th>PRODUCT</th>
+              <th>PRICE</th>
+              <th>QUANTITY</th>
+              <th>SUBTOTAL</th>
+            </tr>
+          </thead>
+          <tbody id="cart-items-body">
+            <!-- Example product row -->
+            <!--
+            <tr>
+              <td class="product-info">
+                <img src="pilea.jpg" alt="Pilea" />
+                <span>Pilea</span>
+              </td>
+              <td>£30.00</td>
+              <td>
+                <input type="number" min="1" value="1" />
+              </td>
+              <td>£30.00</td>
+            </tr>
+            -->
+          </tbody>
+        </table>
+        <div class="cart-actions">
+          <input type="text" placeholder="Code" id="coupon-code" />
+          <button class="btn-apply-coupon">Enter Coupon</button>
+          <button class="btn-update-cart">Update cart</button>
+        </div>
+      </div>
+      <aside class="order-summary">
+        <h2>Order Summary</h2>
+        <div class="summary-item">
+          <span>Subtotal</span>
+          <span id="summary-subtotal">£0.00</span>
+        </div>
+        <div class="summary-item total">
+          <span>Total</span>
+          <span id="summary-total">£0.00</span>
+        </div>
+        <button class="btn-checkout">Checkout</button>
+      </aside>
+    </div>
+    <footer class="cart-footer">
+      <div class="footer-item">
+        <strong>Free Delivery</strong>
+        <p>For all orders over £99.00</p>
+      </div>
+      <div class="footer-item">
+        <strong>30 Days Returns</strong>
+        <p>If goods have problem</p>
+      </div>
+      <div class="footer-item">
+        <strong>Secure Payment</strong>
+        <p>100% Secure Payments</p>
+      </div>
+      <div class="footer-item">
+        <strong>24/7 Support</strong>
+        <p>Dedicated Support</p>
+      </div>
+    </footer>
+  </div>
+</body>
+</html>
