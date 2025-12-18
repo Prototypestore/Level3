@@ -7,10 +7,8 @@ async function loadProducts() {
   const trendingGrid = document.getElementById('trending-grid');
 
   products.forEach(product => {
-    const inStockVariants = product.variants.filter(v => v.stock > 0);
-    if (!inStockVariants.length) return;
-
-    let bestVariant = inStockVariants.find(v => v.trending) || inStockVariants[0];
+    // Show all products, ignore stock for default rendering
+    const bestVariant = product.variants.find(v => v.trending) || product.variants[0];
 
     let displayPrice = bestVariant.price;
     const now = new Date();
@@ -48,6 +46,7 @@ async function loadProducts() {
 }
 
 loadProducts();
+
 
 // -------------------- Carousel / Slides --------------------
 const track = document.getElementById('carousel-slides');
@@ -88,6 +87,7 @@ track.addEventListener('transitionend', () => {
     setTimeout(() => { track.style.transition = "transform 0.5s ease"; }, 50);
   }
 });
+
 
 // ====== LANDING PAGE CART COUNTER ======
 document.addEventListener('DOMContentLoaded', () => {
@@ -131,11 +131,12 @@ document.addEventListener('DOMContentLoaded', () => {
   window.addEventListener('storage', updateCartCounter);
 });
 
+
 // -------------------- Live Product Search + Filter --------------------
 document.addEventListener("DOMContentLoaded", () => {
   const searchInput = document.querySelector('input[name="query"]');
   const shopGrid = document.getElementById("product-grid");
-  const filterSelect = document.getElementById("filter-select"); // Dropdown to filter: all/trending/categories
+  const filterSelect = document.getElementById("filter-select");
 
   let products = [];
 
@@ -152,7 +153,6 @@ document.addEventListener("DOMContentLoaded", () => {
     const q = query.toLowerCase();
 
     list.forEach(product => {
-      // Show all products, ignore stock for default rendering
       const bestVariant = product.variants.find(v => v.trending) || product.variants[0];
       const displayPrice = bestVariant.price.toFixed(2);
 
@@ -185,7 +185,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
     let filtered = [...products];
 
-    // SEARCH: only filter when user types
     if (query) {
       filtered = filtered.filter(product => 
         product.title.toLowerCase().includes(query) ||
@@ -193,7 +192,6 @@ document.addEventListener("DOMContentLoaded", () => {
       );
     }
 
-    // FILTER dropdown logic
     if (filter === "trending") {
       filtered = filtered.filter(product => product.trending);
     } else if (filter !== "all") {
