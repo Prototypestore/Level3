@@ -1,1 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Checkout</title>
+  <link rel="stylesheet" href="checkout.css" />
+</head>
+<body>
+
+<header class="checkout-header">
+  <img src="logo.png" alt="Brand Logo" class="checkout-logo">
+</header>
+
+<main class="checkout-container">
+
+  <!-- Left: Checkout Form -->
+  <section class="checkout-form">
+    <h1>Checkout</h1>
+
+    <label>
+      Email
+      <input type="email" placeholder="you@example.com">
+    </label>
+
+    <label>
+      Shipping Address
+      <input type="text" placeholder="Full name">
+      <input type="text" placeholder="Address">
+      <input type="text" placeholder="City">
+      <input type="text" placeholder="Postal code">
+      <input type="text" placeholder="Country">
+    </label>
+
+    <div class="payment-section">
+      <h2>Payment</h2>
+      <input type="text" placeholder="Card number">
+      <div class="payment-row">
+        <input type="text" placeholder="MM / YY">
+        <input type="text" placeholder="CVC">
+      </div>
+    </div>
+
+    <button class="btn-pay">Pay securely</button>
+
+    <p class="secure-note">
+      🔒 Secure checkout powered by encryption
+    </p>
+  </section>
+
+  <!-- Right: Order Summary -->
+  <aside class="checkout-summary">
+    <h2>Order Summary</h2>
+
+    <div class="summary-item">
+      <span>Jeans × 3</span>
+      <span>£180.00</span>
+    </div>
+
+    <div class="summary-item">
+      <span>Shirt × 2</span>
+      <span>£90.00</span>
+    </div>
+
+    <div class="summary-item total">
+      <span>Total</span>
+      <span>£270.00</span>
+    </div>
+  </aside>
+
+</main>
+
+<footer class="checkout-footer">
+  <span>Powered securely</span>
+  <span>Privacy · Terms</span>
+</footer>
+
+</body>
+</html>
 
