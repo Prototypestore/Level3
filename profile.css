@@ -98,3 +98,19 @@ button:hover {
 }
 
 .logout-btn:hover { background-color: #e53935; }
+
+/* Terms & Privacy Links */
+.legal-links {
+  margin-top: 15px;
+  font-size: 12px;
+  color: #666;
+}
+
+.legal-links a {
+  color: #4CAF50;
+  text-decoration: none;
+}
+
+.legal-links a:hover {
+  text-decoration: underline;
+}
