@@ -1,11 +1,8 @@
-// ----- Dummy login function -----
 function login() {
-  const username = document.getElementById('username').value.trim();
-  const password = document.getElementById('password').value.trim();
+  const email = document.getElementById('email').value.trim();
 
-  // Simple validation (for demo only)
-  if(username === "" || password === "") {
-    alert("Please enter both username and password.");
+  if(email === "") {
+    alert("Please enter your email.");
     return;
   }
 
@@ -13,17 +10,18 @@ function login() {
   document.getElementById('login-section').style.display = 'none';
   document.getElementById('profile-section').style.display = 'block';
 
-  // Fill in profile info
-  document.getElementById('user-display').textContent = username;
-  document.getElementById('profile-username').textContent = username;
+  // Fill in profile info (for demo purposes)
+  document.getElementById('user-display').textContent = email.split('@')[0];
+  document.getElementById('profile-email').textContent = email;
 }
 
 function logout() {
-  // Hide profile, show login
   document.getElementById('profile-section').style.display = 'none';
   document.getElementById('login-section').style.display = 'block';
-
-  // Clear input fields
-  document.getElementById('username').value = '';
-  document.getElementById('password').value = '';
+  document.getElementById('email').value = '';
 }
+
+// Social login demo (alert only)
+document.querySelector('.facebook').onclick = () => alert("Facebook login clicked!");
+document.querySelector('.google').onclick = () => alert("Google login clicked!");
+document.querySelector('.apple').onclick = () => alert("Apple login clicked!");
