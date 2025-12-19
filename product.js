@@ -244,12 +244,12 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  const updateCartCounter = () => {
-    const cart = JSON.parse(localStorage.getItem('cart') || '[]');
-    const totalQty = cart.reduce((sum, item) => sum + item.quantity, 0);
-    cartCounter.textContent = totalQty;
-    cartCounter.style.display = totalQty > 0 ? 'flex' : 'none';
-  };
+ const updateCartCounter = () => {
+  const cart = JSON.parse(localStorage.getItem('cart') || '[]');
+  const totalProducts = cart.length; // count unique products, not quantity
+  cartCounter.textContent = totalProducts;
+  cartCounter.style.display = totalProducts > 0 ? 'flex' : 'none';
+};
 
   updateCartCounter();
 
