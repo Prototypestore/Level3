@@ -266,42 +266,47 @@ document.addEventListener('DOMContentLoaded', () => {
 
   updateCartCounter(); // initial render
 
-  // ====== HANDLE ADD TO CART ======
-  addToCartForm.addEventListener('submit', e => {
-    e.preventDefault();
+ // ====== HANDLE ADD TO CART ======
+addToCartForm.addEventListener('submit', e => {
+  e.preventDefault();
 
-    const params = new URLSearchParams(window.location.search);
-    const productId = params.get('id');
-    if (!productId) return;
+  const params = new URLSearchParams(window.location.search);
+  const productId = params.get('id');
+  if (!productId) return;
 
-    const productName = document.querySelector('.product-title')?.textContent.trim();
-    const productPrice = parseFloat(
-      document.querySelector('.product-price')?.textContent.replace('£', '')
-    );
-    const productImage = document.querySelector('.product-image img')?.src;
+  const productName = document.querySelector('.product-title')?.textContent.trim();
+  const productPrice = parseFloat(
+    document.querySelector('.product-price')?.textContent.replace('£', '')
+  );
+  const productImage = document.querySelector('.product-image img')?.src;
 
-    // Optional: remove color/size if not needed
-    // const selectedColor = document.querySelector('input[name="color"]:checked')?.value;
-    // const selectedSize = document.querySelector('input[name="size"]:checked')?.value;
-    const quantity = parseInt(document.getElementById('qty-value')?.value) || 1;
+  const selectedColor = document.querySelector('input[name="color"]:checked')?.value;
+  const selectedSize = document.querySelector('input[name="size"]:checked')?.value;
+  const quantity = parseInt(document.getElementById('qty-value')?.value) || 1;
 
-    let cart = JSON.parse(localStorage.getItem('cart')) || [];
+  let cart = JSON.parse(localStorage.getItem('cart')) || [];
 
-    // Check if product already exists
-    const existingItem = cart.find(item => item.id === productId);
-    if (existingItem) {
-      existingItem.quantity += quantity; // still add quantity
-    } else {
-      cart.push({
-        id: productId,
-        name: productName,
-        price: productPrice,
-        quantity,
-        image: productImage
-      });
-    }
+  // 🔑 UNIQUE KEY PER VARIANT
+  const itemKey = `${productId}-${selectedColor}-${selectedSize}`;
 
-    localStorage.setItem('cart', JSON.stringify(cart));
-    updateCartCounter();
-  });
+  const existingItemIndex = cart.findIndex(item => item.key === itemKey);
+
+  if (existingItemIndex !== -1) {
+    // ✅ REPLACE quantity (NOT add)
+    cart[existingItemIndex].quantity = quantity;
+  } else {
+    cart.push({
+      key: itemKey,
+      id: productId,
+      name: productName,
+      price: productPrice,
+      quantity,
+      image: productImage,
+      color: selectedColor,
+      size: selectedSize
+    });
+  }
+
+  localStorage.setItem('cart', JSON.stringify(cart));
+  updateCartCounter();
 });
