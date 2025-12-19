@@ -32,6 +32,12 @@ body {
   justify-content: space-between;
 }
 
+.container header-container .profile-icon {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
 .logo {
   font-size: 1.8rem;
   font-weight: 700;
