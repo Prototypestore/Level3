@@ -55,11 +55,6 @@ body {
   color: #98975c;
 }
 
-.profile-icon {
-  width: 40px;
-  height: 40px;
-}
-
 /* Search */
 .search-section {
   display: flex;
