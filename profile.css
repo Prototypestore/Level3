@@ -22,7 +22,6 @@ h1 {
   color: #333;
 }
 
-/* Input & button */
 input[type="email"] {
   width: 100%;
   padding: 12px;
@@ -48,7 +47,6 @@ button:hover {
   background-color: #45a049;
 }
 
-/* Social login buttons */
 .social-login p {
   margin: 10px 0;
   color: #666;
@@ -82,7 +80,21 @@ button:hover {
 .social-btn.apple { border-color: #000; color: #000; }
 .social-btn.apple:hover { background-color: #000; color: white; }
 
-/* Profile Section */
+.legal-links {
+  margin-top: 15px;
+  font-size: 12px;
+  color: #666;
+}
+
+.legal-links a {
+  color: #4CAF50;
+  text-decoration: none;
+}
+
+.legal-links a:hover {
+  text-decoration: underline;
+}
+
 #profile-section { display: none; }
 
 .profile-info {
@@ -98,19 +110,3 @@ button:hover {
 }
 
 .logout-btn:hover { background-color: #e53935; }
-
-/* Terms & Privacy Links */
-.legal-links {
-  margin-top: 15px;
-  font-size: 12px;
-  color: #666;
-}
-
-.legal-links a {
-  color: #4CAF50;
-  text-decoration: none;
-}
-
-.legal-links a:hover {
-  text-decoration: underline;
-}
