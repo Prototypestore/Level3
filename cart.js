@@ -121,3 +121,14 @@ document.addEventListener("DOMContentLoaded", () => {
   renderCart();
   updateCartCounter();
 });
+
+// ====== CHECKOUT REDIRECT ======
+document.addEventListener('DOMContentLoaded', () => {
+  const checkoutBtn = document.querySelector('.btn-checkout');
+  if (!checkoutBtn) return;
+
+  checkoutBtn.addEventListener('click', () => {
+    // Cart already exists in localStorage
+    window.location.href = 'checkout.html';
+  });
+});
