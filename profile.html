@@ -5,22 +5,28 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>AleoCode Login</title>
   <link rel="stylesheet" href="profile.css">
+  <!-- Include Font Awesome for icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SomeHashHere" crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
 <body>
   <div class="container">
     <!-- Login Section -->
     <div id="login-section">
       <h1>AleoCode</h1>
-      <input type="text" id="username" placeholder="Username" />
-      <input type="password" id="password" placeholder="Password" />
+      <input type="email" id="email" placeholder="Email" />
       <button onclick="login()">Login</button>
+      <div class="social-login">
+        <p>Or login with</p>
+        <button class="social-btn facebook"><i class="fab fa-facebook-f"></i> Facebook</button>
+        <button class="social-btn google"><i class="fab fa-google"></i> Google</button>
+        <button class="social-btn apple"><i class="fab fa-apple"></i> Apple</button>
+      </div>
     </div>
     <!-- Profile Section -->
     <div id="profile-section">
       <h1>Welcome, <span id="user-display"></span>!</h1>
       <div class="profile-info">
-        <p><strong>Username:</strong> <span id="profile-username"></span></p>
-        <p><strong>Email:</strong> user@example.com</p>
+        <p><strong>Email:</strong> <span id="profile-email"></span></p>
         <p><strong>Member Since:</strong> January 2025</p>
       </div>
       <button class="logout-btn" onclick="logout()">Logout</button>
