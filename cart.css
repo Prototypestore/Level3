@@ -18,6 +18,38 @@ body {
   padding: 0 1rem;
 }
 
+/* Back arrow inside cart title */
+.cart-page h1 {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.cart-page h1 a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: #f9fafb;
+  border: 1px solid #e5e7eb;
+  color: #111827;
+  font-size: 1.1rem;
+  font-weight: 700;
+  text-decoration: none;
+  transition: background 0.2s ease, transform 0.15s ease;
+}
+
+.cart-page h1 a:hover {
+  background: #f3f4f6;
+  transform: translateX(-2px);
+}
+
+.cart-page h1 a:active {
+  transform: translateX(-1px);
+}
+
 h1 {
   font-weight: 700;
   font-size: 2rem;
