@@ -12,9 +12,16 @@ document.addEventListener("DOMContentLoaded", () => {
   function updateCartCounter() {
     const counter = document.getElementById("cart-counter");
     if (!counter) return;
+
     const totalQty = cart.reduce((sum, item) => sum + item.quantity, 0);
     counter.textContent = totalQty;
     counter.style.display = totalQty > 0 ? "flex" : "none";
+  }
+
+  // ====== SAVE CART ======
+  function saveCart() {
+    localStorage.setItem("cart", JSON.stringify(cart));
+    updateCartCounter();
   }
 
   // ====== RENDER CART ======
@@ -37,7 +44,10 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     cart.forEach((item, index) => {
-      const itemTotal = item.price * item.quantity;
+      const safeQty = Math.max(1, parseInt(item.quantity) || 1);
+      item.quantity = safeQty;
+
+      const itemTotal = item.price * safeQty;
       subtotal += itemTotal;
 
       const row = document.createElement("tr");
@@ -54,7 +64,7 @@ document.addEventListener("DOMContentLoaded", () => {
           <input
             type="number"
             min="1"
-            value="${item.quantity}"
+            value="${safeQty}"
             data-index="${index}"
             class="cart-qty"
             ${!editMode ? "disabled" : ""}
@@ -74,7 +84,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // ====== EVENT HANDLERS ======
   function attachEvents() {
-    // Remove item - always active
+    // Remove item
     document.querySelectorAll(".remove-item").forEach(btn => {
       btn.addEventListener("click", () => {
         const index = btn.dataset.index;
@@ -84,11 +94,13 @@ document.addEventListener("DOMContentLoaded", () => {
       });
     });
 
-    // Quantity input
+    // Quantity input validation
     document.querySelectorAll(".cart-qty").forEach(input => {
       input.addEventListener("input", e => {
         let val = parseInt(e.target.value);
-        if (isNaN(val) || val < 1) e.target.value = 1;
+        if (isNaN(val) || val < 1) {
+          e.target.value = 1;
+        }
       });
     });
   }
@@ -102,19 +114,15 @@ document.addEventListener("DOMContentLoaded", () => {
       } else {
         document.querySelectorAll(".cart-qty").forEach(input => {
           const idx = input.dataset.index;
-          cart[idx].quantity = parseInt(input.value);
+          cart[idx].quantity = Math.max(1, parseInt(input.value) || 1);
         });
+
         saveCart();
         editMode = false;
         updateBtn.textContent = "Update Cart";
       }
       renderCart();
     });
-  }
-
-  // ====== SAVE CART ======
-  function saveCart() {
-    localStorage.setItem("cart", JSON.stringify(cart));
   }
 
   // Initial render
