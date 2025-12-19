@@ -31,7 +31,9 @@ fetch("products.json")
       if (!variant) return;
 
       document.querySelector(".product-price").textContent = `£${variant.price}`;
-      document.getElementById("qty-value").max = variant.stock;
+      const qtyInput = document.getElementById("qty-value");
+      qtyInput.max = variant.stock;
+      qtyInput.value = Math.min(qtyInput.value || 1, variant.stock);
     }
 
     updatePriceStock();
@@ -46,7 +48,7 @@ fetch("products.json")
     };
 
     // ======================================================
-    // 🔒 ADD TO CART — ATTACH ONCE (THIS FIXES EVERYTHING)
+    // 🔒 ADD TO CART — FIX DUPLICATION BUG
     // ======================================================
     const form = document.querySelector(".product-options");
 
@@ -63,7 +65,7 @@ fetch("products.json")
         const existing = cart.find(item => item.key === key);
 
         if (existing) {
-          // ✅ SET quantity (NOT add)
+          // ✅ FIXED: REPLACE QUANTITY INSTEAD OF ADDING
           existing.quantity = quantity;
         } else {
           cart.push({
@@ -78,6 +80,37 @@ fetch("products.json")
             color: selectedColor,
             size: selectedSize
           });
+        }
+
+        // ====== UPDATE CART BADGE ======
+        const cartIcon = document.querySelector(".cart-icon");
+        if (cartIcon) {
+          let cartCounter = document.getElementById("cart-counter");
+          if (!cartCounter) {
+            cartCounter = document.createElement("div");
+            cartCounter.id = "cart-counter";
+            cartIcon.appendChild(cartCounter);
+            Object.assign(cartCounter.style, {
+              position: "absolute",
+              top: "-0.5rem",
+              right: "-0.5rem",
+              background: "#ff0000",
+              color: "#fff",
+              padding: "0.2rem 0.5rem",
+              borderRadius: "50%",
+              fontWeight: "bold",
+              fontSize: "0.75rem",
+              minWidth: "1.2rem",
+              height: "1.2rem",
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              pointerEvents: "none"
+            });
+          }
+          const totalQty = cart.reduce((sum, item) => sum + item.quantity, 0);
+          cartCounter.textContent = totalQty;
+          cartCounter.style.display = totalQty > 0 ? "flex" : "none";
         }
 
         localStorage.setItem("cart", JSON.stringify(cart));
