@@ -1,112 +1,223 @@
+/* ================= BASE ================= */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
 body {
-  font-family: Arial, sans-serif;
-  background-color: #f7f7f7;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  font-family: 'Segoe UI', Roboto, sans-serif;
+  background: #f7f7f6;
+  color: #111827;
+  line-height: 1.6;
+}
+
+/* ================= OPEN PROFILE BUTTON ================= */
+#open-profile-menu {
+  position: fixed;
+  top: 2rem;
+  right: 2rem;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: #f9fafb;
+  border: 1px solid #e5e7eb;
+  font-size: 1.2rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background 0.2s ease, transform 0.15s ease;
+}
+
+#open-profile-menu:hover {
+  background: #f3f4f6;
+  transform: translateX(-2px);
+}
+
+/* ================= OFF-CANVAS MENU ================= */
+#profile-menu {
+  position: fixed;
+  top: 0;
+  right: -360px;
+  width: 360px;
   height: 100vh;
+  background: #ffffff;
+  box-shadow: -4px 0 20px rgba(0,0,0,0.12);
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  transition: right 0.35s ease;
+  z-index: 1000;
+}
+
+#profile-menu.open {
+  right: 0;
+}
+
+/* ================= CLOSE BUTTON ================= */
+#close-profile-menu {
+  align-self: flex-end;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: #f9fafb;
+  border: 1px solid #e5e7eb;
+  font-size: 1.1rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background 0.2s ease, transform 0.15s ease;
+}
+
+#close-profile-menu:hover {
+  background: #f3f4f6;
+  transform: translateX(2px);
+}
+
+/* ================= TOP SECTION ================= */
+.profile-menu-top {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding-bottom: 1.5rem;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.profile-menu-top img {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  object-fit: cover;
+  background: #f7f7f6;
+  border: 1px solid #ddd;
+}
+
+.menu-user-info p {
   margin: 0;
 }
 
-.container {
-  background-color: #fff;
-  padding: 40px;
-  border-radius: 12px;
-  box-shadow: 0 8px 20px rgba(0,0,0,0.1);
-  width: 380px;
-  text-align: center;
+#menu-username {
+  font-weight: 700;
+  font-size: 1rem;
 }
 
-h1 {
-  margin-bottom: 25px;
-  color: #333;
+.menu-brand {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: #98975c;
 }
 
-input[type="email"] {
+#menu-email {
+  font-size: 0.8rem;
+  color: #555;
+}
+
+/* ================= MIDDLE SECTION ================= */
+.profile-menu-middle ul {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.profile-menu-middle button {
   width: 100%;
-  padding: 12px;
-  margin-bottom: 20px;
-  border: 1px solid #ccc;
-  border-radius: 6px;
-  box-sizing: border-box;
+  text-align: left;
+  padding: 0.75rem 1rem;
+  border-radius: 10px;
+  border: none;
+  background: transparent;
+  font-size: 1rem;
+  font-weight: 600;
+  color: #111827;
+  cursor: pointer;
+  transition: background 0.2s ease;
 }
 
-button {
-  width: 100%;
-  padding: 12px;
-  background-color: #4CAF50;
+.profile-menu-middle button:hover {
+  background: #f3f4f6;
+}
+
+/* ================= BOTTOM SECTION ================= */
+.profile-menu-bottom {
+  margin-top: auto;
+  padding-top: 1.5rem;
+  border-top: 1px solid #e5e7eb;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.profile-menu-bottom button {
+  background: transparent;
+  border: none;
+  text-align: left;
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: #111827;
+  cursor: pointer;
+  padding: 0.6rem 0;
+}
+
+.profile-menu-bottom button:hover {
+  color: #98975c;
+}
+
+/* ================= LOGOUT BUTTON ================= */
+.logout-btn {
+  margin-top: 0.5rem;
+  background: #111827;
   color: white;
   border: none;
-  border-radius: 6px;
+  padding: 0.7rem 1.2rem;
+  border-radius: 999px;
+  font-weight: 700;
+  font-size: 0.95rem;
   cursor: pointer;
-  font-size: 16px;
-  margin-bottom: 15px;
+  transition: background 0.25s ease;
 }
 
-button:hover {
-  background-color: #45a049;
+.logout-btn:hover {
+  background: #333;
 }
 
-.social-login p {
-  margin: 10px 0;
-  color: #666;
+/* ================= PROFILE CONTENT ================= */
+#profile-content {
+  max-width: 1100px;
+  margin: 3rem auto;
+  padding: 0 2rem;
 }
 
-.social-btn {
+#profile-content section {
+  background: #ffffff;
+  border-radius: 12px;
+  padding: 2.5rem;
+  margin-bottom: 2.5rem;
+  box-shadow: 0 3px 12px rgba(0,0,0,0.08);
+}
+
+#profile-content h2 {
+  font-size: 1.6rem;
+  margin-bottom: 1.5rem;
+}
+
+#profile-content h3 {
+  font-size: 1.1rem;
+  margin-bottom: 1rem;
+  color: #98975c;
+}
+
+/* ================= FORMS ================= */
+label {
+  display: block;
+  font-weight: 600;
+  margin-top: 1.2rem;
+}
+
+input {
   width: 100%;
-  padding: 10px;
+  margin-top: 0.4rem;
+  padding: 0.75rem 1rem;
+  border-radius: 8px;
   border: 1px solid #ccc;
-  border-radius: 6px;
-  margin-bottom: 10px;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 15px;
-  background-color: #fff;
-  transition: 0.3s;
+  font-size: 1rem;
 }
-
-.social-btn i {
-  margin-right: 8px;
-}
-
-.social-btn.facebook { border-color: #3b5998; color: #3b5998; }
-.social-btn.facebook:hover { background-color: #3b5998; color: white; }
-
-.social-btn.google { border-color: #db4437; color: #db4437; }
-.social-btn.google:hover { background-color: #db4437; color: white; }
-
-.social-btn.apple { border-color: #000; color: #000; }
-.social-btn.apple:hover { background-color: #000; color: white; }
-
-.legal-links {
-  margin-top: 15px;
-  font-size: 12px;
-  color: #666;
-}
-
-.legal-links a {
-  color: #4CAF50;
-  text-decoration: none;
-}
-
-.legal-links a:hover {
-  text-decoration: underline;
-}
-
-#profile-section { display: none; }
-
-.profile-info {
-  text-align: left;
-  margin-top: 15px;
-}
-
-.profile-info p { margin: 8px 0; }
-
-.logout-btn {
-  margin-top: 20px;
-  background-color: #f44336;
-}
-
-.logout-btn:hover { background-color: #e53935; }
