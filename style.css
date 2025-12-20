@@ -21,15 +21,27 @@ body {
 
 /* Header */
 .header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
   background: #fff;
   border-bottom: 1px solid #e5e7eb;
   padding: 1rem 0;
+  z-index: 1000;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.05);
 }
 
+/* Container inside header stays the same */
 .header-container {
   display: flex;
   align-items: center;
   justify-content: space-between;
+}
+
+/* Offset the main content so it doesn't hide behind header */
+main {
+  margin-top: 80px;
 }
 
 .logo {
