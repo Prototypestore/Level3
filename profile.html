@@ -31,14 +31,104 @@
     </div>
     <!-- Profile Section -->
     <div id="profile-section">
-      <h1>Welcome, <span id="user-display"></span>!</h1>
-      <div class="profile-info">
-        <p><strong>Email:</strong> <span id="profile-email"></span></p>
-        <p><strong>Member Since:</strong> <span id="profile-member"></span></p>
-      </div>
-      <button class="logout-btn" onclick="logout()">Logout</button>
+  <!-- PROFILE OVERVIEW (TOP – NON-NEGOTIABLE) -->
+  <section id="profile-overview">
+    <img id="user-avatar" src="" alt="User Avatar">
+    <h1 id="user-fullname">Full Name</h1>
+    <p id="profile-email"></p>
+    <p id="profile-username">Customer ID / Username</p>
+    <button id="edit-profile-btn">Edit Profile</button>
+  </section>
+  <!-- PERSONAL DETAILS -->
+  <section id="personal-details">
+    <h2>Personal Details</h2>
+    <label>First Name</label>
+    <input type="text" id="first-name">
+    <label>Last Name</label>
+    <input type="text" id="last-name">
+    <label>Email</label>
+    <input type="email" id="email-address">
+    <label>Phone Number</label>
+    <input type="tel" id="phone-number">
+    <label>Date of Birth (Optional)</label>
+    <input type="date" id="dob">
+  </section>
+  <!-- ADDRESS BOOK -->
+  <section id="address-book">
+    <h2>Address Book</h2>
+    <div class="address">
+      <p>Shipping Address</p>
+      <button>Edit</button>
+      <button>Delete</button>
+      <button>Set as Default</button>
     </div>
-  </div>
+    <div class="address">
+      <p>Billing Address</p>
+      <button>Edit</button>
+      <button>Delete</button>
+      <button>Set as Default</button>
+    </div>
+    <button id="add-address-btn">Add New Address</button>
+  </section>
+  <!-- PURCHASE HISTORY -->
+  <section id="purchase-history">
+    <h2>Purchase History</h2>
+    <div class="order">
+      <p>Order #123456</p>
+      <p>Status: Delivered</p>
+      <button>View Details</button>
+      <button>Download Invoice</button>
+      <button>Reorder</button> <!-- NON-NEGOTIABLE -->
+    </div>
+  </section>
+  <!-- PAYMENT METHODS -->
+  <section id="payment-methods">
+    <h2>Payment Methods</h2>
+    <div class="card">
+      <p>Visa **** 4242</p>
+      <button>Set Default</button>
+      <button>Remove</button>
+    </div>
+    <button id="add-card-btn">Add New Card</button>
+  </section>
+  <!-- SETTINGS -->
+  <section id="settings">
+    <h2>Settings</h2>
+    <!-- ACCOUNT SETTINGS -->
+    <div class="settings-group">
+      <h3>Account Settings</h3>
+      <button>Change Email</button>
+      <button>Change Language</button>
+    </div>
+    <!-- PRIVACY & SECURITY -->
+    <div class="settings-group">
+      <h3>Privacy & Security</h3>
+      <button>Enable Two-Factor Authentication</button>
+      <button>Logout All Devices</button>
+      <button>Delete Account</button>
+    </div>
+  </section>
+  <!-- NOTIFICATIONS -->
+  <section id="notifications">
+    <h2>Notifications</h2>
+    <label>
+      <input type="checkbox"> Order Updates
+    </label>
+    <label>
+      <input type="checkbox"> Promotions
+    </label>
+    <label>
+      <input type="checkbox"> Email Notifications
+    </label>
+    <label>
+      <input type="checkbox"> In-App Notifications
+    </label>
+  </section>
+  <!-- LOGOUT (ALWAYS VISIBLE – BOTTOM) -->
+  <section id="logout-section">
+    <button class="logout-btn" onclick="logout()">Logout</button>
+  </section>
+</div>
   <script src="profile.js"></script>
 </body>
 </html>
