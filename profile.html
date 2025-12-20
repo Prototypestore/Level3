@@ -4,177 +4,73 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>AleoCode</title>
-  <!-- Styles (to be added later) -->
   <link rel="stylesheet" href="profile.css">
-  <!-- Font Awesome -->
-  <link  rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer"/>
+  <!-- Font Awesome for social icons if needed -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer"/>
 </head>
 <body>
-  <div class="container">
-    <!-- ================= LOGIN SECTION ================= -->
-    <div id="login-section">
-      <h1>AleoCode</h1>
-      <input type="email" id="email" placeholder="Email" />
-      <button onclick="login()">Login</button>
-      <div class="social-login">
-        <p>Or login with</p>
-        <button class="social-btn facebook">
-          <i class="fab fa-facebook-f"></i> Facebook
-        </button>
-        <button class="social-btn google">
-          <i class="fab fa-google"></i> Google
-        </button>
-        <button class="social-btn apple">
-          <i class="fab fa-apple"></i> Apple
-        </button>
-      </div>
-      <div class="legal-links">
-        <p>
-          By continuing, you agree to our
-          <a href="#">Terms & Conditions</a> and
-          <a href="#">Privacy Policy</a>.
-        </p>
-      </div>
-    </div>
-    <!-- ================= LANDING PAGE HEADER BUTTON ================= -->
-    <!-- This button lives on index.html normally -->
-    <button id="open-profile-menu" aria-label="Open profile menu">
-      &lt;
-    </button>
-    <!-- ================= OFF-CANVAS PROFILE MENU ================= -->
-    <aside id="profile-menu" aria-hidden="true">
-      <!-- Close Button -->
-      <button id="close-profile-menu" aria-label="Close profile menu">
-        &gt;
-      </button>
-      <!-- ===== TOP SECTION ===== -->
-      <div class="profile-menu-top">
-        <a href="profile.html" id="menu-avatar" aria-label="viewcart">
-        <svg width="40" height="40" viewBox="0 0 150 150" xmlns="http://www.w3.org/2000/svg">
-  <!-- Circular black background -->
-  <circle cx="75" cy="75" r="75" fill="#98975c"/>
-  <!-- White head -->
-  <circle cx="75" cy="55" r="30" fill="#FFFFFF"/>
-  <!-- Arched white body fully inside the circle, bottom touching circle edge -->
-  <path d="
-    M20 125
-    C45 90, 105 90, 125 135
-    Q50 175, 20 129
-    Z" fill="#FFFFFF"/>
-</svg>
-      </a>
-        <div class="menu-user-info">
-          <p id="menu-username">Full Name</p>
-          <p class="menu-brand">AleoCode</p>
-          <p id="menu-email">user@email.com</p>
-        </div>
-      </div>
-      <!-- ===== MIDDLE SECTION ===== -->
-      <nav class="profile-menu-middle">
+  <!-- ================= HEADER / NAV ================= -->
+  <header class="header">
+    <div class="container header-container">
+      <a href="index.html" class="logo">Aleo<strong>Code</strong></a>
+      <nav class="nav">
         <ul>
-          <li><button data-target="profile">My Profile</button></li>
-          <li><button data-target="orders">My Orders</button></li>
-          <li><button data-target="addresses">Addresses</button></li>
-          <li><button data-target="payments">Payment Methods</button></li>
-          <li><button data-target="settings">Settings</button></li>
+          <li><a href="#shop">Shop</a></li>
+          <li><a href="#story">Our Story</a></li>
+          <li><a href="#trending">Trending</a></li>
         </ul>
       </nav>
-      <!-- ===== BOTTOM SECTION ===== -->
-      <div class="profile-menu-bottom">
-        <button id="support-btn">Support</button>
-        <button id="terms-btn">Terms & Privacy</button>
-        <button class="logout-btn" onclick="logout()">Logout</button>
+    </div>
+    <!-- Hamburger / open profile menu button -->
+    <button id="open-profile-menu" aria-label="Open profile menu">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+  </header>
+  <!-- ================= OFF-CANVAS PROFILE MENU ================= -->
+  <aside id="profile-menu" aria-hidden="true">
+    <!-- Close Button -->
+    <button id="close-profile-menu" aria-label="Close profile menu">&times;</button>
+    <!-- TOP -->
+    <div class="profile-menu-top">
+      <a href="profile.html" id="menu-avatar" aria-label="User profile">
+        <svg width="40" height="40" viewBox="0 0 150 150" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="75" cy="75" r="75" fill="#98975c"/>
+          <circle cx="75" cy="55" r="30" fill="#FFFFFF"/>
+          <path d="M20 125 C45 90, 105 90, 125 135 Q50 175, 20 129 Z" fill="#FFFFFF"/>
+        </svg>
+      </a>
+      <div class="menu-user-info">
+        <p id="menu-username">Full Name</p>
+        <p class="menu-brand">AleoCode</p>
+        <p id="menu-email">user@email.com</p>
       </div>
-    </aside>
-    <!-- ================= PROFILE CONTENT AREA ================= -->
-    <main id="profile-content">
-      <!-- ===== MY PROFILE ===== -->
-      <section id="profile">
-        <h2>Profile Overview</h2>
-        <div class="profile-overview">
-          <img id="user-avatar" src="" alt="User Avatar">
-          <p id="user-fullname">Full Name</p>
-          <p id="profile-email">user@email.com</p>
-          <p id="profile-username">Customer ID</p>
-          <button>Edit Profile</button>
-        </div>
-        <div class="personal-details">
-          <h3>Personal Details</h3>
-          <label>First Name</label>
-          <input type="text">
-          <label>Last Name</label>
-          <input type="text">
-          <label>Email</label>
-          <input type="email">
-          <label>Phone Number</label>
-          <input type="tel">
-          <label>Date of Birth (Optional)</label>
-          <input type="date">
-        </div>
-      </section>
-      <!-- ===== ORDERS ===== -->
-      <section id="orders">
-        <h2>Purchase History</h2>
-        <div class="order">
-          <p>Order #123456</p>
-          <p>Status: Delivered</p>
-          <button>View Details</button>
-          <button>Download Invoice</button>
-          <button>Reorder</button>
-        </div>
-      </section>
-      <!-- ===== ADDRESSES ===== -->
-      <section id="addresses">
-        <h2>Address Book</h2>
-        <div class="address">
-          <p>Shipping Address</p>
-          <button>Edit</button>
-          <button>Delete</button>
-          <button>Set Default</button>
-        </div>
-        <div class="address">
-          <p>Billing Address</p>
-          <button>Edit</button>
-          <button>Delete</button>
-          <button>Set Default</button>
-        </div>
-        <button>Add New Address</button>
-      </section>
-      <!-- ===== PAYMENT METHODS ===== -->
-      <section id="payments">
-        <h2>Payment Methods</h2>
-        <div class="card">
-          <p>Visa **** 4242</p>
-          <button>Set Default</button>
-          <button>Remove</button>
-        </div>
-        <button>Add New Card</button>
-      </section>
-      <!-- ===== SETTINGS ===== -->
-      <section id="settings">
-        <h2>Settings</h2>
-        <div class="settings-group">
-          <h3>Account Settings</h3>
-          <button>Change Email</button>
-          <button>Change Language</button>
-        </div>
-        <div class="settings-group">
-          <h3>Privacy & Security</h3>
-          <button>Enable Two-Factor Authentication</button>
-          <button>Logout All Devices</button>
-          <button>Delete Account</button>
-        </div>
-        <div class="settings-group">
-          <h3>Notifications</h3>
-          <label><input type="checkbox"> Order Updates</label>
-          <label><input type="checkbox"> Promotions</label>
-          <label><input type="checkbox"> Email Notifications</label>
-          <label><input type="checkbox"> In-App Notifications</label>
-        </div>
-      </section>
-    </main>
-  </div>
-  <!-- Scripts (later) -->
+    </div>
+    <!-- MIDDLE -->
+    <nav class="profile-menu-middle">
+      <ul>
+        <li><button data-target="profile">My Profile</button></li>
+        <li><button data-target="orders">My Orders</button></li>
+        <li><button data-target="addresses">Addresses</button></li>
+        <li><button data-target="payments">Payment Methods</button></li>
+        <li><button data-target="settings">Settings</button></li>
+      </ul>
+    </nav>
+    <!-- BOTTOM -->
+    <div class="profile-menu-bottom">
+      <button id="support-btn">Support</button>
+      <button id="terms-btn">Terms & Privacy</button>
+      <button class="logout-btn">Logout</button>
+    </div>
+  </aside>
+  <main>
+    <!-- Landing page content -->
+    <section id="shop"><h1>Shop Section</h1></section>
+    <section id="story"><h1>Our Story</h1></section>
+    <section id="trending"><h1>Trending</h1></section>
+  </main>
+  <!-- Scripts -->
   <script src="profile.js"></script>
 </body>
 </html>
