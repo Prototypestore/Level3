@@ -67,29 +67,23 @@ main {
   color: #98975c;
 }
 
-/* Hamburger button */
+/* Profile button */
 #open-profile-menu {
   position: fixed;
   top: 1.5rem;
   right: 2rem;
-  width: 35px;
-  height: 28px;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  background: transparent;
+  padding: 0.5rem 1rem;
+  background: #98975c;
+  color: #fff;
   border: none;
+  border-radius: 6px;
+  font-weight: 600;
   cursor: pointer;
-  z-index: 2000; /* above header */
-  padding: 0;
+  z-index: 2000;
 }
 
-#open-profile-menu span {
-  display: block;
-  height: 4px;
-  width: 100%;
-  background: #111827;
-  border-radius: 2px;
+#open-profile-menu:hover {
+  background: #7f7b4f;
 }
 
 /* Search */
