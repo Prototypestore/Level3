@@ -1,48 +1,119 @@
-async function login() {
-  const email = document.getElementById('email').value.trim();
-  if (!email) {
-    alert("Please enter your email.");
-    return;
+/* ===============================
+   PROFILE MENU LOGIC
+================================ */
+
+// ---- DOM ELEMENTS ----
+const openMenuBtn = document.getElementById('open-profile-menu');
+const closeMenuBtn = document.getElementById('close-profile-menu');
+const profileMenu = document.getElementById('profile-menu');
+
+const menuButtons = document.querySelectorAll('.profile-menu-middle button');
+const contentSections = document.querySelectorAll('#profile-content section');
+
+const logoutBtn = document.querySelector('.logout-btn');
+
+// ---- MOCK LOGIN STATE (replace later) ----
+let isLoggedIn = true;
+
+// ---- MOCK USER DATA (replace with API later) ----
+const userData = {
+  fullName: 'John Doe',
+  email: 'john@example.com',
+  username: 'AC-102938',
+  avatar: ''
+};
+
+/* ===============================
+   MENU OPEN / CLOSE
+================================ */
+
+function openMenu() {
+  if (!isLoggedIn) return;
+  profileMenu.classList.add('open');
+  profileMenu.setAttribute('aria-hidden', 'false');
+}
+
+function closeMenu() {
+  profileMenu.classList.remove('open');
+  profileMenu.setAttribute('aria-hidden', 'true');
+}
+
+// ---- BUTTON EVENTS ----
+openMenuBtn?.addEventListener('click', openMenu);
+closeMenuBtn?.addEventListener('click', closeMenu);
+
+// ---- ESC KEY CLOSE ----
+document.addEventListener('keydown', (e) => {
+  if (e.key === 'Escape') {
+    closeMenu();
   }
+});
 
-  try {
-    // Fetch user info from your MockAPI
-    const response = await fetch(`https://6945c839ed253f51719c4d69.mockapi.io/Lev/users?email=${email}`);
-    const data = await response.json();
+/* ===============================
+   SECTION SWITCHING
+================================ */
 
-    if (data.length === 0) {
-      alert("Email not found!");
-      return;
-    }
+function showSection(targetId) {
+  contentSections.forEach(section => {
+    section.style.display =
+      section.id === targetId ? 'block' : 'none';
+  });
 
-    const user = data[0];
+  menuButtons.forEach(btn => {
+    btn.classList.toggle(
+      'active',
+      btn.dataset.target === targetId
+    );
+  });
+}
 
-    // Populate profile section
-    document.getElementById('user-display').textContent = user.name;
-    document.getElementById('profile-email').textContent = user.email;
-    document.getElementById('profile-member').textContent = user.memberSince;
+// ---- MENU NAVIGATION ----
+menuButtons.forEach(button => {
+  button.addEventListener('click', () => {
+    const target = button.dataset.target;
+    showSection(target);
+  });
+});
 
-    // Show profile section, hide login
-    document.getElementById('login-section').style.display = 'none';
-    document.getElementById('profile-section').style.display = 'block';
+// ---- DEFAULT SECTION ----
+showSection('profile');
 
-    // Optional: send email using EmailJS (later)
-    // emailjs.send("service_id", "template_id", { user_email: user.email });
+/* ===============================
+   USER DATA POPULATION
+================================ */
 
-  } catch (error) {
-    console.error(error);
-    alert("Failed to fetch user info.");
+function populateUserData() {
+  const avatarEls = document.querySelectorAll('#menu-avatar, #user-avatar');
+  const nameEls = document.querySelectorAll('#menu-username, #user-fullname');
+  const emailEls = document.querySelectorAll('#menu-email, #profile-email');
+  const usernameEl = document.getElementById('profile-username');
+
+  avatarEls.forEach(img => {
+    img.src = userData.avatar || '';
+  });
+
+  nameEls.forEach(el => el.textContent = userData.fullName);
+  emailEls.forEach(el => el.textContent = userData.email);
+
+  if (usernameEl) {
+    usernameEl.textContent = userData.username;
   }
 }
 
-function logout() {
-  // Hide profile and show login
-  document.getElementById('profile-section').style.display = 'none';
-  document.getElementById('login-section').style.display = 'block';
-  document.getElementById('email').value = '';
-}
+populateUserData();
 
-// Demo social login alerts
-document.querySelector('.facebook').onclick = () => alert("Facebook login clicked!");
-document.querySelector('.google').onclick = () => alert("Google login clicked!");
-document.querySelector('.apple').onclick = () => alert("Apple login clicked!");
+/* ===============================
+   LOGOUT
+================================ */
+
+logoutBtn?.addEventListener('click', () => {
+  isLoggedIn = false;
+  closeMenu();
+
+  // Clear UI state (expand later)
+  alert('You have been logged out.');
+
+  // Redirect or show login
+  window.location.href = 'profile.html';
+});
+
