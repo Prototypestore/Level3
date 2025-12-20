@@ -12,28 +12,76 @@ body {
   line-height: 1.6;
 }
 
-/* ================= OPEN PROFILE BUTTON ================= */
+/* ================= HEADER ================= */
+.header {
+  background: #fff;
+  border-bottom: 1px solid #e5e7eb;
+  padding: 1rem 2rem;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 100;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.header-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.logo {
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: #111827;
+  text-decoration: none;
+}
+
+.nav ul {
+  display: flex;
+  gap: 2rem;
+  list-style: none;
+}
+
+.nav a {
+  text-decoration: none;
+  font-weight: 500;
+  color: #111827;
+}
+
+.nav a:hover {
+  color: #98975c;
+}
+
+/* ================= HAMBURGER BUTTON ================= */
 #open-profile-menu {
   position: fixed;
-  top: 2rem;
+  top: 1.5rem;
   right: 2rem;
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-  background: #f9fafb;
-  border: 1px solid #e5e7eb;
-  font-size: 1.2rem;
-  font-weight: 700;
+  width: 35px;
+  height: 28px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  background: transparent;
+  border: none;
   cursor: pointer;
-  transition: background 0.2s ease, transform 0.15s ease;
+  z-index: 2000;
+  padding: 0;
 }
 
-#open-profile-menu:hover {
-  background: #f3f4f6;
-  transform: translateX(-2px);
+#open-profile-menu span {
+  display: block;
+  height: 4px;
+  width: 100%;
+  background: #111827;
+  border-radius: 2px;
 }
 
-/* ================= OFF-CANVAS MENU ================= */
+/* ================= OFF-CANVAS PROFILE MENU ================= */
 #profile-menu {
   position: fixed;
   top: 0;
@@ -47,14 +95,14 @@ body {
   flex-direction: column;
   gap: 2rem;
   transition: right 0.35s ease;
-  z-index: 1000;
+  z-index: 1500;
 }
 
 #profile-menu.open {
   right: 0;
 }
 
-/* ================= CLOSE BUTTON ================= */
+/* CLOSE BUTTON */
 #close-profile-menu {
   align-self: flex-end;
   width: 36px;
@@ -62,33 +110,21 @@ body {
   border-radius: 50%;
   background: #f9fafb;
   border: 1px solid #e5e7eb;
-  font-size: 1.1rem;
+  font-size: 1.4rem;
   font-weight: 700;
   cursor: pointer;
-  transition: background 0.2s ease, transform 0.15s ease;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
-#close-profile-menu:hover {
-  background: #f3f4f6;
-  transform: translateX(2px);
-}
-
-/* ================= TOP SECTION ================= */
+/* TOP SECTION */
 .profile-menu-top {
   display: flex;
   align-items: center;
   gap: 1rem;
   padding-bottom: 1.5rem;
   border-bottom: 1px solid #e5e7eb;
-}
-
-.profile-menu-top img {
-  width: 48px;
-  height: 48px;
-  border-radius: 50%;
-  object-fit: cover;
-  background: #f7f7f6;
-  border: 1px solid #ddd;
 }
 
 .menu-user-info p {
@@ -111,7 +147,7 @@ body {
   color: #555;
 }
 
-/* ================= MIDDLE SECTION ================= */
+/* MIDDLE SECTION */
 .profile-menu-middle ul {
   list-style: none;
   display: flex;
@@ -133,11 +169,12 @@ body {
   transition: background 0.2s ease;
 }
 
-.profile-menu-middle button:hover {
+.profile-menu-middle button:hover,
+.profile-menu-middle button.active {
   background: #f3f4f6;
 }
 
-/* ================= BOTTOM SECTION ================= */
+/* BOTTOM SECTION */
 .profile-menu-bottom {
   margin-top: auto;
   padding-top: 1.5rem;
@@ -162,7 +199,6 @@ body {
   color: #98975c;
 }
 
-/* ================= LOGOUT BUTTON ================= */
 .logout-btn {
   margin-top: 0.5rem;
   background: #111827;
@@ -180,44 +216,7 @@ body {
   background: #333;
 }
 
-/* ================= PROFILE CONTENT ================= */
-#profile-content {
-  max-width: 1100px;
-  margin: 3rem auto;
-  padding: 0 2rem;
-}
-
-#profile-content section {
-  background: #ffffff;
-  border-radius: 12px;
-  padding: 2.5rem;
-  margin-bottom: 2.5rem;
-  box-shadow: 0 3px 12px rgba(0,0,0,0.08);
-}
-
-#profile-content h2 {
-  font-size: 1.6rem;
-  margin-bottom: 1.5rem;
-}
-
-#profile-content h3 {
-  font-size: 1.1rem;
-  margin-bottom: 1rem;
-  color: #98975c;
-}
-
-/* ================= FORMS ================= */
-label {
-  display: block;
-  font-weight: 600;
-  margin-top: 1.2rem;
-}
-
-input {
-  width: 100%;
-  margin-top: 0.4rem;
-  padding: 0.75rem 1rem;
-  border-radius: 8px;
-  border: 1px solid #ccc;
-  font-size: 1rem;
+/* ================= MAIN CONTENT ================= */
+main {
+  padding: 6rem 2rem 2rem; /* account for fixed header */
 }
