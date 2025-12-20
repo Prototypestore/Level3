@@ -3,132 +3,165 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>AleoCode Login</title>
+  <title>AleoCode</title>
+  <!-- Styles (to be added later) -->
   <link rel="stylesheet" href="profile.css">
-  <!-- Font Awesome for social icons -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <!-- Font Awesome -->
+  <link  rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer"/>
 </head>
 <body>
   <div class="container">
-    <!-- Login Section -->
+    <!-- ================= LOGIN SECTION ================= -->
     <div id="login-section">
       <h1>AleoCode</h1>
       <input type="email" id="email" placeholder="Email" />
       <button onclick="login()">Login</button>
       <div class="social-login">
         <p>Or login with</p>
-        <button class="social-btn facebook"><i class="fab fa-facebook-f"></i> Facebook</button>
-        <button class="social-btn google"><i class="fab fa-google"></i> Google</button>
-        <button class="social-btn apple"><i class="fab fa-apple"></i> Apple</button>
+        <button class="social-btn facebook">
+          <i class="fab fa-facebook-f"></i> Facebook
+        </button>
+        <button class="social-btn google">
+          <i class="fab fa-google"></i> Google
+        </button>
+        <button class="social-btn apple">
+          <i class="fab fa-apple"></i> Apple
+        </button>
       </div>
       <div class="legal-links">
         <p>
-          By continuing, you agree to our 
-          <a href="#" target="_blank">Terms & Conditions</a> and 
-          <a href="#" target="_blank">Privacy Policy</a>.
+          By continuing, you agree to our
+          <a href="#">Terms & Conditions</a> and
+          <a href="#">Privacy Policy</a>.
         </p>
       </div>
     </div>
-    <!-- Profile Section -->
-    <div id="profile-section">
-  <!-- PROFILE OVERVIEW (TOP – NON-NEGOTIABLE) -->
-  <section id="profile-overview">
-    <img id="user-avatar" src="" alt="User Avatar">
-    <h1 id="user-fullname">Full Name</h1>
-    <p id="profile-email"></p>
-    <p id="profile-username">Customer ID / Username</p>
-    <button id="edit-profile-btn">Edit Profile</button>
-  </section>
-  <!-- PERSONAL DETAILS -->
-  <section id="personal-details">
-    <h2>Personal Details</h2>
-    <label>First Name</label>
-    <input type="text" id="first-name">
-    <label>Last Name</label>
-    <input type="text" id="last-name">
-    <label>Email</label>
-    <input type="email" id="email-address">
-    <label>Phone Number</label>
-    <input type="tel" id="phone-number">
-    <label>Date of Birth (Optional)</label>
-    <input type="date" id="dob">
-  </section>
-  <!-- ADDRESS BOOK -->
-  <section id="address-book">
-    <h2>Address Book</h2>
-    <div class="address">
-      <p>Shipping Address</p>
-      <button>Edit</button>
-      <button>Delete</button>
-      <button>Set as Default</button>
-    </div>
-    <div class="address">
-      <p>Billing Address</p>
-      <button>Edit</button>
-      <button>Delete</button>
-      <button>Set as Default</button>
-    </div>
-    <button id="add-address-btn">Add New Address</button>
-  </section>
-  <!-- PURCHASE HISTORY -->
-  <section id="purchase-history">
-    <h2>Purchase History</h2>
-    <div class="order">
-      <p>Order #123456</p>
-      <p>Status: Delivered</p>
-      <button>View Details</button>
-      <button>Download Invoice</button>
-      <button>Reorder</button> <!-- NON-NEGOTIABLE -->
-    </div>
-  </section>
-  <!-- PAYMENT METHODS -->
-  <section id="payment-methods">
-    <h2>Payment Methods</h2>
-    <div class="card">
-      <p>Visa **** 4242</p>
-      <button>Set Default</button>
-      <button>Remove</button>
-    </div>
-    <button id="add-card-btn">Add New Card</button>
-  </section>
-  <!-- SETTINGS -->
-  <section id="settings">
-    <h2>Settings</h2>
-    <!-- ACCOUNT SETTINGS -->
-    <div class="settings-group">
-      <h3>Account Settings</h3>
-      <button>Change Email</button>
-      <button>Change Language</button>
-    </div>
-    <!-- PRIVACY & SECURITY -->
-    <div class="settings-group">
-      <h3>Privacy & Security</h3>
-      <button>Enable Two-Factor Authentication</button>
-      <button>Logout All Devices</button>
-      <button>Delete Account</button>
-    </div>
-  </section>
-  <!-- NOTIFICATIONS -->
-  <section id="notifications">
-    <h2>Notifications</h2>
-    <label>
-      <input type="checkbox"> Order Updates
-    </label>
-    <label>
-      <input type="checkbox"> Promotions
-    </label>
-    <label>
-      <input type="checkbox"> Email Notifications
-    </label>
-    <label>
-      <input type="checkbox"> In-App Notifications
-    </label>
-  </section>
-  <!-- LOGOUT (ALWAYS VISIBLE – BOTTOM) -->
-  <section id="logout-section">
-    <button class="logout-btn" onclick="logout()">Logout</button>
-  </section>
-</div>
+    <!-- ================= LANDING PAGE HEADER BUTTON ================= -->
+    <!-- This button lives on index.html normally -->
+    <button id="open-profile-menu" aria-label="Open profile menu">
+      &lt;
+    </button>
+    <!-- ================= OFF-CANVAS PROFILE MENU ================= -->
+    <aside id="profile-menu" aria-hidden="true">
+      <!-- Close Button -->
+      <button id="close-profile-menu" aria-label="Close profile menu">
+        &gt;
+      </button>
+      <!-- ===== TOP SECTION ===== -->
+      <div class="profile-menu-top">
+        <img id="menu-avatar" src="" alt="User Avatar">
+        <div class="menu-user-info">
+          <p id="menu-username">Full Name</p>
+          <p class="menu-brand">AleoCode</p>
+          <p id="menu-email">user@email.com</p>
+        </div>
+      </div>
+      <!-- ===== MIDDLE SECTION ===== -->
+      <nav class="profile-menu-middle">
+        <ul>
+          <li><button data-target="profile">My Profile</button></li>
+          <li><button data-target="orders">My Orders</button></li>
+          <li><button data-target="addresses">Addresses</button></li>
+          <li><button data-target="payments">Payment Methods</button></li>
+          <li><button data-target="settings">Settings</button></li>
+        </ul>
+      </nav>
+      <!-- ===== BOTTOM SECTION ===== -->
+      <div class="profile-menu-bottom">
+        <button id="support-btn">Support</button>
+        <button id="terms-btn">Terms & Privacy</button>
+        <button class="logout-btn" onclick="logout()">Logout</button>
+      </div>
+    </aside>
+    <!-- ================= PROFILE CONTENT AREA ================= -->
+    <main id="profile-content">
+      <!-- ===== MY PROFILE ===== -->
+      <section id="profile">
+        <h2>Profile Overview</h2>
+        <div class="profile-overview">
+          <img id="user-avatar" src="" alt="User Avatar">
+          <p id="user-fullname">Full Name</p>
+          <p id="profile-email">user@email.com</p>
+          <p id="profile-username">Customer ID</p>
+          <button>Edit Profile</button>
+        </div>
+        <div class="personal-details">
+          <h3>Personal Details</h3>
+          <label>First Name</label>
+          <input type="text">
+          <label>Last Name</label>
+          <input type="text">
+          <label>Email</label>
+          <input type="email">
+          <label>Phone Number</label>
+          <input type="tel">
+          <label>Date of Birth (Optional)</label>
+          <input type="date">
+        </div>
+      </section>
+      <!-- ===== ORDERS ===== -->
+      <section id="orders">
+        <h2>Purchase History</h2>
+        <div class="order">
+          <p>Order #123456</p>
+          <p>Status: Delivered</p>
+          <button>View Details</button>
+          <button>Download Invoice</button>
+          <button>Reorder</button>
+        </div>
+      </section>
+      <!-- ===== ADDRESSES ===== -->
+      <section id="addresses">
+        <h2>Address Book</h2>
+        <div class="address">
+          <p>Shipping Address</p>
+          <button>Edit</button>
+          <button>Delete</button>
+          <button>Set Default</button>
+        </div>
+        <div class="address">
+          <p>Billing Address</p>
+          <button>Edit</button>
+          <button>Delete</button>
+          <button>Set Default</button>
+        </div>
+        <button>Add New Address</button>
+      </section>
+      <!-- ===== PAYMENT METHODS ===== -->
+      <section id="payments">
+        <h2>Payment Methods</h2>
+        <div class="card">
+          <p>Visa **** 4242</p>
+          <button>Set Default</button>
+          <button>Remove</button>
+        </div>
+        <button>Add New Card</button>
+      </section>
+      <!-- ===== SETTINGS ===== -->
+      <section id="settings">
+        <h2>Settings</h2>
+        <div class="settings-group">
+          <h3>Account Settings</h3>
+          <button>Change Email</button>
+          <button>Change Language</button>
+        </div>
+        <div class="settings-group">
+          <h3>Privacy & Security</h3>
+          <button>Enable Two-Factor Authentication</button>
+          <button>Logout All Devices</button>
+          <button>Delete Account</button>
+        </div>
+        <div class="settings-group">
+          <h3>Notifications</h3>
+          <label><input type="checkbox"> Order Updates</label>
+          <label><input type="checkbox"> Promotions</label>
+          <label><input type="checkbox"> Email Notifications</label>
+          <label><input type="checkbox"> In-App Notifications</label>
+        </div>
+      </section>
+    </main>
+  </div>
+  <!-- Scripts (later) -->
   <script src="profile.js"></script>
 </body>
 </html>
