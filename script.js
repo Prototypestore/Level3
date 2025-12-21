@@ -166,9 +166,11 @@ searchInput.addEventListener("input", () => {
 });
 
 // -------------------- Hamburger --------------------
-const openMenuBtn = document.getElementById('open-profile-menu');
-if (openMenuBtn) {
-  openMenuBtn.addEventListener('click', () => {
-    window.location.assign('/Level3/login.html');
-  });
-}
+document.addEventListener('DOMContentLoaded', () => {
+  const openMenuBtn = document.getElementById('open-profile-menu');
+  if (openMenuBtn) {
+    openMenuBtn.addEventListener('click', () => {
+      window.location.href = '/Level3/login.html';
+    });
+  }
+});
