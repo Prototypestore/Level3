@@ -1,3 +1,4 @@
+console.log("Script loaded");
 // -------------------- Dynamic Product Rendering --------------------
 async function loadProducts() {
   const response = await fetch('products.json');
@@ -165,11 +166,15 @@ searchInput.addEventListener("input", () => {
   renderProducts(filtered, query);
 });
 
- // -------------------- Hamburger → Login --------------------
+// -------------------- Hamburger → Login --------------------
 function initHamburger() {
+  // Get the hamburger button
   const openMenuBtn = document.getElementById('open-profile-menu');
-  if (!openMenuBtn) return; // exit if button not found
 
+  // If the button doesn't exist, do nothing
+  if (!openMenuBtn) return;
+
+  // On click, redirect to login.html
   openMenuBtn.addEventListener('click', () => {
     window.location.href = 'login.html';
   });
