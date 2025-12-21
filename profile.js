@@ -56,7 +56,10 @@ async function login() {
    MENU OPEN / CLOSE
 ================================ */
 function openMenu() {
+  function openMenu() {
   if (!currentUser) return;
+  profileMenu.classList.add('open');
+}
   profileMenu.classList.add('open');
   profileMenu.setAttribute('aria-hidden', 'false');
 }
