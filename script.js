@@ -167,12 +167,6 @@ searchInput.addEventListener("input", () => {
 
 // -------------------- Hamburger --------------------
 const openMenuBtn = document.getElementById('open-profile-menu');
-if (openMenuBtn) {
-  openMenuBtn.addEventListener('click', (e) => {
-    e.preventDefault(); // prevent the <a> from navigating
-    console.log("Hamburger clicked, redirecting to login");
-    window.location.href = '/Level3/login.html'; // use full path
-  });
-} else {
-  console.error("Hamburger button not found");
-}
+openMenuBtn.addEventListener('click', () => {
+  window.location.href = '/Level3/login.html'; // redirect via JS
+});
