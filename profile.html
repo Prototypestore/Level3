@@ -3,74 +3,71 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>AleoCode</title>
+  <title>Profile | AleoCode</title>
   <link rel="stylesheet" href="profile.css">
-  <!-- Font Awesome for social icons if needed -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer"/>
+  <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+        crossorigin="anonymous"
+        referrerpolicy="no-referrer"/>
 </head>
 <body>
-  <!-- ================= HEADER / NAV ================= -->
-  <header class="header">
-    <div class="container header-container">
-      <a href="index.html" class="logo">Aleo<strong>Code</strong></a>
-      <nav class="nav">
-        <ul>
-          <li><a href="#shop">Shop</a></li>
-          <li><a href="#story">Our Story</a></li>
-          <li><a href="#trending">Trending</a></li>
-        </ul>
-      </nav>
-    </div>
-    <!-- Hamburger / open profile menu button -->
-    <button id="open-profile-menu" aria-label="Open profile menu">
-      <span></span>
-      <span></span>
-      <span></span>
-    </button>
-  </header>
-  <!-- ================= OFF-CANVAS PROFILE MENU ================= -->
-  <aside id="profile-menu" aria-hidden="true">
-    <!-- Close Button -->
-    <button id="close-profile-menu" aria-label="Close profile menu">&times;</button>
-    <!-- TOP -->
-    <div class="profile-menu-top">
-      <a href="profile.html" id="menu-avatar" aria-label="User profile">
-        <svg width="40" height="40" viewBox="0 0 150 150" xmlns="http://www.w3.org/2000/svg">
-          <circle cx="75" cy="75" r="75" fill="#98975c"/>
-          <circle cx="75" cy="55" r="30" fill="#FFFFFF"/>
-          <path d="M20 125 C45 90, 105 90, 125 135 Q50 175, 20 129 Z" fill="#FFFFFF"/>
-        </svg>
-      </a>
-      <div class="menu-user-info">
-        <p id="menu-username">Full Name</p>
-        <p class="menu-brand">AleoCode</p>
-        <p id="menu-email">user@email.com</p>
-      </div>
-    </div>
-    <!-- MIDDLE -->
-    <nav class="profile-menu-middle">
+<!-- ================= HEADER ================= -->
+<header class="header">
+  <div class="container header-container">
+    <a href="index.html" class="logo">Aleo<strong>Code</strong></a>
+
+    <nav class="nav">
       <ul>
-        <li><button data-target="profile">My Profile</button></li>
-        <li><button data-target="orders">My Orders</button></li>
-        <li><button data-target="addresses">Addresses</button></li>
-        <li><button data-target="payments">Payment Methods</button></li>
-        <li><button data-target="settings">Settings</button></li>
+        <li><a href="#shop">Shop</a></li>
+        <li><a href="#story">Our Story</a></li>
+        <li><a href="#trending">Trending</a></li>
       </ul>
     </nav>
-    <!-- BOTTOM -->
-    <div class="profile-menu-bottom">
-      <button id="support-btn">Support</button>
-      <button id="terms-btn">Terms & Privacy</button>
-      <button class="logout-btn">Logout</button>
+  </div>
+  <!-- Hamburger -->
+  <button id="open-profile-menu" aria-label="Open profile menu">
+    <span></span>
+    <span></span>
+    <span></span>
+  </button>
+</header>
+<!-- ================= PROFILE MENU ================= -->
+<aside id="profile-menu" aria-hidden="true">
+  <button id="close-profile-menu" aria-label="Close profile menu">&times;</button>
+  <div class="profile-menu-top">
+    <a href="profile.html" id="menu-avatar">
+      <svg width="40" height="40" viewBox="0 0 150 150">
+        <circle cx="75" cy="75" r="75" fill="#98975c"/>
+        <circle cx="75" cy="55" r="30" fill="#fff"/>
+        <path d="M20 125 C45 90, 105 90, 125 135 Q50 175, 20 129 Z" fill="#fff"/>
+      </svg>
+    </a>
+    <div class="menu-user-info">
+      <p id="menu-username">Full Name</p>
+      <p class="menu-brand">AleoCode</p>
+      <p id="menu-email">user@email.com</p>
     </div>
-  </aside>
-  <main>
-    <!-- Landing page content -->
-    <section id="shop"><h1>Shop Section</h1></section>
-    <section id="story"><h1>Our Story</h1></section>
-    <section id="trending"><h1>Trending</h1></section>
-  </main>
-  <!-- Scripts -->
-  <script src="profile.js"></script>
+  </div>
+  <nav class="profile-menu-middle">
+    <ul>
+      <li><button>My Profile</button></li>
+      <li><button>My Orders</button></li>
+      <li><button>Addresses</button></li>
+      <li><button>Payment Methods</button></li>
+      <li><button>Settings</button></li>
+    </ul>
+  </nav>
+  <div class="profile-menu-bottom">
+    <button>Support</button>
+    <button>Terms & Privacy</button>
+    <button class="logout-btn">Logout</button>
+  </div>
+</aside>
+<main>
+  <section id="shop"><h1>Shop Section</h1></section>
+  <section id="story"><h1>Our Story</h1></section>
+  <section id="trending"><h1>Trending</h1></section>
+</main>
+<script src="profile.js"></script>
 </body>
 </html>
