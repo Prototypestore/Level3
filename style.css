@@ -67,23 +67,29 @@ main {
   color: #98975c;
 }
 
-/* Profile button */
+/* ================= HAMBURGER BUTTON ================= */
 #open-profile-menu {
   position: fixed;
   top: 1.5rem;
   right: 2rem;
-  padding: 0.5rem 1rem;
-  background: #98975c;
-  color: #fff;
+  width: 35px;
+  height: 28px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  background: transparent;
   border: none;
-  border-radius: 6px;
-  font-weight: 600;
   cursor: pointer;
   z-index: 2000;
+  padding: 0;
 }
 
-#open-profile-menu:hover {
-  background: #7f7b4f;
+#open-profile-menu span {
+  display: block;
+  height: 4px;
+  width: 100%;
+  background: #111827;
+  border-radius: 2px;
 }
 
 /* Search */
