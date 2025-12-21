@@ -44,3 +44,12 @@ document.addEventListener("DOMContentLoaded", () => {
   totalDiv.innerHTML = `<span>Total</span><span>£${subtotal.toFixed(2)}</span>`;
   summaryContainer.appendChild(totalDiv);
 });
+
+// Redirect back-arrow SVG to home page
+const backArrow = document.getElementById('back-arrow');
+
+if (backArrow) {
+  backArrow.addEventListener('click', () => {
+    window.location.href = 'index.html'; // Redirect to home page
+  });
+}
