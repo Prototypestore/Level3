@@ -93,10 +93,10 @@ main {
 }
 
 /* Search */
-.search-section {
-  display: flex;
-  justify-content: center;
-  margin: 2rem 0;
+.search-section { 
+  display: flex; 
+  justify-content: center; 
+  margin: 1rem 0 3rem;
 }
 
 .search-form {
