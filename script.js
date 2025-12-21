@@ -167,6 +167,8 @@ searchInput.addEventListener("input", () => {
 
 // -------------------- Hamburger --------------------
 const openMenuBtn = document.getElementById('open-profile-menu');
-openMenuBtn.addEventListener('click', () => {
-  window.location.href = '/Level3/login.html'; // redirect via JS
-});
+if (openMenuBtn) {
+  openMenuBtn.addEventListener('click', () => {
+    window.location.assign('/Level3/login.html');
+  });
+}
