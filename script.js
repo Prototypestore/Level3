@@ -164,3 +164,11 @@ searchInput.addEventListener("input", () => {
 
   renderProducts(filtered, query);
 });
+
+// Get the hamburger button
+const openMenuBtn = document.getElementById('open-profile-menu');
+
+// When clicked, redirect to login page
+openMenuBtn.addEventListener('click', () => {
+  window.location.href = 'login.html';
+});
