@@ -11,6 +11,19 @@ if (!user) {
   window.location.href = 'login.html';
 }
 
+// ✅ UPDATE HAMBURGER MENU BASED ON LOGIN STATUS
+const menuLink = document.getElementById('hamburger-menu-link'); // add this ID to your menu link in HTML
+
+if (user) {
+  // Logged in → show "Profile"
+  menuLink.textContent = 'Profile';
+  menuLink.href = 'profile.html';
+} else {
+  // Not logged in → show "Login"
+  menuLink.textContent = 'Login';
+  menuLink.href = 'login.html';
+}
+
 /* ================= MENU ================= */
 openMenuBtn?.addEventListener('click', () => {
   profileMenu.classList.add('open');
