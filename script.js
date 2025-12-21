@@ -167,22 +167,12 @@ searchInput.addEventListener("input", () => {
 });
 
 // -------------------- Hamburger → Login --------------------
-function initHamburger() {
-  // Get the hamburger button
-  const openMenuBtn = document.getElementById('open-profile-menu');
-
-  // If the button doesn't exist, do nothing
-  if (!openMenuBtn) return;
-
-  // On click, redirect to login.html
+const openMenuBtn = document.getElementById('open-profile-menu');
+if (openMenuBtn) {
   openMenuBtn.addEventListener('click', () => {
+    console.log("Hamburger clicked"); // check console
     window.location.href = 'login.html';
   });
-}
-
-// Run after DOM is fully loaded
-if (document.readyState === 'loading') {
-  document.addEventListener('DOMContentLoaded', initHamburger);
 } else {
-  initHamburger();
+  console.error("Hamburger button not found");
 }
