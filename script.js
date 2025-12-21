@@ -168,11 +168,10 @@ searchInput.addEventListener("input", () => {
 // -------------------- Hamburger --------------------
 const openMenuBtn = document.getElementById('open-profile-menu');
 if (openMenuBtn) {
-  openMenuBtn.addEventListener('click', (e) => {
-    e.preventDefault(); // stop any default form/button behavior
-    e.stopPropagation(); // make sure nothing else blocks it
+  openMenuBtn.addEventListener('click', () => {
     console.log("Hamburger clicked, redirecting to login");
-    window.location.assign('login.html'); // safer than href
+    window.location.href = 'login.html'; // simple and reliable
   });
 } else {
   console.error("Hamburger button not found");
+}
