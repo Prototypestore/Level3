@@ -39,6 +39,12 @@ body {
   justify-content: space-between;
 }
 
+.header-actions {
+  display: flex;
+  align-items: center;
+  gap: 1rem; /* space between cart and hamburger */
+}
+
 /* Offset the main content so it doesn't hide behind header */
 main {
   margin-top: 80px;
@@ -69,9 +75,6 @@ main {
 
 /* ================= HAMBURGER BUTTON ================= */
 #open-profile-menu {
-  position: fixed;
-  top: 1.5rem;
-  right: 2rem;
   width: 35px;
   height: 28px;
   display: flex;
@@ -80,8 +83,8 @@ main {
   background: transparent;
   border: none;
   cursor: pointer;
-  z-index: 2000;
   padding: 0;
+  z-index: 2000;
 }
 
 #open-profile-menu span {
