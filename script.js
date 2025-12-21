@@ -167,10 +167,12 @@ searchInput.addEventListener("input", () => {
 
 // -------------------- Hamburger --------------------
 document.addEventListener('DOMContentLoaded', () => {
-  const openMenuBtn = document.getElementById('open-profile-menu');
-  if (openMenuBtn) {
-    openMenuBtn.addEventListener('click', () => {
-      window.location.href = '/Level3/login.html';
+  const openMenuSVG = document.getElementById('open-profile-menu');
+  if (openMenuSVG) {
+    openMenuSVG.addEventListener('click', () => {
+      // Redirect to login.html
+      window.location.href = 'login.html';
     });
   }
 });
+
