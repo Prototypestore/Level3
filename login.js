@@ -11,8 +11,9 @@ async function login() {
   }
 
   try {
+    // ✅ Fetch users from the mock API
     const response = await fetch(
-      'https://6945c839ed253f51719c4d69.mockapi.io/Lev/users'
+      'https://6945c839ed253f51719c4d69.mockapi.io/Lev/users' // <-- API endpoint
     );
 
     if (!response.ok) throw new Error('Network error');
@@ -27,11 +28,12 @@ async function login() {
       return;
     }
 
-    // ✅ SAVE USER
+    // ✅ Save user in localStorage
     localStorage.setItem('user', JSON.stringify(user));
+    localStorage.setItem('isLoggedIn', 'true'); // Optional: flag for login state
 
-    alert(`Welcome back, ${user.fullName}!`);
-    window.location.href = 'index.html';
+    // ✅ Redirect to profile page instead of index
+    window.location.href = 'profile.html';
 
   } catch (err) {
     console.error(err);
