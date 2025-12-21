@@ -166,7 +166,9 @@ searchInput.addEventListener("input", () => {
 });
 
  // -------------------- Hamburger → Login --------------------
+document.addEventListener('DOMContentLoaded', () => {
   const openMenuBtn = document.getElementById('open-profile-menu');
   openMenuBtn?.addEventListener('click', () => {
     window.location.href = 'login.html';
   });
+});
