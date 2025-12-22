@@ -1,42 +1,70 @@
-const emailInput = document.getElementById('email');
-const loginBtn = document.getElementById('login-btn');
+import { createClient } from 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js/+esm'
 
-loginBtn?.addEventListener('click', login);
+// 🔑 Supabase client
+const supabase = createClient(
+  'https://baghbpdaykkfekvprwto.supabase.co',
+  'sb_publishable_9_V52GxiWdaCzhStTCk6xg_xMfdiLbQ'
+)
 
+// DOM elements
+const emailInput = document.getElementById('email')
+const loginBtn = document.getElementById('login-btn')
+
+// Login click
+loginBtn?.addEventListener('click', login)
+
+// ✉️ Email login with verification
 async function login() {
-  const email = emailInput.value.trim();
+  const email = emailInput.value.trim()
+
   if (!email) {
-    alert('Please enter your email.');
-    return;
+    alert('Please enter your email.')
+    return
   }
 
-  try {
-    // ✅ Fetch users from the mock API
-    const response = await fetch(
-      'https://6945c839ed253f51719c4d69.mockapi.io/Lev/users' // <-- API endpoint
-    );
-
-    if (!response.ok) throw new Error('Network error');
-
-    const users = await response.json();
-    const user = users.find(
-      u => u.email.toLowerCase() === email.toLowerCase()
-    );
-
-    if (!user) {
-      alert('Email not found.');
-      return;
+  const { error } = await supabase.auth.signInWithOtp({
+    email,
+    options: {
+      // 👇 where user goes AFTER clicking "Verify"
+      emailRedirectTo: `${window.location.origin}/index.html`
     }
+  })
 
-    // ✅ Save user in localStorage
-    localStorage.setItem('user', JSON.stringify(user));
-    localStorage.setItem('isLoggedIn', 'true'); // Optional: flag for login state
+  if (error) {
+    console.error(error)
+    alert('Failed to send verification email.')
+    return
+  }
 
-    // ✅ Redirect to profile page instead of index
-    window.location.href = 'profile.html';
+  alert('Verification email sent! Please check your inbox.')
+}
 
-  } catch (err) {
-    console.error(err);
-    alert('Login failed. Try again.');
+// 🔁 Listen for login (ALL METHODS)
+supabase.auth.onAuthStateChange(async (event, session) => {
+  if (event === 'SIGNED_IN' && session?.user) {
+    const user = session.user
+
+    // Save email to DB
+    await saveUserEmail(user.id, user.email)
+
+    // Optional: local login flag (for UI)
+    localStorage.setItem('isLoggedIn', 'true')
+
+    // Always go back to home
+    window.location.href = 'index.html'
+  }
+})
+
+// 💾 Upsert email into Supabase
+async function saveUserEmail(id, email) {
+  const { error } = await supabase
+    .from('users')
+    .upsert(
+      { id, email },
+      { onConflict: 'email' }
+    )
+
+  if (error) {
+    console.error('Error saving user:', error)
   }
 }
