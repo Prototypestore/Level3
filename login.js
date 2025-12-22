@@ -1,3 +1,4 @@
+console.log('login.js loaded')
 import { createClient } from 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js/+esm'
 
 // 🔑 Supabase client
