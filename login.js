@@ -6,7 +6,7 @@ const supabase = createClient(
   'sb_publishable_BzVnuUeh0PxJxW2ezXGXwg_9OjLy5NE'
 )
 
-// ---- Hamburger elements
+// ---- Hamburger elements (keep the ID!)
 const hamburger = document.getElementById('open-profile-menu')
 const hamburgerLink = hamburger?.closest('a')
 
@@ -15,30 +15,17 @@ if (!hamburger || !hamburgerLink) {
   return
 }
 
-// ---- Inject profile popup (JS ONLY)
+// ---- Inject profile popup (CSS handles style now, no inline changes)
 const profilePopup = document.createElement('div')
-profilePopup.style.position = 'absolute'
-profilePopup.style.top = '60px'
-profilePopup.style.right = '20px'
-profilePopup.style.background = '#fff'
-profilePopup.style.borderRadius = '8px'
-profilePopup.style.padding = '12px'
-profilePopup.style.boxShadow = '0 4px 12px rgba(0,0,0,0.15)'
-profilePopup.style.display = 'none'
-profilePopup.style.zIndex = '9999'
-
-const nameEl = document.createElement('p')
-nameEl.style.margin = '0'
-nameEl.style.fontWeight = '600'
-
-const emailEl = document.createElement('p')
-emailEl.style.margin = '4px 0 0'
-emailEl.style.fontSize = '14px'
-emailEl.style.color = '#555'
-
-profilePopup.appendChild(nameEl)
-profilePopup.appendChild(emailEl)
+profilePopup.className = 'profile-popup'
+profilePopup.innerHTML = `
+  <p class="profile-name"></p>
+  <p class="profile-email"></p>
+`
 document.body.appendChild(profilePopup)
+
+const nameEl = profilePopup.querySelector('.profile-name')
+const emailEl = profilePopup.querySelector('.profile-email')
 
 let menuOpen = false
 
@@ -53,11 +40,10 @@ if (!user) {
 
 // ---- Logged in → override click
 hamburgerLink.removeAttribute('href')
-
 hamburgerLink.addEventListener('click', async (e) => {
   e.preventDefault()
   menuOpen = !menuOpen
-  profilePopup.style.display = menuOpen ? 'block' : 'none'
+  profilePopup.classList.toggle('open', menuOpen)
 })
 
 // ---- Load client data
@@ -77,7 +63,7 @@ if (error) {
 // ---- Close popup on outside click
 document.addEventListener('click', (e) => {
   if (!profilePopup.contains(e.target) && !hamburger.contains(e.target)) {
-    profilePopup.style.display = 'none'
+    profilePopup.classList.remove('open')
     menuOpen = false
   }
 })
