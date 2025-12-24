@@ -63,3 +63,8 @@ button {
 button:hover {
   background: #333;
 }
+
+ .required { color: red; margin-left: 2px; }
+    input { padding: 0.7rem; width: 260px; }
+    button { padding: 0.6rem 1.4rem; }
+    label { display: block; margin: 10px 0; }
