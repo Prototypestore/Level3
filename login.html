@@ -3,8 +3,14 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Login | AleoCode</title>
+  <title>Login / Sign-Up | AleoCode</title>
   <link rel="stylesheet" href="style.css">
+  <style>
+    .required { color: red; margin-left: 2px; }
+    input { padding: 0.7rem; width: 260px; }
+    button { padding: 0.6rem 1.4rem; }
+    label { display: block; margin: 10px 0; }
+  </style>
 </head>
 <body>
 <header class="header">
@@ -13,16 +19,24 @@
   </div>
 </header>
 <main style="margin-top:120px; text-align:center;">
-  <h1>Login</h1>
-  <input
-    id="email"
-    type="email"
-    placeholder="Email"
-    style="padding:0.7rem; width:260px;"/>
-  <br><br>
-  <button id="login-btn" style="padding:0.6rem 1.4rem;">
-    Login
-  </button>
+  <h1>Sign-Up / Login</h1>
+  <form id="signup-form">
+    <label>
+      Full Name:
+      <input type="text" id="full-name" placeholder="John Doe"/>
+      <span class="required" id="full-name-req" style="display:none">*</span>
+    </label>
+    <label>
+      Email:
+      <input type="email" id="email" placeholder="you@example.com"/>
+      <span class="required" id="email-req" style="display:none">*</span>
+    </label>
+    <label>
+      Phone (optional):
+      <input type="text" id="phone" placeholder="+44 1234 567890"/>
+    </label>
+    <button type="button" id="signup-btn">Sign-Up / Login</button>
+  </form>
 </main>
 <script type="module" src="login.js"></script>
 </body>
