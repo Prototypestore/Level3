@@ -35,36 +35,70 @@ body {
   text-decoration: none;
 }
 
-/* ================= LOGIN FORM ================= */
+/* ================= AUTH FORM ================= */
 main {
   margin-top: 120px;
   text-align: center;
 }
 
-input[type="email"] {
-  padding: 0.7rem;
-  width: 260px;
-  border-radius: 6px;
-  border: 1px solid #ccc;
-  font-size: 1rem;
+.auth-form {
+  max-width: 420px;
+  margin: 40px auto;
+  text-align: left;
 }
 
-button {
-  margin-top: 1rem;
-  padding: 0.6rem 1.4rem;
-  border-radius: 6px;
+/* Input groups */
+.input-group {
+  margin-bottom: 18px;
+}
+
+/* Labels */
+.input-group label {
+  display: block;
+  font-size: 14px;
+  font-weight: 500;
+  margin-bottom: 6px;
+  color: #111827;
+}
+
+/* Inputs (Full Name, Email, Phone) */
+.input-group input {
+  width: 100%;
+  padding: 14px 16px;
+  font-size: 15px;
+  border-radius: 10px;
+  border: 1.5px solid #d1d5db;
+  background: #fff;
+  outline: none;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+/* Placeholder */
+.input-group input::placeholder {
+  color: #9ca3af;
+}
+
+/* Focus effect (blue ring like screenshot) */
+.input-group input:focus {
+  border-color: #2563eb;
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.15);
+}
+
+/* ================= BUTTON ================= */
+#signup-btn {
+  width: 100%;
+  padding: 14px;
+  margin-top: 10px;
+  border-radius: 10px;
   border: none;
-  background: #111827;
+  background: #3f3f3f;
   color: #fff;
+  font-size: 16px;
   font-weight: 600;
   cursor: pointer;
+  transition: background 0.2s ease;
 }
 
-button:hover {
-  background: #333;
+#signup-btn:hover {
+  background: #2b2b2b;
 }
-
- .required { color: red; margin-left: 2px; }
-    input { padding: 0.7rem; width: 260px; }
-    button { padding: 0.6rem 1.4rem; }
-    label { display: block; margin: 10px 0; }
