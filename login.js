@@ -81,3 +81,49 @@ document.addEventListener('click', (e) => {
     menuOpen = false
   }
 })
+
+// ---- CHECK & APPLY COUPON FOR LOGGED-IN USER
+export async function applyCoupon(userId, code, cartTotal) {
+  const { data: coupon, error } = await supabase
+    .from('user_coupons')
+    .select('*')
+    .eq('user_id', userId)
+    .eq('code', code)
+    .eq('used', false)
+    .single()
+
+  if (error || !coupon) throw new Error('Invalid or used coupon')
+  if (new Date(coupon.expires_at) < new Date()) throw new Error('Coupon expired')
+  if (cartTotal < coupon.min_spend) throw new Error(`Minimum spend £${coupon.min_spend}`)
+
+  return cartTotal * (coupon.discount_percent / 100)
+}
+
+// ---- MARK COUPON AS USED
+export async function markCouponUsed(userId, code) {
+  const { error } = await supabase
+    .from('user_coupons')
+    .update({ used: true })
+    .eq('user_id', userId)
+    .eq('code', code)
+
+  if (error) console.error('Error marking coupon used:', error)
+}
+
+// ---- GUEST COUPONS (localStorage)
+export function getGuestCoupons() {
+  const data = JSON.parse(localStorage.getItem('guestCoupons')) || []
+  const now = Date.now()
+  return data.filter(c => now < c.expires)
+}
+
+export function createGuestCoupons() {
+  const now = Date.now()
+  const coupons = Array.from({ length: 4 }).map(() => ({
+    code: generateCouponCode(),
+    discount_percent: 10,
+    expires: now + 24 * 60 * 60 * 1000 // 24 hours
+  }))
+  localStorage.setItem('guestCoupons', JSON.stringify(coupons))
+  return coupons
+}
