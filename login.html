@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Login / Sign-Up | AleoCode</title>
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
 <header class="header">
@@ -15,20 +15,20 @@
 <main style="margin-top:120px; text-align:center;">
   <h1>Sign-Up</h1>
   <form id="signup-form" class="auth-form">
-  <div class="input-group">
-    <label for="full-name">Full Name</label>
-    <input type="text" id="full-name" placeholder="John Doe" />
-  </div>
-  <div class="input-group">
-    <label for="email">Email</label>
-    <input type="email" id="email" placeholder="you@example.com" />
-  </div>
-  <div class="input-group">
-    <label for="phone">Phone (optional)</label>
-    <input type="text" id="phone" placeholder="+44 1234 567890" />
-  </div>
-  <button type="button" id="signup-btn">Continue</button>
-</form>
+    <div class="input-group">
+      <label for="full-name">Full Name</label>
+      <input type="text" id="full-name" name="full_name" required />
+    </div>
+    <div class="input-group">
+      <label for="email">Email</label>
+      <input type="email" id="email" name="email" required />
+    </div>
+    <div class="input-group">
+      <label for="phone">Phone (optional)</label>
+      <input type="text" id="phone" name="phone" />
+    </div>
+    <button type="submit" id="signup-btn">Continue</button>
+  </form>
 </main>
 <script type="module" src="login.js"></script>
 </body>
