@@ -1,62 +1,61 @@
 import { createClient } from 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js/+esm'
 
-// ---- Supabase setup
 const supabase = createClient(
   'https://jxqgghfdvrlmpqeykkmx.supabase.co',
   'sb_publishable_BzVnuUeh0PxJxW2ezXGXwg_9OjLy5NE'
 )
 
-// ---- Get form
-const form = document.getElementById('signup-form')
+(async function() {
+  const hamburger = document.getElementById('open-profile-menu')
+  const hamburgerLink = hamburger?.closest('a')
 
-if (!form) {
-  console.error('Signup form not found')
-  return
-}
+  if (!hamburger || !hamburgerLink) return
 
-// ---- Handle submit
-form.addEventListener('submit', async (e) => {
-  e.preventDefault()
+  // Get logged-in user
+  const { data: { user } } = await supabase.auth.getUser()
 
-  const fullName = document.getElementById('full-name').value.trim()
-  const email = document.getElementById('email').value.trim()
-  const phone = document.getElementById('phone').value.trim()
+  if (!user) return
 
-  if (!fullName || !email) {
-    alert('Please fill in required fields')
-    return
-  }
+  // Inject profile popup
+  const popup = document.createElement('div')
+  popup.className = 'profile-popup'
+  popup.innerHTML = `
+    <p class="profile-name"></p>
+    <p class="profile-email"></p>
+    <a href="profile.html">View Profile</a>
+  `
+  document.body.appendChild(popup)
 
-  // 1️⃣ Create auth user (email OTP)
-  const { data: authData, error: authError } =
-    await supabase.auth.signInWithOtp({ email })
+  const nameEl = popup.querySelector('.profile-name')
+  const emailEl = popup.querySelector('.profile-email')
 
-  if (authError) {
-    alert(authError.message)
-    return
-  }
-
-  // Safety check
-  if (!authData.user) {
-    alert('Check your email to complete sign-up')
-    return
-  }
-
-  // 2️⃣ Insert into Clients table
-  const { error: insertError } = await supabase
+  // Load client data
+  const { data: client } = await supabase
     .from('Clients')
-    .insert({
-      id: authData.user.id, // REQUIRED for RLS
-      full_name: fullName,
-      email,
-      phone
-    })
+    .select('full_name, email')
+    .eq('id', user.id)
+    .single()
 
-  if (insertError) {
-    alert(insertError.message)
-    return
+  if (client) {
+    nameEl.textContent = client.full_name
+    emailEl.textContent = client.email
   }
 
-  // 3️⃣ Redirect to homepage
-  window.location.href = 'index.html'
-})
+  // Hamburger click
+  hamburgerLink.removeAttribute('href')
+  let open = false
+
+  hamburgerLink.addEventListener('click', (e) => {
+    e.preventDefault()
+    open = !open
+    popup.classList.toggle('open', open)
+  })
+
+  // Close on outside click
+  document.addEventListener('click', (e) => {
+    if (!popup.contains(e.target) && !hamburger.contains(e.target)) {
+      popup.classList.remove('open')
+      open = false
+    }
+  })
+})()
