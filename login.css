@@ -1,1 +1,90 @@
+/* Center main content like the image */
+main {
+  margin-top: 120px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: calc(100vh - 120px); /* full height minus header */
+  padding: 2rem;
+  background: linear-gradient(180deg, #f9fafb, #f3f4f6);
+}
+
+/* Make auth form look like the card in the image */
+.auth-form {
+  width: 100%;
+  max-width: 420px;
+  background: var(--bg-card);
+  border-radius: 20px;
+  padding: 40px 36px;
+  box-shadow: 0 25px 50px rgba(0, 0, 0, 0.08),
+              0 10px 20px rgba(0, 0, 0, 0.04);
+  text-align: left; /* inputs aligned to left, modern feel */
+}
+
+/* Center the heading like the image */
+.auth-form h1 {
+  text-align: center;
+  font-size: 2rem;
+  letter-spacing: -0.02em;
+  margin-bottom: 30px;
+  font-weight: 700;
+}
+
+/* Input styling (keep your current style, just minor spacing) */
+.input-group {
+  margin-bottom: 20px;
+}
+
+.input-group label {
+  display: block;
+  font-size: 13px;
+  font-weight: 600;
+  margin-bottom: 6px;
+  color: var(--text-muted);
+}
+
+.input-group input {
+  width: 100%;
+  padding: 14px 16px;
+  font-size: 15px;
+  border-radius: 12px;
+  border: 1.5px solid var(--border-light);
+  background: #fff;
+  outline: none;
+  transition: border-color 0.25s ease, box-shadow 0.25s ease;
+}
+
+.input-group input::placeholder {
+  color: #9ca3af;
+}
+
+.input-group input:focus {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 4px var(--accent-soft);
+}
+
+/* Button style (keep your gradient) */
+#signup-btn {
+  width: 100%;
+  margin-top: 14px;
+  padding: 15px;
+  border-radius: 14px;
+  border: none;
+  background: linear-gradient(180deg, #111827, #020617);
+  color: #ffffff;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+#signup-btn:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 12px 25px rgba(0, 0, 0, 0.25);
+}
+
+#signup-btn:active {
+  transform: translateY(0);
+  box-shadow: none;
+}
 
