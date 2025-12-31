@@ -1,61 +1,63 @@
 import { createClient } from 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js/+esm'
 
-const supabase = createClient(
-  'https://jxqgghfdvrlmpqeykkmx.supabase.co',
-  'sb_publishable_BzVnuUeh0PxJxW2ezXGXwg_9OjLy5NE'
-)
+// ---- Supabase setup
+const SUPABASE_URL = 'https://jxqgghfdvrlmpqeykkmx.supabase.co'
+const SUPABASE_KEY = 'sb_publishable_BzVnuUeh0PxJxW2ezXGXwg_9OjLy5NE'
+const supabase = createClient(SUPABASE_URL, SUPABASE_KEY)
 
-(async function() {
+document.addEventListener('DOMContentLoaded', async () => {
   const hamburger = document.getElementById('open-profile-menu')
-  const hamburgerLink = hamburger?.closest('a')
+  if (!hamburger) return
 
-  if (!hamburger || !hamburgerLink) return
+  const hamburgerLink = hamburger.closest('a') || hamburger
 
   // Get logged-in user
-  const { data: { user } } = await supabase.auth.getUser()
+  const { data: { user }, error: userError } = await supabase.auth.getUser()
+  if (userError || !user) return  // Not logged in, do nothing
 
-  if (!user) return
-
-  // Inject profile popup
+  // Create profile popup
   const popup = document.createElement('div')
   popup.className = 'profile-popup'
   popup.innerHTML = `
-    <p class="profile-name"></p>
-    <p class="profile-email"></p>
-    <a href="profile.html">View Profile</a>
+    <div class="popup-content">
+      <h2 class="profile-name"></h2>
+      <p class="profile-email"></p>
+      <a href="profile.html">View Full Profile</a>
+    </div>
   `
   document.body.appendChild(popup)
 
   const nameEl = popup.querySelector('.profile-name')
   const emailEl = popup.querySelector('.profile-email')
 
-  // Load client data
-  const { data: client } = await supabase
+  // Load client data from Supabase
+  const { data: client, error: clientError } = await supabase
     .from('Clients')
     .select('full_name, email')
     .eq('id', user.id)
     .single()
 
-  if (client) {
+  if (clientError) {
+    console.error('Failed to fetch client data:', clientError)
+  } else if (client) {
     nameEl.textContent = client.full_name
     emailEl.textContent = client.email
   }
 
-  // Hamburger click
+  // Handle hamburger click to toggle popup
   hamburgerLink.removeAttribute('href')
   let open = false
-
   hamburgerLink.addEventListener('click', (e) => {
     e.preventDefault()
     open = !open
     popup.classList.toggle('open', open)
   })
 
-  // Close on outside click
+  // Close popup when clicking outside
   document.addEventListener('click', (e) => {
     if (!popup.contains(e.target) && !hamburger.contains(e.target)) {
       popup.classList.remove('open')
       open = false
     }
   })
-})()
+})
